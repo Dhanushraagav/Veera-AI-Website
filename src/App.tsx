@@ -2,20 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { CustomCursor } from "./components/CustomCursor";
 import { Hero } from "./sections/Hero";
-import { HowItWorks } from "./sections/HowItWorks";
-import { RealtimeAI } from "./sections/RealtimeAI";
-import { ContextAwareAI } from "./sections/ContextAwareAI";
-import { AIProviders } from "./sections/AIProviders";
-import { SpeedSection } from "./sections/SpeedSection";
-import { DesktopFirst } from "./sections/DesktopFirst";
-import { GlobalShortcut } from "./sections/GlobalShortcut";
 import { Features } from "./sections/Features";
+import { HowItWorks } from "./sections/HowItWorks";
+import { AIProviders } from "./sections/AIProviders";
+import { DesktopFirst } from "./sections/DesktopFirst";
 import { PrivacySection } from "./sections/PrivacySection";
-import { Pricing } from "./sections/Pricing";
-import { ActivationCode } from "./sections/ActivationCode";
 import { FAQ } from "./sections/FAQ";
 import { Footer } from "./sections/Footer";
-import { PurchaseModal } from "./components/Modal";
 import { DownloadPage } from "./pages/DownloadPage";
 
 export const App: React.FC = () => {
@@ -29,8 +22,6 @@ export const App: React.FC = () => {
     }
     return "home";
   });
-
-  const [purchaseModalOpen, setPurchaseModalOpen] = useState(false);
 
   useEffect(() => {
     const handlePopState = () => {
@@ -65,76 +56,49 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#080908] text-[#f4f4f5] selection:bg-zinc-800 selection:text-white flex flex-col font-sans">
-      {/* Live Custom Cursor Interaction */}
+    <div className="min-h-screen bg-[#080908] text-[#F7F5EF] selection:bg-[#191D19] selection:text-[#D4AF72] flex flex-col font-sans">
       <CustomCursor />
-      {/* Navigation */}
+
+      {/* Navigation (Contains Download Button #1) */}
       <Navbar
         activeRoute={activeRoute}
         onRouteChange={handleRouteChange}
         onDownloadClick={handleDownloadClick}
       />
 
-      {/* Main View Area */}
       <main className="flex-grow">
         {activeRoute === "download" ? (
           <DownloadPage onBackToHome={() => handleRouteChange("home")} />
         ) : (
           <>
-            {/* 1. Hero */}
+            {/* 1. Hero (Contains Download Button #2) */}
             <Hero onDownloadClick={handleDownloadClick} />
 
-            {/* 2. Live Interview Workflow */}
-            <HowItWorks />
-
-            {/* 3. Real-Time AI & Audio-to-Answer Pipeline */}
-            <RealtimeAI />
-
-            {/* 4. Context-Aware AI Intelligence */}
-            <ContextAwareAI />
-
-            {/* 5. Multiple AI Providers (Gemini, Groq, OpenRouter) */}
-            <AIProviders />
-
-            {/* 6. Latency & Speed Section */}
-            <SpeedSection />
-
-            {/* 7. Dedicated Windows Desktop Experience */}
-            <DesktopFirst onDownloadClick={handleDownloadClick} />
-
-            {/* 8. Global Shortcut Access (Ctrl+D) */}
-            <GlobalShortcut />
-
-            {/* 9. Core Capabilities & Architecture */}
+            {/* 2. 4 Features Cards */}
             <Features />
 
-            {/* 10. Privacy & Runtime Security */}
+            {/* 3. Compact 3-Step: Capture -> Analyze -> Solve */}
+            <HowItWorks />
+
+            {/* 4. Compact AI Providers */}
+            <AIProviders />
+
+            {/* 5. Windows Desktop Specs (No redundant download button) */}
+            <DesktopFirst />
+
+            {/* 6. Concise Privacy */}
             <PrivacySection />
 
-            {/* 11. Transparent Pricing */}
-            <Pricing onPurchaseClick={() => setPurchaseModalOpen(true)} />
-
-            {/* 12. Manual Activation Code Issuance */}
-            <ActivationCode onDownloadClick={handleDownloadClick} />
-
-            {/* 13. Comprehensive FAQ */}
+            {/* 7. Exactly 5 Useful FAQs */}
             <FAQ />
           </>
         )}
       </main>
 
-      {/* Global Footer */}
+      {/* Footer (No prominent download button) */}
       <Footer
         onDownloadClick={handleDownloadClick}
         onRouteChange={handleRouteChange}
-      />
-
-      {/* Purchase Modal Notice */}
-      <PurchaseModal
-        isOpen={purchaseModalOpen}
-        onClose={() => setPurchaseModalOpen(false)}
-        title="VEERA AI PRO"
-        subtitle="Real-time AI-powered interview intelligence for your Windows desktop."
       />
     </div>
   );

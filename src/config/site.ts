@@ -1,264 +1,161 @@
-export interface PricingPlan {
-  planName: string;
-  price: string;
-  billingCycle: string;
-  badge?: string;
-  description: string;
-  features: string[];
-  ctaText: string;
-}
-
 export interface WorkflowStep {
   number: string;
-  label: string;
   title: string;
   summary: string;
-  details: string;
 }
 
 export interface AIProviderItem {
   name: string;
   badge: string;
-  tagline: string;
-  description: string;
-  latency: string;
-  role: string;
+  models: string;
+  visionSupport: string;
 }
 
 export interface FeatureItem {
   id: string;
+  number: string;
   title: string;
   description: string;
-  category: "Intelligence" | "Desktop" | "Privacy";
   iconName: string;
+  tag: string;
 }
 
 export const SITE_CONFIG = {
-  SITE_NAME: "VEERA AI",
-  TAGLINE: "AI-Powered Interview Intelligence",
-  HEADLINE: "Interview Smarter.\nRespond Faster.",
-  SUPPORTING_HEADLINE: "Your real-time AI interview copilot that listens, understands, and helps you respond with confidence.",
-  SUBHEADLINE:
-    "Built for live technical, HR, coding, and system-design interviews. Veera AI turns spoken questions into context-aware answers in real time.",
-  DOWNLOAD_URL: "/downloads/Veera-AI_1.0.0_x64-setup.exe",
-  INSTALLER_FILENAME: "Veera-AI_1.0.0_x64-setup.exe",
-  INSTALLER_SIZE: "~3.83 MB",
-  INSTALLER_TYPE: "Windows installer",
-  VERSION: "1.0.0",
-  SUPPORTED_PLATFORM: "Windows 10 / Windows 11",
-  ARCHITECTURE: "64-bit (x64) Desktop App",
-  REQUIREMENTS: "Windows 10 or 11 (64-bit), 4GB RAM, Microphone input",
+  SITE_NAME: 'VEERA AI',
+  TAGLINE: 'AI Question Solver',
+  SMALL_LABEL: 'AI QUESTION SOLVER',
+  HEADLINE: 'Wait… Let Me Cook !',
+  SUPPORTING_TEXT: 'AI-powered screenshot solving for aptitude, reasoning, and code.',
+  PRIMARY_CTA: 'Download for Windows',
+  SECONDARY_CTA: 'Explore Features',
 
-  PRICING: {
-    planName: "VEERA AI PRO",
-    price: "₹499",
-    billingCycle: "/ year",
-    badge: "ANNUAL PLAN",
-    description: "Full access to real-time interview intelligence on your Windows desktop.",
-    features: [
-      "Real-time live AI assistance",
-      "Multiple AI providers (Gemini, Groq, OpenRouter)",
-      "Resume & job-aware context",
-      "Conversation memory for follow-ups",
-      "Native Windows app with global shortcut (Ctrl + D)",
-      "Lightweight background & system tray mode",
-      "Private runtime memory — zero stored audio",
-    ],
-    ctaText: "Get Veera AI",
-  } as PricingPlan,
+  CAPABILITY_LABELS: [
+    'Screenshot AI',
+    'Coding Solutions',
+    'Auto Model Routing',
+  ],
 
+  // Windows installer metadata pointing directly to GitHub Release asset
+  DOWNLOAD_URL: 'https://github.com/Dhanushraagav/Veera-AI-Desktop/releases/download/v1.0.0/Veera-AI-Standard-1.0.0-x64-setup.exe',
+  INSTALLER_FILENAME: 'Veera-AI-Standard-1.0.0-x64-setup.exe',
+  INSTALLER_SIZE: '3.83 MB',
+  VERSION: '1.0.0',
+  SUPPORTED_PLATFORM: 'Windows 10 / Windows 11',
+  ARCHITECTURE: '64-bit (x64) Windows Desktop App',
+  REQUIREMENTS: 'Windows 10 (Build 19041+) or Windows 11 (64-bit), 4 GB RAM minimum',
+
+  SYSTEM_REQUIREMENTS: [
+    { label: 'Operating System', value: 'Windows 10 / 11 (64-bit)' },
+    { label: 'Processor', value: 'Intel Core i3 / AMD Ryzen 3 or higher' },
+    { label: 'Memory', value: '4 GB RAM minimum' },
+    { label: 'Package Size', value: '3.83 MB standalone installer' },
+    { label: 'AI Credentials', value: 'User API key for Gemini, Groq, OpenRouter, or Cloudflare' },
+  ],
+
+  // Compact 3-Step Visual
   WORKFLOW_STEPS: [
     {
-      number: "01",
-      label: "Listen",
-      title: "Real-Time Audio Capture",
-      summary: "Veera AI processes incoming speech as the interviewer talks.",
-      details: "Captures audio cleanly and converts speech to text in real time.",
+      number: '01',
+      title: 'Capture',
+      summary: 'Capture a question screenshot, crop an active window, paste from clipboard, or import an image.',
     },
     {
-      number: "02",
-      label: "Understand",
-      title: "Automatic Question Detection",
-      summary: "Identifies the core question and context instantly.",
-      details: "Detects technical, coding, and HR questions the moment they are asked.",
+      number: '02',
+      title: 'Analyze',
+      summary: 'Veera AI sends the image to a configured compatible vision model (Gemini, Groq, OpenRouter, or Cloudflare).',
     },
     {
-      number: "03",
-      label: "Think",
-      title: "Fast AI Reasoning",
-      summary: "Matches the question with your resume, role, and past answers.",
-      details: "The selected model analyzes your background to craft an accurate answer.",
-    },
-    {
-      number: "04",
-      label: "Respond",
-      title: "Instant Answer Suggestions",
-      summary: "A clear, natural answer appears right on your screen.",
-      details: "Gives you key talking points, concise summaries, or code snippets immediately.",
+      number: '03',
+      title: 'Solve',
+      summary: 'View the detected question, verified answer, step-by-step reasoning, or code with complexity analysis.',
     },
   ] as WorkflowStep[],
 
-  AI_PROVIDERS: [
-    {
-      name: "Groq LPU",
-      badge: "Ultra-Fast",
-      tagline: "Sub-second response time",
-      description: "Powered by LPUs to generate answers with practically zero delay.",
-      latency: "Fastest",
-      role: "Best for quick conversational pacing and immediate talking points.",
-    },
-    {
-      name: "Google Gemini",
-      badge: "Deep Reasoning",
-      tagline: "Gemini 2.5 Flash",
-      description: "Handles complex system architecture, tradeoffs, and deep technical questions.",
-      latency: "High Accuracy",
-      role: "Best for software design, system architecture, and detailed explanations.",
-    },
-    {
-      name: "OpenRouter",
-      badge: "Flexible",
-      tagline: "Access to multiple open models",
-      description: "Connect to top open-weights models suited for coding and niche domains.",
-      latency: "Flexible",
-      role: "Best for customized model selection and specialized coding prompts.",
-    },
-  ] as AIProviderItem[],
-
+  // Exactly 4 Distinctive Features
   FEATURES: [
     {
-      id: "realtime-audio",
-      title: "Real-Time Speech Recognition",
-      description: "Transcribes spoken audio as it happens with incremental speech processing.",
-      category: "Intelligence",
-      iconName: "Activity",
+      id: 'screenshot-analysis',
+      number: '01',
+      title: 'Screenshot Analysis',
+      description: 'Capture any on-screen question, crop an active window, paste from your clipboard, or import PNG, JPG, or WebP files.',
+      iconName: 'Crop',
+      tag: 'Capture & Ingest',
     },
     {
-      id: "question-detection",
-      title: "Automatic Question Detection",
-      description: "Automatically recognizes questions across Technical, Coding, and HR topics.",
-      category: "Intelligence",
-      iconName: "Target",
+      id: 'aptitude-reasoning',
+      number: '02',
+      title: 'Aptitude & Reasoning',
+      description: 'Extract statements, formulas, and multiple-choice options with clear step-by-step mathematical reasoning and verified answers.',
+      iconName: 'Brain',
+      tag: 'Quantitative & Logic',
     },
     {
-      id: "resume-grounding",
-      title: "Resume & Job Context",
-      description: "Answers are grounded strictly in your real projects and target job description.",
-      category: "Intelligence",
-      iconName: "FileText",
+      id: 'coding-solutions',
+      number: '03',
+      title: 'Coding Solutions',
+      description: 'Generate clean, idiomatic code for programming problems with edge cases, algorithmic trade-offs, and time/space complexity analysis.',
+      iconName: 'Code',
+      tag: 'Algorithms & Code',
     },
     {
-      id: "conversation-memory",
-      title: "Conversation Context",
-      description: "Remembers previous questions so follow-ups stay natural and coherent.",
-      category: "Intelligence",
-      iconName: "GitBranch",
-    },
-    {
-      id: "low-latency",
-      title: "Low-Latency AI Engine",
-      description: "Built for speed so you get talking points before you need to answer.",
-      category: "Intelligence",
-      iconName: "Cpu",
-    },
-    {
-      id: "global-hotkey",
-      title: "Global Shortcut (Ctrl + D)",
-      description: "Show or hide the assistant anytime with a simple keyboard shortcut.",
-      category: "Desktop",
-      iconName: "Command",
-    },
-    {
-      id: "background-running",
-      title: "Runs in the Background",
-      description: "Stays quietly in your system tray, using minimal CPU and RAM while idle.",
-      category: "Desktop",
-      iconName: "Monitor",
-    },
-    {
-      id: "minimal-hud",
-      title: "Compact HUD Mode",
-      description: "A clean, compact window that fits neatly beside Teams, Meet, or Zoom.",
-      category: "Desktop",
-      iconName: "Layers",
-    },
-    {
-      id: "session-privacy",
-      title: "Private & Local",
-      description: "Session data stays in temporary memory during your call. Nothing is stored in the cloud.",
-      category: "Privacy",
-      iconName: "ShieldCheck",
+      id: 'auto-routing',
+      number: '04',
+      title: 'Automatic AI Routing',
+      description: 'Intelligently route tasks across configured compatible AI providers with automatic fallback on HTTP 429 quota exhaustion.',
+      iconName: 'Shuffle',
+      tag: 'Resilient Failover',
     },
   ] as FeatureItem[],
 
-  ACTIVATION_STEPS: [
+  // Compact AI Providers
+  AI_PROVIDERS: [
     {
-      step: 1,
-      title: "Download Veera AI",
-      text: "Get the installer directly from our download page.",
+      name: 'Google Gemini',
+      badge: 'Multimodal Vision',
+      models: 'gemini-2.5-flash, gemini-flash-latest',
+      visionSupport: 'Native Vision',
     },
     {
-      step: 2,
-      title: "Install the app",
-      text: "Run the quick setup on Windows 10 or Windows 11.",
+      name: 'Groq LPU',
+      badge: 'Ultra-Fast LPU',
+      models: 'qwen/qwen3.8-27b, llama-3.3-70b',
+      visionSupport: 'Qwen 3.8 Vision',
     },
     {
-      step: 3,
-      title: "Launch Veera AI",
-      text: "Open the desktop app from your Start menu or desktop shortcut.",
+      name: 'OpenRouter',
+      badge: 'Gateway',
+      models: 'dots-studio/dots-3-note-preview:free, gemma-4',
+      visionSupport: 'Free Multimodal',
     },
     {
-      step: 4,
-      title: "Enter your activation code",
-      text: "Paste your unique license key to activate your copy.",
+      name: 'Cloudflare Workers AI',
+      badge: 'Serverless Edge',
+      models: '@cf/meta/llama-3.2-11b-vision-instruct',
+      visionSupport: 'Edge Vision',
     },
-    {
-      step: 5,
-      title: "Start your interview session",
-      text: "You're all set to use real-time AI assistance.",
-    },
-  ],
+  ] as AIProviderItem[],
 
+  // Exactly the 5 useful FAQs requested
   FAQS: [
     {
-      question: "What is Veera AI?",
-      answer: "Veera AI is a Windows desktop application that acts as your real-time interview copilot. It listens to interviewer questions as they're spoken and provides fast, context-aware answer suggestions.",
+      question: 'What is Veera AI?',
+      answer: 'Veera AI is a lightweight Windows desktop application designed to solve and explain aptitude questions, multiple-choice problems, logical reasoning puzzles, and coding challenges from screenshots.',
     },
     {
-      question: "How does Veera AI work?",
-      answer: "It follows four simple steps: Listen, Understand, Think, and Respond. It captures audio, detects the question, matches it with your resume and job description, and displays concise talking points instantly.",
+      question: 'Which Windows versions are supported?',
+      answer: 'Veera AI runs natively on 64-bit Windows 10 (Build 19041+) and Windows 11. The standalone installer is compact at approximately 3.83 MB.',
     },
     {
-      question: "Which platforms are supported?",
-      answer: "Veera AI runs natively on 64-bit Windows 10 and Windows 11. It works alongside Microsoft Teams, Google Meet, Zoom, or web-based video calls.",
+      question: 'Which AI providers are supported?',
+      answer: 'Veera AI integrates with Google Gemini, Groq, OpenRouter, and Cloudflare Workers AI. You can select your preferred provider and enable automatic failover when quotas are reached.',
     },
     {
-      question: "Which AI providers are supported?",
-      answer: "You can use Google Gemini (for deep reasoning), Groq (for sub-second response speed), or OpenRouter (for a wide selection of open-weights models).",
+      question: 'Do I need API keys?',
+      answer: 'Yes. Veera AI is a Bring-Your-Own-Key (BYOK) desktop application. You enter your API credentials in desktop settings, where they are saved securely in native Windows credential storage.',
     },
     {
-      question: "Can I choose the AI model?",
-      answer: "Yes. You can pick your preferred model inside each provider — including LLaMA 3.3 70B on Groq, Gemini 2.5 Flash on Google, or open models via OpenRouter.",
-    },
-    {
-      question: "How do I activate Veera AI?",
-      answer: "After installing the app, launch it and enter the activation code provided by the Veera AI team. Your app activates immediately.",
-    },
-    {
-      question: "Where do I get an activation code?",
-      answer: "Activation codes are currently issued directly by the Veera AI team. Contact support to request your license key.",
-    },
-    {
-      question: "Does Veera AI require an account?",
-      answer: "No. You don't need to sign up, create an account, or save credentials to the cloud. Your license is tied directly to your desktop app.",
-    },
-    {
-      question: "Is payment available?",
-      answer: "Online self-serve payments are coming soon. For now, access is provided through manual activation codes issued directly by our team.",
-    },
-    {
-      question: "Does Veera AI work on Windows 10 and Windows 11?",
-      answer: "Yes. Veera AI is fully optimized for both 64-bit Windows 10 and Windows 11.",
+      question: 'Is AI output always correct?',
+      answer: 'No. While frontier vision models provide high accuracy for standard aptitude, reasoning, and coding problems, AI responses can make errors and should always be verified during study practice.',
     },
   ],
 };
