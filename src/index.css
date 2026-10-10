@@ -1,0 +1,143 @@
+﻿@import "tailwindcss";
+
+:root {
+  --veera-emerald: #087F5B;
+  --veera-champagne: #D4AF72;
+  --veera-warm-white: #F7F5EF;
+
+  --veera-background: #080908;
+  --veera-surface: #121512;
+  --veera-surface-elevated: #191D19;
+  --veera-border: #292D29;
+  --veera-text-secondary: #B4B7B0;
+  --veera-success: #087F5B;
+}
+
+@theme {
+  --color-veera-emerald: #087F5B;
+  --color-veera-champagne: #D4AF72;
+  --color-veera-warm-white: #F7F5EF;
+  --color-veera-background: #080908;
+  --color-veera-surface: #121512;
+  --color-veera-surface-elevated: #191D19;
+  --color-veera-border: #292D29;
+  --color-veera-text-secondary: #B4B7B0;
+  --color-veera-success: #087F5B;
+}
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--veera-background);
+    color: var(--veera-warm-white);
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--veera-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--veera-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 114, 0.35);
+}
+
+/* Glassmorphism & metallic accents */
+.glass-panel {
+  background: rgba(18, 21, 18, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--veera-border);
+}
+
+.glass-panel-elevated {
+  background: rgba(25, 29, 25, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 114, 0.18);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 1px 1px rgba(212, 175, 114, 0.06) inset;
+}
+
+.subtle-grid {
+  background-image: radial-gradient(rgba(212, 175, 114, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.metallic-badge {
+  background: linear-gradient(180deg, rgba(212, 175, 114, 0.08) 0%, rgba(8, 127, 91, 0.04) 100%);
+  border: 1px solid rgba(212, 175, 114, 0.22);
+}
+
+.metallic-button {
+  background: linear-gradient(180deg, #F7F5EF 0%, #E8E5DD 100%);
+  color: #080908;
+  border: 1px solid rgba(212, 175, 114, 0.3);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 20px rgba(212, 175, 114, 0.12);
+}
+
+.metallic-button:hover {
+  background: linear-gradient(180deg, #FFFFFF 0%, #EDE9DF 100%);
+  border-color: rgba(8, 127, 91, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 24px rgba(8, 127, 91, 0.22);
+}
+
+.emerald-button {
+  background: linear-gradient(180deg, #099268 0%, #087F5B 100%);
+  color: #F7F5EF;
+  border: 1px solid rgba(212, 175, 114, 0.35);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 20px rgba(8, 127, 91, 0.25);
+}
+
+.emerald-button:hover {
+  background: linear-gradient(180deg, #0ba274 0%, #087F5B 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 28px rgba(8, 127, 91, 0.4);
+}
+
+.dark-button {
+  background: rgba(18, 21, 18, 0.6);
+  border: 1px solid var(--veera-border);
+  color: var(--veera-warm-white);
+}
+
+.dark-button:hover {
+  background: rgba(25, 29, 25, 0.9);
+  border-color: rgba(212, 175, 114, 0.3);
+  color: #FFFFFF;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* Custom cursor desktop styling - disabled for touch and reduced motion */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html.has-custom-cursor,
+  html.has-custom-cursor body,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button,
+  html.has-custom-cursor [role="button"],
+  html.has-custom-cursor input,
+  html.has-custom-cursor select,
+  html.has-custom-cursor textarea {
+    cursor: none !important;
+  }
+}
