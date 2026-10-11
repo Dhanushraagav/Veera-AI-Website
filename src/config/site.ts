@@ -35,8 +35,8 @@ export const SITE_CONFIG = {
     'Auto Model Routing',
   ],
 
-  // Windows installer metadata pointing directly to GitHub Release asset
-  DOWNLOAD_URL: 'https://github.com/Dhanushraagav/Veera-AI-Desktop/releases/download/v1.0.0/Veera-AI-Standard-1.0.0-x64-setup.exe',
+  // Windows installer metadata pointing directly to GitHub public downloads repository
+  DOWNLOAD_URL: 'https://github.com/Dhanushraagav/Veera-AI-Downloads/raw/refs/heads/main/Veera-AI-Standard-1.0.0-x64-setup.exe',
   INSTALLER_FILENAME: 'Veera-AI-Standard-1.0.0-x64-setup.exe',
   INSTALLER_SIZE: '3.83 MB',
   VERSION: '1.0.0',
