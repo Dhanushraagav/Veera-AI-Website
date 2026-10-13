@@ -9,57 +9,127 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick }) => {
   return (
-    <section className="relative pt-28 pb-20 sm:pt-40 sm:pb-32 overflow-hidden bg-[#080908]">
+    <section className="relative pt-32 pb-20 sm:pt-44 sm:pb-28 overflow-hidden bg-[#080908]">
       {/* Subtle brand ambient lighting */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[520px] bg-gradient-to-b from-[#087F5B]/[0.14] via-[#D4AF72]/[0.05] to-transparent blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[520px] bg-gradient-to-b from-[#087F5B]/[0.16] via-[#D4AF72]/[0.06] to-transparent blur-3xl pointer-events-none -z-10" />
       <div className="absolute inset-0 subtle-grid opacity-20 pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Centered Hero Content */}
-        <div className="text-center max-w-5xl mx-auto space-y-6 flex flex-col items-center">
-          {/* Small Label & Brand Emblem */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full metallic-badge text-xs font-mono text-[#D4AF72] backdrop-blur-md"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#087F5B] animate-pulse" />
-            <span className="font-semibold tracking-wider">{SITE_CONFIG.SITE_NAME}</span>
-            <span className="text-[#292D29]">&bull;</span>
-            <span className="text-[#B4B7B0]">{SITE_CONFIG.SMALL_LABEL}</span>
-          </motion.div>
+        <div className="text-center max-w-5xl mx-auto flex flex-col items-center">
+          {/* Main Brand Headline with Animated Orbital Light Trails */}
+          <div className="relative w-full flex items-center justify-center">
+            {/* Animated Orbital Light Trails */}
+            <svg
+              className="absolute w-[125%] max-w-[860px] h-[210px] pointer-events-none -z-10"
+              viewBox="0 0 860 210"
+              fill="none"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="orbitCyanTeal" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#00E5BE" stopOpacity="0.55" />
+                  <stop offset="45%" stopColor="#087F5B" stopOpacity="0.15" />
+                  <stop offset="100%" stopColor="#D4AF72" stopOpacity="0.45" />
+                </linearGradient>
+                <linearGradient id="orbitWarmAmber" x1="100%" y1="0%" x2="0%" y2="0%">
+                  <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.5" />
+                  <stop offset="50%" stopColor="#D4AF72" stopOpacity="0.15" />
+                  <stop offset="100%" stopColor="#00E5BE" stopOpacity="0.35" />
+                </linearGradient>
+                <filter id="glowCyan" x="-40%" y="-40%" width="180%" height="180%">
+                  <feGaussianBlur stdDeviation="3.5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <filter id="glowGold" x="-40%" y="-40%" width="180%" height="180%">
+                  <feGaussianBlur stdDeviation="3.5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
 
-          {/* Main Headline */}
+              {/* Primary Orbital Ellipse (Tilted -3 deg) */}
+              <ellipse
+                id="heroOrbit1"
+                cx="430"
+                cy="105"
+                rx="400"
+                ry="64"
+                stroke="url(#orbitCyanTeal)"
+                strokeWidth="1.2"
+                strokeDasharray="8 12"
+                opacity="0.35"
+                transform="rotate(-3 430 105)"
+              />
+
+              {/* Secondary Counter-Orbital Ellipse (Tilted +3.5 deg) */}
+              <ellipse
+                id="heroOrbit2"
+                cx="430"
+                cy="105"
+                rx="370"
+                ry="72"
+                stroke="url(#orbitWarmAmber)"
+                strokeWidth="1"
+                strokeDasharray="6 14"
+                opacity="0.25"
+                transform="rotate(3.5 430 105)"
+              />
+
+              {/* Orbital Light Trail Particles traveling on paths */}
+              <circle r="3" fill="#00E5BE" filter="url(#glowCyan)">
+                <animateMotion dur="14s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#heroOrbit1" />
+                </animateMotion>
+              </circle>
+              <circle r="2.5" fill="#D4AF72" filter="url(#glowGold)">
+                <animateMotion dur="18s" repeatCount="indefinite" rotate="auto" keyPoints="1;0" keyTimes="0;1">
+                  <mpath href="#heroOrbit2" />
+                </animateMotion>
+              </circle>
+            </svg>
+
+            {/* VEERA AI Main Headline */}
+            <motion.div
+              initial={{ opacity: 0, y: 18, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full flex justify-center text-center"
+            >
+              <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[7.5rem] font-semibold tracking-[0.06em] sm:tracking-[0.09em] leading-none select-none text-center uppercase">
+                <span className="brand-gradient-text brand-glow inline-block text-center drop-shadow-sm">
+                  {SITE_CONFIG.HEADLINE}
+                </span>
+              </h1>
+            </motion.div>
+          </div>
+
+          {/* Small, Elegant Tagline: "Your crush could never." */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.05 }}
-            className="w-full flex justify-center text-center"
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="pt-3 sm:pt-4"
           >
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-[#F7F5EF] leading-[1.08] text-center max-w-full">
-              <span className="bg-gradient-to-r from-[#F7F5EF] via-[#F7F5EF] to-[#D4AF72] bg-clip-text text-transparent inline-block text-center">
-                {SITE_CONFIG.HEADLINE}
+            <p className="text-lg sm:text-xl md:text-2xl font-medium tracking-tight text-center">
+              <span className="text-[#B4B7B0]">Your crush could </span>
+              <span className="bg-gradient-to-r from-[#F7F5EF] via-[#00E5BE] to-[#D4AF72] bg-clip-text text-transparent font-semibold">
+                never.
               </span>
-            </h1>
+            </p>
           </motion.div>
-
-          {/* Supporting Text */}
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-base sm:text-lg md:text-xl font-normal text-[#B4B7B0] max-w-2xl mx-auto leading-relaxed pt-1"
-          >
-            {SITE_CONFIG.SUPPORTING_TEXT}
-          </motion.p>
 
           {/* Primary CTA and Secondary Navigation */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-4"
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-7 sm:pt-9"
           >
             <a
               href={SITE_CONFIG.DOWNLOAD_URL}
@@ -87,8 +157,8 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick })
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="pt-4 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-mono"
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="pt-6 sm:pt-7 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-mono"
           >
             {SITE_CONFIG.CAPABILITY_LABELS.map((label) => (
               <span

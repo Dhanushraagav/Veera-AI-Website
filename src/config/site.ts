@@ -23,9 +23,9 @@ export interface FeatureItem {
 
 export const SITE_CONFIG = {
   SITE_NAME: 'VEERA AI',
-  TAGLINE: 'AI Question Solver',
+  TAGLINE: 'Your crush could never.',
   SMALL_LABEL: 'AI QUESTION SOLVER',
-  HEADLINE: 'Wait… Let Me Cook !',
+  HEADLINE: 'VEERA AI',
   SUPPORTING_TEXT: 'Prepare with real-time transcription, context-aware answer suggestions, coding assistance, and flexible controls. Configure your own supported API credentials and choose how you want to work.',
   PRIMARY_CTA: 'Download Veera AI',
   SECONDARY_CTA: 'Explore Features',
