@@ -16,7 +16,7 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick })
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Centered Hero Content */}
-        <div className="text-center max-w-4xl mx-auto space-y-6">
+        <div className="text-center max-w-5xl mx-auto space-y-6 flex flex-col items-center">
           {/* Small Label & Brand Emblem */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -35,9 +35,10 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick })
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.05 }}
+            className="w-full flex justify-center text-center"
           >
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold tracking-tight text-[#F7F5EF] leading-[1.05] whitespace-nowrap">
-              <span className="bg-gradient-to-r from-[#F7F5EF] via-[#F7F5EF] to-[#D4AF72] bg-clip-text text-transparent">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-[#F7F5EF] leading-[1.08] text-center max-w-full">
+              <span className="bg-gradient-to-r from-[#F7F5EF] via-[#F7F5EF] to-[#D4AF72] bg-clip-text text-transparent inline-block text-center">
                 {SITE_CONFIG.HEADLINE}
               </span>
             </h1>
