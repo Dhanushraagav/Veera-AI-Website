@@ -24,7 +24,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadClick: _onDownloadClic
   const navLinks = [
     { label: "Features", href: "#features" },
     { label: "How It Works", href: "#how-it-works" },
-    { label: "AI Providers", href: "#providers" },
+    { label: "Reliability", href: "#providers" },
     { label: "FAQ", href: "#faq" },
     { label: "Download", href: "#download", isDownloadPage: true },
   ];

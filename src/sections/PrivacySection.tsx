@@ -7,17 +7,17 @@ export const PrivacySection: React.FC = () => {
     {
       icon: HardDrive,
       title: "Direct Client Inference",
-      desc: "Requests are sent directly from your desktop app to provider APIs without proprietary intermediate servers.",
+      desc: "Requests are dispatched directly from your desktop app to your configured provider APIs with no proprietary relay servers.",
     },
     {
       icon: Key,
       title: "Local Credential Vault",
-      desc: "API credentials for Gemini, Groq, OpenRouter, and Cloudflare are stored in native Windows secure storage.",
+      desc: "Personal API credentials remain on your device, secured inside native Windows credential storage rather than remote clouds.",
     },
     {
       icon: Shield,
       title: "Ephemeral Session Memory",
-      desc: "Captured images and solutions exist in temporary local memory during your session and are cleared when closed.",
+      desc: "Live audio transcripts, question buffers, and solutions exist in volatile memory during your session and are cleared when closed.",
     },
   ];
 
@@ -33,7 +33,7 @@ export const PrivacySection: React.FC = () => {
             Private by design.
           </h2>
           <p className="text-sm sm:text-base text-[#B4B7B0] leading-relaxed">
-            Veera AI does not run user tracking databases. Note that configured AI providers process API requests remotely.
+            Veera AI operates locally on your machine without third-party user tracking. Note that external AI providers process your direct API requests per their standard terms.
           </p>
         </div>
 

@@ -42,7 +42,7 @@ export const Footer: React.FC<FooterProps> = ({ onRouteChange }) => {
                 <a href="#how-it-works" className="hover:text-white transition-colors">How It Works</a>
               </li>
               <li>
-                <a href="#providers" className="hover:text-white transition-colors">AI Providers</a>
+                <a href="#providers" className="hover:text-white transition-colors">Provider Reliability</a>
               </li>
               <li>
                 <a href="#desktop" className="hover:text-white transition-colors">Windows App</a>

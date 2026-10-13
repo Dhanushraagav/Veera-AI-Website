@@ -4,11 +4,11 @@ export interface WorkflowStep {
   summary: string;
 }
 
-export interface AIProviderItem {
-  name: string;
+export interface ReliabilityPillar {
+  title: string;
   badge: string;
-  models: string;
-  visionSupport: string;
+  description: string;
+  highlight: string;
 }
 
 export interface FeatureItem {
@@ -18,6 +18,7 @@ export interface FeatureItem {
   description: string;
   iconName: string;
   tag: string;
+  bullets?: string[];
 }
 
 export const SITE_CONFIG = {
@@ -25,137 +26,192 @@ export const SITE_CONFIG = {
   TAGLINE: 'AI Question Solver',
   SMALL_LABEL: 'AI QUESTION SOLVER',
   HEADLINE: 'Wait… Let Me Cook !',
-  SUPPORTING_TEXT: 'AI-powered screenshot solving for aptitude, reasoning, and code.',
-  PRIMARY_CTA: 'Download for Windows',
+  SUPPORTING_TEXT: 'Prepare with real-time transcription, context-aware answer suggestions, coding assistance, and flexible controls. Configure your own supported API credentials and choose how you want to work.',
+  PRIMARY_CTA: 'Download Veera AI',
   SECONDARY_CTA: 'Explore Features',
 
   CAPABILITY_LABELS: [
-    'Screenshot AI',
-    'Coding Solutions',
-    'Auto Model Routing',
+    'Real-Time Speech Transcription',
+    'Context-Aware Answer Generation',
+    'Personal API Key Control',
+    'Native Windows Desktop',
   ],
 
-  // Windows installer metadata pointing directly to GitHub public downloads repository
-  DOWNLOAD_URL: 'https://github.com/Dhanushraagav/Veera-AI-Downloads/raw/refs/heads/main/Veera-AI-Standard-1.0.0-x64-setup.exe',
-  INSTALLER_FILENAME: 'Veera-AI-Standard-1.0.0-x64-setup.exe',
-  INSTALLER_SIZE: '3.83 MB',
-  VERSION: '1.0.0',
+  // Windows installer metadata pointing directly to verified GitHub downloads repository
+  DOWNLOAD_URL: 'https://github.com/Dhanushraagav/Veera-AI-Downloads/raw/refs/heads/main/Veera-AI-Standard-2.0.0-x64-setup.exe',
+  INSTALLER_FILENAME: 'Veera-AI-Standard-2.0.0-x64-setup.exe',
+  INSTALLER_SIZE: '3.90 MB',
+  VERSION: '2.0.0',
   SUPPORTED_PLATFORM: 'Windows 10 / Windows 11',
   ARCHITECTURE: '64-bit (x64) Windows Desktop App',
   REQUIREMENTS: 'Windows 10 (Build 19041+) or Windows 11 (64-bit), 4 GB RAM minimum',
 
   SYSTEM_REQUIREMENTS: [
-    { label: 'Operating System', value: 'Windows 10 / 11 (64-bit)' },
+    { label: 'Operating System', value: 'Windows 10 / 11 (64-bit native)' },
     { label: 'Processor', value: 'Intel Core i3 / AMD Ryzen 3 or higher' },
     { label: 'Memory', value: '4 GB RAM minimum' },
     { label: 'Package Size', value: '3.83 MB standalone installer' },
-    { label: 'AI Credentials', value: 'User API key for Gemini, Groq, OpenRouter, or Cloudflare' },
+    { label: 'API Credentials', value: 'User-configured personal API keys in Settings' },
   ],
 
-  // Compact 3-Step Visual
+  // 3-Step Clear Workflow
   WORKFLOW_STEPS: [
     {
       number: '01',
-      title: 'Capture',
-      summary: 'Capture a question screenshot, crop an active window, paste from clipboard, or import an image.',
+      title: 'Configure & Initialize',
+      summary: 'Add your personal API credentials securely in desktop Settings, select your interview session context, and verify microphone readiness.',
     },
     {
       number: '02',
-      title: 'Analyze',
-      summary: 'Veera AI sends the image to a configured compatible vision model (Gemini, Groq, OpenRouter, or Cloudflare).',
+      title: 'Listen or Capture',
+      summary: 'Veera AI captures speech in real time with question intent detection (English & Tamil) or ingests visual question screenshots on demand.',
     },
     {
       number: '03',
-      title: 'Solve',
-      summary: 'View the detected question, verified answer, step-by-step reasoning, or code with complexity analysis.',
+      title: 'Generate & Review',
+      summary: 'View direct answer-first conclusions for aptitude, optimal code with time/space complexity, or structured technical and behavioral responses.',
     },
   ] as WorkflowStep[],
 
-  // Exactly 4 Distinctive Features
+  // Polished Feature Set
   FEATURES: [
     {
-      id: 'screenshot-analysis',
+      id: 'live-audio-transcription',
       number: '01',
-      title: 'Screenshot Analysis',
-      description: 'Capture any on-screen question, crop an active window, paste from your clipboard, or import PNG, JPG, or WebP files.',
-      iconName: 'Crop',
-      tag: 'Capture & Ingest',
+      title: 'Live Audio & Intent Detection',
+      description: 'Continuous real-time speech transcription and automated question boundary detection. Verified for English and Tamil (including colloquial phrasing and Tanglish code-switching), extracting the interviewer\'s actual intent rather than literal translation.',
+      iconName: 'Mic',
+      tag: 'Speech & Multilingual',
+      bullets: [
+        'Real-time microphone capture & detection',
+        'English & Tamil intent understanding',
+        'Noise-resilient question isolation',
+      ],
     },
     {
-      id: 'aptitude-reasoning',
+      id: 'intelligent-answers',
       number: '02',
-      title: 'Aptitude & Reasoning',
-      description: 'Extract statements, formulas, and multiple-choice options with clear step-by-step mathematical reasoning and verified answers.',
+      title: 'Intelligent Answer Generation',
+      description: 'Concise, direct answer-first formatting for quantitative aptitude and logical reasoning. Technical interview questions receive step-by-step depth, while behavioral prompts follow structured STAR-method breakdowns adapted to your role.',
       iconName: 'Brain',
-      tag: 'Quantitative & Logic',
+      tag: 'Reasoning & Answers',
+      bullets: [
+        'Immediate answer-first clarity',
+        'Technical depth & system concepts',
+        'Context-aware STAR responses',
+      ],
     },
     {
       id: 'coding-solutions',
       number: '03',
-      title: 'Coding Solutions',
-      description: 'Generate clean, idiomatic code for programming problems with edge cases, algorithmic trade-offs, and time/space complexity analysis.',
+      title: 'Coding & Algorithmic Solutions',
+      description: 'Synthesizes clean, production-grade code for algorithmic challenges with language targeting, approach explanation, edge-case coverage, and explicit Big-O time and space complexity benchmarks.',
       iconName: 'Code',
       tag: 'Algorithms & Code',
+      bullets: [
+        'Optimal time & space complexity',
+        'Language-idiomatic code structure',
+        'Edge case and trade-off notes',
+      ],
     },
     {
-      id: 'auto-routing',
+      id: 'operator-controls',
       number: '04',
-      title: 'Automatic AI Routing',
-      description: 'Intelligently route tasks across configured compatible AI providers with automatic fallback on HTTP 429 quota exhaustion.',
-      iconName: 'Shuffle',
-      tag: 'Resilient Failover',
+      title: 'Manual & Automated Controls',
+      description: 'Maintain complete command over your preparation session with a deliberate "Answer Now" manual trigger, optional automated answers, stealth global hotkey (Ctrl + D) to show or hide, and instant Clear Chat controls.',
+      iconName: 'Sliders',
+      tag: 'Session Controls',
+      bullets: [
+        'Manual "Answer Now" trigger',
+        'Hands-free Auto Answers toggle',
+        'Global shortcut (Ctrl + D)',
+      ],
+    },
+    {
+      id: 'screenshot-solving',
+      number: '05',
+      title: 'Screenshot Problem Solving',
+      description: 'Capture on-screen multiple-choice questions, code snippets, geometry, or system diagrams through active window cropping or clipboard import, providing rapid extraction and verified solutions.',
+      iconName: 'Crop',
+      tag: 'Visual Ingestion',
+      bullets: [
+        'Window crop & clipboard paste',
+        'Diagram & MCQ analysis',
+        'Structured solution breakdown',
+      ],
+    },
+    {
+      id: 'provider-reliability',
+      number: '06',
+      title: 'Personal API Keys & Fallback',
+      description: 'You control your own provider credentials. Veera AI manages automatic provider selection and resilient fallback routing if a configured provider encounters rate limits or temporary outages.',
+      iconName: 'ShieldCheck',
+      tag: 'BYOK & Reliability',
+      bullets: [
+        'Native Windows credential storage',
+        'Automatic failover on HTTP 429',
+        'Direct local-to-provider inference',
+      ],
     },
   ] as FeatureItem[],
 
-  // Compact AI Providers
-  AI_PROVIDERS: [
+  // Architecture & Provider Reliability Pillars (No model names)
+  RELIABILITY_PILLARS: [
     {
-      name: 'Google Gemini',
-      badge: 'Multimodal Vision',
-      models: 'gemini-2.5-flash, gemini-flash-latest',
-      visionSupport: 'Native Vision',
+      title: 'Personal Key Ownership (BYOK)',
+      badge: 'Credential Privacy',
+      description: 'Configure your own API credentials directly in desktop settings. Usage limits and billing remain under your own provider accounts with zero vendor lock-in.',
+      highlight: 'User-Controlled Access',
     },
     {
-      name: 'Groq LPU',
-      badge: 'Ultra-Fast LPU',
-      models: 'qwen/qwen3.8-27b, llama-3.3-70b',
-      visionSupport: 'Qwen 3.8 Vision',
+      title: 'Automatic Provider Routing',
+      badge: 'Smart Selection',
+      description: 'The engine dynamically routes transcription, text generation, and vision tasks to compatible configured providers based on task type and availability.',
+      highlight: 'Task-Specific Matching',
     },
     {
-      name: 'OpenRouter',
-      badge: 'Gateway',
-      models: 'dots-studio/dots-3-note-preview:free, gemma-4',
-      visionSupport: 'Free Multimodal',
+      title: 'Resilient Quota Fallback',
+      badge: 'Continuous Uptime',
+      description: 'If a configured provider encounters quota exhaustion or rate limits, the system seamlessly redirects the request to your next available configured fallback.',
+      highlight: 'Graceful Failover',
     },
     {
-      name: 'Cloudflare Workers AI',
-      badge: 'Serverless Edge',
-      models: '@cf/meta/llama-3.2-11b-vision-instruct',
-      visionSupport: 'Edge Vision',
+      title: 'Direct Client-to-API Privacy',
+      badge: 'No Intermediaries',
+      description: 'All network inference calls originate straight from your desktop client to provider endpoints. No middleman servers inspect, store, or log your session data.',
+      highlight: 'Zero Proxy Servers',
     },
-  ] as AIProviderItem[],
+  ] as ReliabilityPillar[],
 
-  // Exactly the 5 useful FAQs requested
+  // Honest, Accurate FAQs
   FAQS: [
     {
       question: 'What is Veera AI?',
-      answer: 'Veera AI is a lightweight Windows desktop application designed to solve and explain aptitude questions, multiple-choice problems, logical reasoning puzzles, and coding challenges from screenshots.',
+      answer: 'Veera AI is a lightweight 64-bit Windows desktop companion designed for intelligent interview practice and problem solving. It combines live speech transcription, question intent detection, answer-first aptitude reasoning, coding solutions, and screenshot analysis in a compact desktop workflow.',
     },
     {
-      question: 'Which Windows versions are supported?',
-      answer: 'Veera AI runs natively on 64-bit Windows 10 (Build 19041+) and Windows 11. The standalone installer is compact at approximately 3.83 MB.',
+      question: 'How do personal API keys work in Veera AI?',
+      answer: 'Veera AI operates on a Bring-Your-Own-Key (BYOK) model. You input your own supported API credentials inside desktop Settings, where they are saved securely in native Windows credential storage. You control your accounts, usage limits, and provider billing directly.',
     },
     {
-      question: 'Which AI providers are supported?',
-      answer: 'Veera AI integrates with Google Gemini, Groq, OpenRouter, and Cloudflare Workers AI. You can select your preferred provider and enable automatic failover when quotas are reached.',
+      question: 'Which languages are supported for live speech understanding?',
+      answer: 'Speech transcription and question detection are verified for English and Tamil, including natural code-switching (Tanglish). The system recognizes the interviewer\'s actual question intent, direct and indirect questions, and follow-ups.',
     },
     {
-      question: 'Do I need API keys?',
-      answer: 'Yes. Veera AI is a Bring-Your-Own-Key (BYOK) desktop application. You enter your API credentials in desktop settings, where they are saved securely in native Windows credential storage.',
+      question: 'How does provider routing and fallback work?',
+      answer: 'You can configure multiple supported providers in application settings. Veera AI automatically selects a compatible provider for speech, vision, or reasoning tasks, and gracefully falls back to your next configured provider if rate limits (HTTP 429) or transient errors occur.',
     },
     {
-      question: 'Is AI output always correct?',
-      answer: 'No. While frontier vision models provide high accuracy for standard aptitude, reasoning, and coding problems, AI responses can make errors and should always be verified during study practice.',
+      question: 'What controls do I have during an active practice session?',
+      answer: 'You have full operator control: trigger solutions on demand with "Answer Now", toggle optional hands-free "Auto Answers", show or hide the application using the global hotkey (Ctrl + D), and wipe session history instantly using Clear Chat or End Session.',
+    },
+    {
+      question: 'How is my session privacy protected?',
+      answer: 'Audio streams and problem buffers exist only in temporary local memory during your session and are discarded upon completion. Inference requests travel directly from your local desktop client to your chosen provider APIs without intermediate relay servers.',
+    },
+    {
+      question: 'Does Veera AI guarantee interview outcomes?',
+      answer: 'No. Veera AI is an assistive practice and preparation companion. While it provides structured reasoning, algorithmic approaches, and explanations, AI outputs should always be critically evaluated during study and preparation.',
     },
   ],
 };

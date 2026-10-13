@@ -1,33 +1,35 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Crop, Brain, Code, Shuffle } from "lucide-react";
+import { Mic, Brain, Code, Sliders, Crop, ShieldCheck, CheckCircle2 } from "lucide-react";
 import { SITE_CONFIG, type FeatureItem } from "../config/site";
 
 const iconMap: Record<string, React.ElementType> = {
-  Crop,
+  Mic,
   Brain,
   Code,
-  Shuffle,
+  Sliders,
+  Crop,
+  ShieldCheck,
 };
 
 export const Features: React.FC = () => {
   return (
     <section id="features" className="py-20 sm:py-28 relative overflow-hidden border-t border-[#292D29] bg-[#080908]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full metallic-badge text-xs font-mono text-[#D4AF72]">
-            <span>ENGINEERED FOR ACCURACY</span>
+            <span>VERIFIED CAPABILITIES</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#F7F5EF]">
-            Precision problem solving.
+            Precision tools built for preparation.
           </h2>
           <p className="text-sm sm:text-base text-[#B4B7B0] leading-relaxed">
-            Every feature in Veera AI is focused on visual screenshot understanding, verified answers, and clean code generation.
+            Every capability in Veera AI is grounded in real desktop functionality &mdash; from live speech understanding to structured code analysis and full credential control.
           </p>
         </div>
 
-        {/* The 4 Distinctive Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {/* 6 Feature Cards in a Balanced Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {SITE_CONFIG.FEATURES.map((feature: FeatureItem, idx: number) => {
             const Icon = iconMap[feature.iconName] || Brain;
             return (
@@ -36,7 +38,7 @@ export const Features: React.FC = () => {
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.4, delay: idx * 0.08 }}
+                transition={{ duration: 0.35, delay: idx * 0.06 }}
                 className="group relative p-6 sm:p-7 rounded-2xl bg-[#121512] border border-[#292D29] hover:border-[#D4AF72]/30 transition-all duration-300 flex flex-col justify-between"
               >
                 {/* Glow border sheen on hover */}
@@ -64,11 +66,23 @@ export const Features: React.FC = () => {
                   <p className="text-xs sm:text-sm text-[#B4B7B0] leading-relaxed">
                     {feature.description}
                   </p>
+
+                  {/* Bullet Highlights */}
+                  {feature.bullets && feature.bullets.length > 0 && (
+                    <div className="pt-2 space-y-1.5 border-t border-[#292D29]/60">
+                      {feature.bullets.map((bullet) => (
+                        <div key={bullet} className="flex items-center gap-2 text-xs text-zinc-300">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#087F5B] shrink-0" />
+                          <span>{bullet}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 <div className="pt-4 mt-6 border-t border-[#292D29] flex items-center justify-between text-[11px] font-mono text-[#B4B7B0]">
                   <span>WINDOWS DESKTOP</span>
-                  <span className="text-[#087F5B] font-semibold">VERIFIED</span>
+                  <span className="text-[#087F5B] font-semibold">NATIVE</span>
                 </div>
               </motion.div>
             );

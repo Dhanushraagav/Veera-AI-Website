@@ -22,7 +22,7 @@ export const FAQ: React.FC = () => {
             Frequently asked questions.
           </h2>
           <p className="text-sm sm:text-base text-[#B4B7B0] leading-relaxed">
-            Quick answers about Veera AI, supported models, and platform compatibility.
+            Quick answers about Veera AI features, provider setup, and platform compatibility.
           </p>
         </div>
 
