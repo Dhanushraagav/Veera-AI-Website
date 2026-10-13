@@ -10,116 +10,169 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick }) => {
   return (
     <section className="relative pt-32 pb-20 sm:pt-44 sm:pb-28 overflow-hidden bg-[#080908]">
-      {/* Subtle brand ambient lighting */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[520px] bg-gradient-to-b from-[#087F5B]/[0.16] via-[#D4AF72]/[0.06] to-transparent blur-3xl pointer-events-none -z-10" />
+      {/* Multi-hue subtle ambient background aura */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[580px] bg-gradient-to-b from-[#00F5D4]/[0.12] via-[#8B5CF6]/[0.08] to-[#FF9F1C]/[0.07] blur-[120px] pointer-events-none -z-10" />
       <div className="absolute inset-0 subtle-grid opacity-20 pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Centered Hero Content */}
         <div className="text-center max-w-5xl mx-auto flex flex-col items-center">
-          {/* Main Brand Headline with Animated Orbital Light Trails */}
-          <div className="relative w-full flex items-center justify-center">
-            {/* Animated Orbital Light Trails */}
+          {/* Main Brand Headline with Dynamic Multi-Color Orbital Trails */}
+          <div className="relative w-full flex items-center justify-center py-2 sm:py-4">
+            {/* Luminous Multi-Color Energy Field */}
+            <div className="absolute w-[680px] max-w-full h-[180px] bg-gradient-to-r from-[#00F5D4]/12 via-[#8B5CF6]/12 to-[#FF9F1C]/12 blur-[90px] pointer-events-none rounded-full -z-10" />
+
+            {/* High-Visibility Animated Orbital Light Trails SVG */}
             <svg
-              className="absolute w-[125%] max-w-[860px] h-[210px] pointer-events-none -z-10"
-              viewBox="0 0 860 210"
+              className="absolute w-[130%] max-w-[940px] h-[240px] pointer-events-none -z-10 overflow-visible"
+              viewBox="0 0 940 240"
               fill="none"
               aria-hidden="true"
             >
               <defs>
-                <linearGradient id="orbitCyanTeal" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#00E5BE" stopOpacity="0.55" />
-                  <stop offset="45%" stopColor="#087F5B" stopOpacity="0.15" />
-                  <stop offset="100%" stopColor="#D4AF72" stopOpacity="0.45" />
+                <linearGradient id="orbitMulti1" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#00F5D4" stopOpacity="0.85" />
+                  <stop offset="35%" stopColor="#3B82F6" stopOpacity="0.5" />
+                  <stop offset="70%" stopColor="#8B5CF6" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#FF9F1C" stopOpacity="0.8" />
                 </linearGradient>
-                <linearGradient id="orbitWarmAmber" x1="100%" y1="0%" x2="0%" y2="0%">
-                  <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.5" />
-                  <stop offset="50%" stopColor="#D4AF72" stopOpacity="0.15" />
-                  <stop offset="100%" stopColor="#00E5BE" stopOpacity="0.35" />
+
+                <linearGradient id="orbitMulti2" x1="100%" y1="0%" x2="0%" y2="0%">
+                  <stop offset="0%" stopColor="#FF9F1C" stopOpacity="0.85" />
+                  <stop offset="35%" stopColor="#EC4899" stopOpacity="0.5" />
+                  <stop offset="70%" stopColor="#06D6A0" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#00F5D4" stopOpacity="0.8" />
                 </linearGradient>
-                <filter id="glowCyan" x="-40%" y="-40%" width="180%" height="180%">
-                  <feGaussianBlur stdDeviation="3.5" result="blur" />
+
+                {/* Multi-layer Radial Glow Filters */}
+                <filter id="superGlowCyan" x="-60%" y="-60%" width="220%" height="220%">
+                  <feGaussianBlur stdDeviation="5" result="blur1" />
+                  <feGaussianBlur stdDeviation="2" result="blur2" />
                   <feMerge>
-                    <feMergeNode in="blur" />
+                    <feMergeNode in="blur1" />
+                    <feMergeNode in="blur2" />
                     <feMergeNode in="SourceGraphic" />
                   </feMerge>
                 </filter>
-                <filter id="glowGold" x="-40%" y="-40%" width="180%" height="180%">
-                  <feGaussianBlur stdDeviation="3.5" result="blur" />
+
+                <filter id="superGlowGold" x="-60%" y="-60%" width="220%" height="220%">
+                  <feGaussianBlur stdDeviation="5" result="blur1" />
+                  <feGaussianBlur stdDeviation="2" result="blur2" />
                   <feMerge>
-                    <feMergeNode in="blur" />
+                    <feMergeNode in="blur1" />
+                    <feMergeNode in="blur2" />
                     <feMergeNode in="SourceGraphic" />
                   </feMerge>
                 </filter>
               </defs>
 
-              {/* Primary Orbital Ellipse (Tilted -3 deg) */}
+              {/* Primary Orbital Ring (Tilted -4.5 deg) */}
               <ellipse
                 id="heroOrbit1"
-                cx="430"
-                cy="105"
-                rx="400"
-                ry="64"
-                stroke="url(#orbitCyanTeal)"
-                strokeWidth="1.2"
-                strokeDasharray="8 12"
-                opacity="0.35"
-                transform="rotate(-3 430 105)"
+                cx="470"
+                cy="120"
+                rx="440"
+                ry="74"
+                stroke="url(#orbitMulti1)"
+                strokeWidth="1.6"
+                strokeDasharray="14 18"
+                opacity="0.7"
+                transform="rotate(-4.5 470 120)"
+                className="orbit-trail-animated"
               />
 
-              {/* Secondary Counter-Orbital Ellipse (Tilted +3.5 deg) */}
+              {/* Secondary Counter-Orbital Ring (Tilted +4 deg) */}
               <ellipse
                 id="heroOrbit2"
-                cx="430"
-                cy="105"
-                rx="370"
-                ry="72"
-                stroke="url(#orbitWarmAmber)"
-                strokeWidth="1"
-                strokeDasharray="6 14"
-                opacity="0.25"
-                transform="rotate(3.5 430 105)"
+                cx="470"
+                cy="120"
+                rx="410"
+                ry="84"
+                stroke="url(#orbitMulti2)"
+                strokeWidth="1.5"
+                strokeDasharray="10 16"
+                opacity="0.6"
+                transform="rotate(4 470 120)"
+                className="orbit-trail-animated-reverse"
               />
 
-              {/* Orbital Light Trail Particles traveling on paths */}
-              <circle r="3" fill="#00E5BE" filter="url(#glowCyan)">
-                <animateMotion dur="14s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#heroOrbit1" />
-                </animateMotion>
-              </circle>
-              <circle r="2.5" fill="#D4AF72" filter="url(#glowGold)">
-                <animateMotion dur="18s" repeatCount="indefinite" rotate="auto" keyPoints="1;0" keyTimes="0;1">
-                  <mpath href="#heroOrbit2" />
-                </animateMotion>
-              </circle>
+              {/* Primary Cyan Comet Head & Trail (Motion along Orbit 1) */}
+              <g filter="url(#superGlowCyan)">
+                <circle r="5" fill="#00F5D4">
+                  <animateMotion dur="14s" repeatCount="indefinite" rotate="auto">
+                    <mpath href="#heroOrbit1" />
+                  </animateMotion>
+                </circle>
+                <circle r="2.5" fill="#FFFFFF">
+                  <animateMotion dur="14s" repeatCount="indefinite" rotate="auto">
+                    <mpath href="#heroOrbit1" />
+                  </animateMotion>
+                </circle>
+                <circle r="3" fill="#3B82F6" opacity="0.6">
+                  <animateMotion dur="14s" repeatCount="indefinite" rotate="auto" begin="-0.35s">
+                    <mpath href="#heroOrbit1" />
+                  </animateMotion>
+                </circle>
+                <circle r="2" fill="#8B5CF6" opacity="0.35">
+                  <animateMotion dur="14s" repeatCount="indefinite" rotate="auto" begin="-0.7s">
+                    <mpath href="#heroOrbit1" />
+                  </animateMotion>
+                </circle>
+              </g>
+
+              {/* Secondary Amber/Rose Comet Head & Trail (Counter-Motion along Orbit 2) */}
+              <g filter="url(#superGlowGold)">
+                <circle r="5" fill="#FF9F1C">
+                  <animateMotion dur="18s" repeatCount="indefinite" rotate="auto" keyPoints="1;0" keyTimes="0;1">
+                    <mpath href="#heroOrbit2" />
+                  </animateMotion>
+                </circle>
+                <circle r="2.5" fill="#FFFFFF">
+                  <animateMotion dur="18s" repeatCount="indefinite" rotate="auto" keyPoints="1;0" keyTimes="0;1">
+                    <mpath href="#heroOrbit2" />
+                  </animateMotion>
+                </circle>
+                <circle r="3" fill="#EC4899" opacity="0.6">
+                  <animateMotion dur="18s" repeatCount="indefinite" rotate="auto" keyPoints="1;0" keyTimes="0;1" begin="-0.4s">
+                    <mpath href="#heroOrbit2" />
+                  </animateMotion>
+                </circle>
+                <circle r="2" fill="#06D6A0" opacity="0.35">
+                  <animateMotion dur="18s" repeatCount="indefinite" rotate="auto" keyPoints="1;0" keyTimes="0;1" begin="-0.8s">
+                    <mpath href="#heroOrbit2" />
+                  </animateMotion>
+                </circle>
+              </g>
             </svg>
 
-            {/* VEERA AI Main Headline */}
+            {/* VEERA AI Main Headline with Syne Stylish Display Typography & Slow Spectrum Shimmer */}
             <motion.div
-              initial={{ opacity: 0, y: 18, scale: 0.96 }}
+              initial={{ opacity: 0, y: 16, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full flex justify-center text-center"
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full flex justify-center text-center relative z-10"
             >
-              <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[7.5rem] font-semibold tracking-[0.06em] sm:tracking-[0.09em] leading-none select-none text-center uppercase">
-                <span className="brand-gradient-text brand-glow inline-block text-center drop-shadow-sm">
+              <h1 
+                style={{ fontFamily: "'Syne', sans-serif" }}
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[7.6rem] font-bold tracking-[0.04em] sm:tracking-[0.06em] leading-none select-none text-center uppercase"
+              >
+                <span className="brand-gradient-text brand-glow inline-block text-center drop-shadow-md">
                   {SITE_CONFIG.HEADLINE}
                 </span>
               </h1>
             </motion.div>
           </div>
 
-          {/* Small, Elegant Tagline: "Your crush could never." */}
+          {/* Small, Elegant Tagline with matching slow multi-color spectrum animation */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="pt-3 sm:pt-4"
+            className="pt-4 sm:pt-5"
           >
-            <p className="text-lg sm:text-xl md:text-2xl font-medium tracking-tight text-center">
-              <span className="text-[#B4B7B0]">Your crush could </span>
-              <span className="bg-gradient-to-r from-[#F7F5EF] via-[#00E5BE] to-[#D4AF72] bg-clip-text text-transparent font-semibold">
-                never.
+            <p className="text-lg sm:text-xl md:text-2xl font-light sm:font-normal tracking-wide text-center">
+              <span className="tagline-spectrum font-normal inline-block text-center drop-shadow-sm">
+                Your crush could never.
               </span>
             </p>
           </motion.div>

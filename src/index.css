@@ -14,6 +14,7 @@
 }
 
 @theme {
+  --font-display: 'Syne', sans-serif;
   --color-veera-emerald: #087F5B;
   --color-veera-champagne: #D4AF72;
   --color-veera-warm-white: #F7F5EF;
@@ -28,7 +29,7 @@
 @layer base {
   :root {
     --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-display: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Syne', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
   }
 
@@ -124,8 +125,8 @@
   color: #FFFFFF;
 }
 
-/* Brand headline shimmer & glow */
-@keyframes brandShimmer {
+/* Brand multi-color spectrum shimmer (slow, rich multi-hue flow) */
+@keyframes brandSpectrumShimmer {
   0% {
     background-position: 0% 50%;
   }
@@ -137,17 +138,74 @@
   }
 }
 
+@keyframes brandSpectrumGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 12px rgba(0, 245, 212, 0.35)) drop-shadow(0 0 28px rgba(139, 92, 246, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 18px rgba(236, 72, 153, 0.35)) drop-shadow(0 0 35px rgba(59, 130, 246, 0.22));
+  }
+}
+
+@keyframes orbitDashRotate {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 260;
+  }
+}
+
 .brand-gradient-text {
-  background: linear-gradient(135deg, #00E5BE 0%, #0A966C 25%, #F7F5EF 50%, #D4AF72 75%, #F59E0B 100%);
-  background-size: 200% auto;
+  background: linear-gradient(
+    120deg,
+    #00F5D4 0%,
+    #06D6A0 12%,
+    #3B82F6 24%,
+    #8B5CF6 37%,
+    #EC4899 50%,
+    #FF9F1C 63%,
+    #FBBF24 76%,
+    #00F5D4 88%,
+    #3B82F6 100%
+  );
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: brandShimmer 9s ease-in-out infinite;
+  animation: brandSpectrumShimmer 12s ease-in-out infinite;
 }
 
 .brand-glow {
-  filter: drop-shadow(0 0 35px rgba(0, 229, 190, 0.22)) drop-shadow(0 0 65px rgba(212, 175, 114, 0.16));
+  animation: brandSpectrumGlow 10s ease-in-out infinite;
+}
+
+.tagline-spectrum {
+  background: linear-gradient(
+    120deg,
+    #00F5D4 0%,
+    #06D6A0 12%,
+    #3B82F6 24%,
+    #8B5CF6 37%,
+    #EC4899 50%,
+    #FF9F1C 63%,
+    #FBBF24 76%,
+    #00F5D4 88%,
+    #3B82F6 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: brandSpectrumShimmer 12s ease-in-out infinite;
+}
+
+.orbit-trail-animated {
+  animation: orbitDashRotate 12s linear infinite;
+}
+
+.orbit-trail-animated-reverse {
+  animation: orbitDashRotate 16s linear infinite reverse;
 }
 
 /* Reduced motion preference */
