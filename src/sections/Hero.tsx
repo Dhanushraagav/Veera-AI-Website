@@ -184,8 +184,8 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick })
               className="w-full flex justify-center text-center relative z-10 py-1"
             >
               <h1 
-                style={{ fontFamily: "'Dancing Script', 'Great Vibes', 'Alex Brush', cursive" }}
-                className="relative inline-flex items-center justify-center text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8.2rem] font-bold leading-[1.15] select-none text-center whitespace-nowrap"
+                style={{ fontFamily: "'Outfit', 'Space Grotesk', sans-serif" }}
+                className="relative inline-flex items-center justify-center text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-black tracking-[-0.03em] leading-tight select-none text-center whitespace-nowrap"
               >
                 {/* Invisible phantom spacer to lock dimensions and eliminate layout jumping */}
                 <span className="invisible opacity-0 pointer-events-none select-none inline-block whitespace-nowrap" aria-hidden="true">
