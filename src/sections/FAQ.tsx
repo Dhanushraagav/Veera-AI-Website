@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus, HelpCircle } from "lucide-react";
 import { SITE_CONFIG } from "../config/site";
+import { FunnyDetectiveBot } from "../components/FunnyDetectiveBot";
 
 export const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -18,9 +19,12 @@ export const FAQ: React.FC = () => {
             <HelpCircle className="w-3.5 h-3.5 text-[#087F5B]" />
             <span>KNOWLEDGE BASE</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#F7F5EF]">
-            Frequently asked questions.
-          </h2>
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#F7F5EF]">
+              Frequently asked questions.
+            </h2>
+            <FunnyDetectiveBot isInvestigating={openIndex !== null} />
+          </div>
           <p className="text-sm sm:text-base text-[#B4B7B0] leading-relaxed">
             Quick answers about Veera AI features, provider setup, and platform compatibility.
           </p>

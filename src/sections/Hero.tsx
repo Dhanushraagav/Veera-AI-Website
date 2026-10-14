@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Download, ChevronRight, CheckCircle2 } from "lucide-react";
 import { SITE_CONFIG } from "../config/site";
+import { FunnyDramaticHeart } from "../components/FunnyDramaticHeart";
 
 interface HeroProps {
   onDownloadClick: () => void;
@@ -209,10 +210,11 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick })
             transition={{ duration: 0.6, delay: 0.15 }}
             className="pt-4 sm:pt-5"
           >
-            <p className="text-lg sm:text-xl md:text-2xl font-light sm:font-normal tracking-wide text-center">
+            <p className="text-lg sm:text-xl md:text-2xl font-light sm:font-normal tracking-wide text-center flex items-center justify-center gap-1">
               <span className="tagline-spectrum font-normal inline-block text-center drop-shadow-sm">
                 Your crush could never.
               </span>
+              <FunnyDramaticHeart />
             </p>
           </motion.div>
 

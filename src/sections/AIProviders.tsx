@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG, type ReliabilityPillar } from "../config/site";
 import { Cpu, CheckCircle2, ShieldCheck, Shuffle, Key, Zap } from "lucide-react";
+import { FunnyJugglingBot } from "../components/FunnyJugglingBot";
 
 const pillarIcons = [Key, Shuffle, Zap, ShieldCheck];
 
@@ -9,7 +10,7 @@ export const AIProviders: React.FC = () => {
   return (
     <section id="providers" className="py-20 sm:py-28 relative overflow-hidden border-t border-[#292D29] bg-[#080908]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+        <div className="text-center max-w-3xl mx-auto mb-8 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full metallic-badge text-xs font-mono text-[#D4AF72]">
             <Cpu className="w-3.5 h-3.5 text-[#087F5B]" />
             <span>RELIABILITY &amp; ARCHITECTURE</span>
@@ -20,6 +21,11 @@ export const AIProviders: React.FC = () => {
           <p className="text-sm sm:text-base text-[#B4B7B0] leading-relaxed">
             Configure your own API credentials in Settings. The desktop engine handles intelligent provider routing and automated fallback when limits are reached.
           </p>
+        </div>
+
+        {/* Overworked AI Provider Juggling Comedy Bot */}
+        <div className="flex justify-center mb-6">
+          <FunnyJugglingBot />
         </div>
 
         {/* 4 Pillars Grid (No model names, pure architectural value) */}

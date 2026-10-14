@@ -1,5 +1,6 @@
 import React from "react";
 import { SITE_CONFIG } from "../config/site";
+import { FunnySleepingGuard } from "../components/FunnySleepingGuard";
 
 interface FooterProps {
   onDownloadClick?: () => void;
@@ -13,16 +14,19 @@ export const Footer: React.FC<FooterProps> = ({ onRouteChange }) => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-[#292D29]">
           {/* Brand Col */}
           <div className="md:col-span-2 space-y-3">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-md bg-[#121512] border border-[#D4AF72]/30 flex items-center justify-center">
-                <svg className="w-3.5 h-3.5 text-[#D4AF72]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 4l8 16 8-16" />
-                  <circle cx="12" cy="14" r="1.5" fill="#087F5B" />
-                </svg>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-md bg-[#121512] border border-[#D4AF72]/30 flex items-center justify-center">
+                  <svg className="w-3.5 h-3.5 text-[#D4AF72]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 4l8 16 8-16" />
+                    <circle cx="12" cy="14" r="1.5" fill="#087F5B" />
+                  </svg>
+                </div>
+                <span className="font-bold text-base text-[#F7F5EF] font-mono tracking-wider">
+                  {SITE_CONFIG.SITE_NAME}
+                </span>
               </div>
-              <span className="font-bold text-base text-[#F7F5EF] font-mono tracking-wider">
-                {SITE_CONFIG.SITE_NAME}
-              </span>
+              <FunnySleepingGuard />
             </div>
             <p className="text-zinc-400 font-medium text-xs max-w-sm">
               {SITE_CONFIG.SUPPORTING_TEXT}
