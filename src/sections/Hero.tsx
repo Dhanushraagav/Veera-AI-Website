@@ -195,7 +195,7 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick })
 
                 {/* Animated slow-motion typed text without cursor point */}
                 <span className="absolute inset-0 flex items-center justify-center whitespace-nowrap">
-                  <span className="brand-gradient-text brand-glow inline-block text-center drop-shadow-lg whitespace-nowrap font-normal">
+                  <span className="brand-gradient-text inline-block text-center whitespace-nowrap font-normal">
                     {displayedText}
                   </span>
                 </span>
