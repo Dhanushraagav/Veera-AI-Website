@@ -1,176 +1,246 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useRef, useEffect, useState } from "react";
 
 export const FunnyDramaticHeart: React.FC = () => {
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const [isRunning, setIsRunning] = useState(false);
-  const [tauntText, setTauntText] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const heartElemRef = useRef<HTMLDivElement>(null);
+  const leftLegRef = useRef<SVGLineElement>(null);
+  const leftShoeRef = useRef<SVGEllipseElement>(null);
+  const rightLegRef = useRef<SVGLineElement>(null);
+  const rightShoeRef = useRef<SVGEllipseElement>(null);
 
-  const heartRef = useRef<HTMLDivElement>(null);
-  const runningTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const returnTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const tauntTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const lastEvadeTime = useRef<number>(0);
+  const [isSprinting, setIsSprinting] = useState(false);
 
-  const TAUNTS = ["Nope! 💨", "Too slow! 😜", "Never! 😎", "Nice try! 💅", "Catch me? Never! 🏃‍♂️"];
+  // Smooth physics: position, velocity, and walk cycle phase
+  const pos = useRef({ x: 0, y: 0 });
+  const vel = useRef({ x: 0, y: 0 });
+  const walkPhase = useRef(0);
 
-  // Evade away from the cursor's coordinates
-  const evade = useCallback((mouseX?: number, mouseY?: number) => {
-    const now = Date.now();
-    // 70ms throttle to allow snappy spring animation without stutter
-    if (now - lastEvadeTime.current < 70) return;
-    lastEvadeTime.current = now;
+  // Mouse / Pointer tracking (position & velocity)
+  const mouse = useRef({
+    x: -9999,
+    y: -9999,
+    vx: 0,
+    vy: 0,
+    speed: 0,
+    lastTime: 0,
+    active: false,
+  });
 
-    setIsRunning(true);
+  const lastDisturbTime = useRef(0);
 
-    // Random cheeky taunt
-    if (Math.random() > 0.4) {
-      const randomTaunt = TAUNTS[Math.floor(Math.random() * TAUNTS.length)];
-      setTauntText(randomTaunt);
-      if (tauntTimeoutRef.current) clearTimeout(tauntTimeoutRef.current);
-      tauntTimeoutRef.current = setTimeout(() => setTauntText(null), 1200);
-    }
-
-    setOffset((prev) => {
-      let dirX = (Math.random() - 0.5) * 2;
-      let dirY = (Math.random() - 0.5) * 2;
-
-      if (heartRef.current && mouseX !== undefined && mouseY !== undefined) {
-        const rect = heartRef.current.getBoundingClientRect();
-        const heartX = rect.left + rect.width / 2;
-        const heartY = rect.top + rect.height / 2;
-        const diffX = heartX - mouseX;
-        const diffY = heartY - mouseY;
-        const dist = Math.hypot(diffX, diffY) || 1;
-        dirX = diffX / dist;
-        dirY = diffY / dist;
-      }
-
-      // High-velocity leap away from cursor
-      const jump = 95 + Math.random() * 45;
-      // Perpendicular side-dodge to prevent ever getting pinned
-      const perpFactor = (Math.random() > 0.5 ? 1 : -1) * 40;
-      const perpX = -dirY * perpFactor;
-      const perpY = dirX * perpFactor;
-
-      let nextX = prev.x + dirX * jump + perpX;
-      let nextY = prev.y + dirY * jump + perpY;
-
-      // Wrap around bounds so it never gets cornered or caught at screen edges
-      if (nextX > 180) nextX = -130 + Math.random() * 30;
-      else if (nextX < -180) nextX = 130 - Math.random() * 30;
-
-      if (nextY > 50) nextY = -40;
-      else if (nextY < -50) nextY = 40;
-
-      return { x: nextX, y: nextY };
-    });
-
-    if (runningTimeoutRef.current) clearTimeout(runningTimeoutRef.current);
-    runningTimeoutRef.current = setTimeout(() => {
-      setIsRunning(false);
-    }, 600);
-
-    // If left alone for 3.5s, calmly swagger back home
-    if (returnTimeoutRef.current) clearTimeout(returnTimeoutRef.current);
-    returnTimeoutRef.current = setTimeout(() => {
-      setOffset({ x: 0, y: 0 });
-      setIsRunning(false);
-      setTauntText(null);
-    }, 3500);
-  }, []);
-
-  // Global proximity detector: flees whenever cursor comes within 125px!
   useEffect(() => {
-    const handlePointerMove = (e: PointerEvent | MouseEvent) => {
-      if (!heartRef.current) return;
-      const rect = heartRef.current.getBoundingClientRect();
-      const heartX = rect.left + rect.width / 2;
-      const heartY = rect.top + rect.height / 2;
+    const onPointerMove = (e: PointerEvent | MouseEvent) => {
+      const now = performance.now();
+      const dt = Math.max(10, now - mouse.current.lastTime);
 
-      const dist = Math.hypot(heartX - e.clientX, heartY - e.clientY);
-      // If cursor approaches within 125px radius, flee instantly
-      if (dist < 125) {
-        evade(e.clientX, e.clientY);
+      const dx = e.clientX - mouse.current.x;
+      const dy = e.clientY - mouse.current.y;
+      const instSpeed = Math.hypot(dx, dy) / (dt / 16.67);
+
+      // Smooth cursor velocity filter
+      mouse.current.vx = mouse.current.vx * 0.4 + (dx / dt) * 16.67 * 0.6;
+      mouse.current.vy = mouse.current.vy * 0.4 + (dy / dt) * 16.67 * 0.6;
+      mouse.current.speed = mouse.current.speed * 0.4 + instSpeed * 0.6;
+
+      mouse.current.x = e.clientX;
+      mouse.current.y = e.clientY;
+      mouse.current.lastTime = now;
+      mouse.current.active = true;
+    };
+
+    const onPointerLeave = () => {
+      mouse.current.active = false;
+      mouse.current.x = -9999;
+      mouse.current.y = -9999;
+      mouse.current.vx = 0;
+      mouse.current.vy = 0;
+      mouse.current.speed = 0;
+    };
+
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("pointerleave", onPointerLeave, { passive: true });
+
+    let rafId: number;
+
+    const loop = () => {
+      rafId = requestAnimationFrame(loop);
+
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const originX = rect.left + rect.width / 2;
+      const originY = rect.top + rect.height / 2;
+
+      const heartX = originX + pos.current.x;
+      const heartY = originY + pos.current.y;
+
+      // Distance from cursor to current heart position
+      const diffX = heartX - mouse.current.x;
+      const diffY = heartY - mouse.current.y;
+      const dist = Math.hypot(diffX, diffY);
+
+      // Natural Proximity Repulsion Field (130px)
+      const REPEL_RADIUS = 130;
+
+      if (mouse.current.active && dist < REPEL_RADIUS && dist > 0) {
+        lastDisturbTime.current = performance.now();
+
+        const nx = diffX / dist;
+        const ny = diffY / dist;
+
+        // Proximity penetration factor: smoothly increases as cursor gets closer
+        const proximityFactor = Math.pow((REPEL_RADIUS - dist) / REPEL_RADIUS, 1.25);
+
+        // Cursor approach velocity towards heart (dot product)
+        const approachVelocity = Math.max(0, mouse.current.vx * nx + mouse.current.vy * ny);
+
+        // Repel force: proportional to both proximity and cursor speed
+        // Slow cursor = gentle slow step away; Fast cursor = swift sprint!
+        const baseForce = proximityFactor * 3.8;
+        const speedBoost = approachVelocity * 1.35;
+        const totalForce = baseForce + speedBoost;
+
+        // Smart steering when approaching boundaries to fluidly circle around cursor
+        const maxBoundX = 300;
+        const maxBoundY = 85;
+        let steerX = nx;
+        let steerY = ny;
+
+        if (Math.abs(pos.current.x) > maxBoundX * 0.75 && pos.current.x * nx > 0) {
+          steerX *= 0.3;
+          steerY += pos.current.y >= 0 ? 0.9 : -0.9;
+        }
+        if (Math.abs(pos.current.y) > maxBoundY * 0.75 && pos.current.y * ny > 0) {
+          steerY *= 0.3;
+          steerX += pos.current.x >= 0 ? 0.9 : -0.9;
+        }
+
+        const steerMag = Math.hypot(steerX, steerY) || 1;
+        vel.current.x += (steerX / steerMag) * totalForce;
+        vel.current.y += (steerY / steerMag) * totalForce;
+      }
+
+      // Natural momentum friction
+      vel.current.x *= 0.89;
+      vel.current.y *= 0.89;
+
+      // Generous soft boundary roaming area
+      const boundX = 320;
+      const boundY = 90;
+      if (pos.current.x > boundX) vel.current.x -= (pos.current.x - boundX) * 0.12;
+      if (pos.current.x < -boundX) vel.current.x -= (pos.current.x + boundX) * 0.12;
+      if (pos.current.y > boundY) vel.current.y -= (pos.current.y - boundY) * 0.14;
+      if (pos.current.y < -boundY) vel.current.y -= (pos.current.y + boundY) * 0.14;
+
+      // Gentle homing return when untouched for > 2.5 seconds
+      const now = performance.now();
+      if (now - lastDisturbTime.current > 2500 && dist > REPEL_RADIUS + 40) {
+        const returnK = 0.016;
+        vel.current.x += (0 - pos.current.x) * returnK;
+        vel.current.y += (0 - pos.current.y) * returnK;
+      }
+
+      // Integrate velocity into position
+      pos.current.x += vel.current.x;
+      pos.current.y += vel.current.y;
+
+      const currentSpeed = Math.hypot(vel.current.x, vel.current.y);
+
+      // Natural tilt in direction of motion (leaning forward into movement)
+      const tilt = Math.max(-16, Math.min(16, vel.current.x * 2.2));
+
+      // Direct GPU transform update for 60-120fps buttery smoothness
+      if (heartElemRef.current) {
+        heartElemRef.current.style.transform = `translate3d(${pos.current.x.toFixed(2)}px, ${pos.current.y.toFixed(2)}px, 0) rotate(${tilt.toFixed(2)}deg)`;
+      }
+
+      // Natural leg animation proportional to movement speed
+      if (currentSpeed > 0.25) {
+        walkPhase.current += currentSpeed * 0.22;
+        const swing = Math.sin(walkPhase.current) * Math.min(26, currentSpeed * 5);
+
+        if (leftLegRef.current && leftShoeRef.current) {
+          leftLegRef.current.setAttribute("x2", `${18 - swing * 0.25}`);
+          leftLegRef.current.setAttribute("y2", `${58 - Math.abs(swing) * 0.12}`);
+          leftShoeRef.current.setAttribute("cx", `${15 - swing * 0.25}`);
+          leftShoeRef.current.setAttribute("cy", `${58 - Math.abs(swing) * 0.12}`);
+        }
+        if (rightLegRef.current && rightShoeRef.current) {
+          rightLegRef.current.setAttribute("x2", `${42 + swing * 0.25}`);
+          rightLegRef.current.setAttribute("y2", `${58 - Math.abs(swing) * 0.12}`);
+          rightShoeRef.current.setAttribute("cx", `${45 + swing * 0.25}`);
+          rightShoeRef.current.setAttribute("cy", `${58 - Math.abs(swing) * 0.12}`);
+        }
+      } else {
+        // Idle resting legs
+        if (leftLegRef.current && leftShoeRef.current) {
+          leftLegRef.current.setAttribute("x2", "18");
+          leftLegRef.current.setAttribute("y2", "58");
+          leftShoeRef.current.setAttribute("cx", "15");
+          leftShoeRef.current.setAttribute("cy", "58");
+        }
+        if (rightLegRef.current && rightShoeRef.current) {
+          rightLegRef.current.setAttribute("x2", "42");
+          rightLegRef.current.setAttribute("y2", "58");
+          rightShoeRef.current.setAttribute("cx", "45");
+          rightShoeRef.current.setAttribute("cy", "58");
+        }
+      }
+
+      // Sprinting threshold for sweat drop
+      if (currentSpeed > 4.2 && !isSprinting) {
+        setIsSprinting(true);
+      } else if (currentSpeed < 1.8 && isSprinting) {
+        setIsSprinting(false);
       }
     };
 
-    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    rafId = requestAnimationFrame(loop);
+
     return () => {
-      window.removeEventListener("pointermove", handlePointerMove);
-      if (runningTimeoutRef.current) clearTimeout(runningTimeoutRef.current);
-      if (returnTimeoutRef.current) clearTimeout(returnTimeoutRef.current);
-      if (tauntTimeoutRef.current) clearTimeout(tauntTimeoutRef.current);
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerleave", onPointerLeave);
     };
-  }, [evade]);
+  }, [isSprinting]);
+
+  const handleTouchEvade = (e: React.TouchEvent | React.MouseEvent) => {
+    e.preventDefault();
+    const clientX = "touches" in e ? e.touches[0]?.clientX ?? 0 : e.clientX;
+    const clientY = "touches" in e ? e.touches[0]?.clientY ?? 0 : e.clientY;
+
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const hx = rect.left + rect.width / 2 + pos.current.x;
+      const hy = rect.top + rect.height / 2 + pos.current.y;
+      const dx = hx - clientX;
+      const dy = hy - clientY;
+      const d = Math.hypot(dx, dy) || 1;
+      vel.current.x += (dx / d) * 12;
+      vel.current.y += (dy / d) * 12;
+    }
+  };
 
   return (
     <div
-      ref={heartRef}
-      className="inline-block relative select-none ml-2 align-middle z-30"
+      ref={containerRef}
+      className="inline-block relative select-none ml-2 align-middle z-30 pointer-events-auto"
       style={{ touchAction: "none" }}
     >
-      {/* Main Animated Heart Container */}
-      <motion.div
-        animate={{
-          x: offset.x,
-          y: offset.y,
-          rotate: isRunning ? [-18, 20, -18] : [-3, 4, -3],
-          scale: isRunning ? [1, 1.15, 1] : 1,
-        }}
-        transition={
-          isRunning
-            ? { type: "spring", stiffness: 650, damping: 22, mass: 0.6 }
-            : { repeat: Infinity, duration: 2.2, ease: "easeInOut" }
-        }
-        onPointerDown={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          evade(e.clientX, e.clientY);
-        }}
-        onTouchStart={(e) => {
-          e.preventDefault();
-          if (e.touches[0]) {
-            evade(e.touches[0].clientX, e.touches[0].clientY);
-          }
-        }}
-        onMouseEnter={(e) => {
-          evade(e.clientX, e.clientY);
-        }}
-        className="w-8 h-8 sm:w-10 sm:h-10 relative cursor-pointer drop-shadow-[0_4px_14px_rgba(255,77,141,0.55)]"
-        title="Can't catch me! 😎"
+      {/* Heart Element - Clean crisp styling with ZERO glowing effect */}
+      <div
+        ref={heartElemRef}
+        onPointerDown={handleTouchEvade}
+        onTouchStart={handleTouchEvade}
+        className="w-8 h-8 sm:w-10 sm:h-10 relative cursor-pointer will-change-transform"
+        style={{ transformOrigin: "center center" }}
+        title="Your crush could never 😎"
       >
-        {/* Floating Cheeky Taunt Bubble */}
-        <AnimatePresence>
-          {tauntText && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.6, y: 0 }}
-              animate={{ opacity: 1, scale: 1, y: -24 }}
-              exit={{ opacity: 0, scale: 0.6, y: -32 }}
-              transition={{ duration: 0.2 }}
-              className="absolute -top-3 left-1/2 -translate-x-1/2 text-[11px] font-bold font-mono text-[#00F5D4] bg-[#0E120E]/90 px-2 py-0.5 rounded-full border border-[#00F5D4]/40 shadow-lg pointer-events-none select-none whitespace-nowrap z-40"
-            >
-              {tauntText}
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Cartoon Running Dust Cloud Effect 💨 when scurrying away */}
-        <AnimatePresence>
-          {isRunning && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.4, x: 0 }}
-              animate={{ opacity: 0.9, scale: 1.3, x: offset.x > 0 ? -18 : 18 }}
-              exit={{ opacity: 0, scale: 1.6 }}
-              transition={{ duration: 0.35 }}
-              className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-xs pointer-events-none select-none"
-            >
-              💨
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full overflow-visible">
+        <svg
+          viewBox="0 0 60 60"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full overflow-visible"
+        >
           <defs>
             <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FF4D8D" />
@@ -178,30 +248,34 @@ export const FunnyDramaticHeart: React.FC = () => {
             </linearGradient>
           </defs>
 
-          {/* Tiny Cartoon Stick Legs - Frantically Windmilling / Running when escaping! */}
-          <motion.g
-            animate={
-              isRunning
-                ? { rotate: [0, 180, 360], y: [0, -4, 0] }
-                : { rotate: [-4, 4, -4] }
-            }
-            transition={
-              isRunning
-                ? { repeat: Infinity, duration: 0.2, ease: "linear" }
-                : { repeat: Infinity, duration: 0.6 }
-            }
-            style={{ originX: "30px", originY: "52px" }}
-          >
-            {/* Left Leg & Shoe */}
-            <line x1="22" y1="50" x2="18" y2="58" stroke="#12181F" strokeWidth="2.8" strokeLinecap="round" />
-            <ellipse cx="15" cy="58" rx="4" ry="2" fill="#12181F" />
+          {/* Stick Legs & Shoes */}
+          <g>
+            <line
+              ref={leftLegRef}
+              x1="22"
+              y1="50"
+              x2="18"
+              y2="58"
+              stroke="#12181F"
+              strokeWidth="2.8"
+              strokeLinecap="round"
+            />
+            <ellipse ref={leftShoeRef} cx="15" cy="58" rx="4" ry="2" fill="#12181F" />
 
-            {/* Right Leg & Shoe */}
-            <line x1="38" y1="50" x2="42" y2="58" stroke="#12181F" strokeWidth="2.8" strokeLinecap="round" />
-            <ellipse cx="45" cy="58" rx="4" ry="2" fill="#12181F" />
-          </motion.g>
+            <line
+              ref={rightLegRef}
+              x1="38"
+              y1="50"
+              x2="42"
+              y2="58"
+              stroke="#12181F"
+              strokeWidth="2.8"
+              strokeLinecap="round"
+            />
+            <ellipse ref={rightShoeRef} cx="45" cy="58" rx="4" ry="2" fill="#12181F" />
+          </g>
 
-          {/* INTACT HEART WITH SASSY SUNGLASSES */}
+          {/* Heart Body */}
           <g>
             <path
               d="M 30 52 C 12 40 4 28 4 18 C 4 8 13 2 22 2 C 27 2 30 7 30 7 C 30 7 33 2 38 2 C 47 2 56 8 56 18 C 56 28 48 40 30 52 Z"
@@ -214,19 +288,46 @@ export const FunnyDramaticHeart: React.FC = () => {
             <rect x="12" y="16" width="16" height="11" rx="3.5" fill="#12181F" />
             <rect x="32" y="16" width="16" height="11" rx="3.5" fill="#12181F" />
             <line x1="28" y1="20" x2="32" y2="20" stroke="#12181F" strokeWidth="2.5" />
-            <line x1="15" y1="18" x2="22" y2="25" stroke="#FFFFFF" strokeWidth="1.3" strokeLinecap="round" opacity="0.85" />
-            <line x1="35" y1="18" x2="42" y2="25" stroke="#FFFFFF" strokeWidth="1.3" strokeLinecap="round" opacity="0.85" />
+            <line
+              x1="15"
+              y1="18"
+              x2="22"
+              y2="25"
+              stroke="#FFFFFF"
+              strokeWidth="1.3"
+              strokeLinecap="round"
+              opacity="0.85"
+            />
+            <line
+              x1="35"
+              y1="18"
+              x2="42"
+              y2="25"
+              stroke="#FFFFFF"
+              strokeWidth="1.3"
+              strokeLinecap="round"
+              opacity="0.85"
+            />
 
             {/* Sassy Smug Smirk */}
-            <path d="M 26 34 Q 30 38 36 33" stroke="#12181F" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+            <path
+              d="M 26 34 Q 30 38 36 33"
+              stroke="#12181F"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              fill="none"
+            />
 
-            {/* Sweat drop if running away */}
-            {isRunning && (
-              <path d="M 47 10 C 47 10 50 14 47 16 C 45 16 45 13 47 10 Z" fill="#00F5D4" />
+            {/* Sweat drop when sprinting away */}
+            {isSprinting && (
+              <path
+                d="M 47 10 C 47 10 50 14 47 16 C 45 16 45 13 47 10 Z"
+                fill="#00F5D4"
+              />
             )}
           </g>
         </svg>
-      </motion.div>
+      </div>
     </div>
   );
 };
