@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface CartoonDownloadGuideProps {
@@ -7,22 +7,8 @@ interface CartoonDownloadGuideProps {
 }
 
 export const CartoonDownloadGuide: React.FC<CartoonDownloadGuideProps> = ({ isHovered, isClicked }) => {
-  // Auto-peek for 3 seconds on initial load, then fully controlled by hover
-  const [initialPeek, setInitialPeek] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setInitialPeek(true);
-      const hideTimer = setTimeout(() => {
-        setInitialPeek(false);
-      }, 3200);
-      return () => clearTimeout(hideTimer);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const isVisible = isHovered || initialPeek || isClicked;
+  // STRICTLY appear ONLY when cursor is hovered over the button
+  const isVisible = isHovered || isClicked;
 
   return (
     <AnimatePresence>
