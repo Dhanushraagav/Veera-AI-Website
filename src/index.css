@@ -125,7 +125,7 @@
   color: #FFFFFF;
 }
 
-/* Brand multi-color spectrum shimmer (slow, rich multi-hue flow) */
+/* Brand multi-color spectrum shimmer (slow, rich 14-chromatic-hue flow) */
 @keyframes brandSpectrumShimmer {
   0% {
     background-position: 0% 50%;
@@ -140,11 +140,39 @@
 
 @keyframes brandSpectrumGlow {
   0%, 100% {
-    filter: drop-shadow(0 0 12px rgba(0, 245, 212, 0.35)) drop-shadow(0 0 28px rgba(139, 92, 246, 0.2));
+    filter: drop-shadow(0 0 14px rgba(0, 245, 212, 0.45)) drop-shadow(0 0 30px rgba(139, 92, 246, 0.3));
+  }
+  25% {
+    filter: drop-shadow(0 0 16px rgba(6, 214, 160, 0.45)) drop-shadow(0 0 32px rgba(59, 130, 246, 0.3));
   }
   50% {
-    filter: drop-shadow(0 0 18px rgba(236, 72, 153, 0.35)) drop-shadow(0 0 35px rgba(59, 130, 246, 0.22));
+    filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.5)) drop-shadow(0 0 38px rgba(244, 63, 94, 0.35));
   }
+  75% {
+    filter: drop-shadow(0 0 18px rgba(255, 159, 28, 0.45)) drop-shadow(0 0 34px rgba(251, 191, 36, 0.35));
+  }
+}
+
+@keyframes cursorBlink {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px #00F5D4);
+  }
+  50% {
+    opacity: 0;
+    filter: none;
+  }
+}
+
+.typing-cursor {
+  display: inline-block;
+  vertical-align: middle;
+  width: 3px;
+  height: 0.9em;
+  margin-left: 6px;
+  background: linear-gradient(180deg, #00F5D4, #EC4899);
+  border-radius: 2px;
+  animation: cursorBlink 0.85s infinite;
 }
 
 @keyframes orbitDashRotate {
@@ -158,18 +186,23 @@
 
 .brand-gradient-text {
   background: linear-gradient(
-    120deg,
+    115deg,
     #00F5D4 0%,
-    #06D6A0 12%,
-    #3B82F6 24%,
-    #8B5CF6 37%,
-    #EC4899 50%,
-    #FF9F1C 63%,
-    #FBBF24 76%,
-    #00F5D4 88%,
-    #3B82F6 100%
+    #06D6A0 8%,
+    #10B981 16%,
+    #06B6D4 24%,
+    #3B82F6 32%,
+    #6366F1 40%,
+    #8B5CF6 48%,
+    #D946EF 56%,
+    #EC4899 64%,
+    #F43F5E 72%,
+    #FF9F1C 80%,
+    #FBBF24 88%,
+    #FDE047 94%,
+    #00F5D4 100%
   );
-  background-size: 300% 300%;
+  background-size: 350% 350%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -182,18 +215,23 @@
 
 .tagline-spectrum {
   background: linear-gradient(
-    120deg,
+    115deg,
     #00F5D4 0%,
-    #06D6A0 12%,
-    #3B82F6 24%,
-    #8B5CF6 37%,
-    #EC4899 50%,
-    #FF9F1C 63%,
-    #FBBF24 76%,
-    #00F5D4 88%,
-    #3B82F6 100%
+    #06D6A0 8%,
+    #10B981 16%,
+    #06B6D4 24%,
+    #3B82F6 32%,
+    #6366F1 40%,
+    #8B5CF6 48%,
+    #D946EF 56%,
+    #EC4899 64%,
+    #F43F5E 72%,
+    #FF9F1C 80%,
+    #FBBF24 88%,
+    #FDE047 94%,
+    #00F5D4 100%
   );
-  background-size: 300% 300%;
+  background-size: 350% 350%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

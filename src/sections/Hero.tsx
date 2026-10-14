@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Download, ChevronRight, CheckCircle2 } from "lucide-react";
 import { SITE_CONFIG } from "../config/site";
@@ -8,6 +8,37 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick }) => {
+  const fullText = "Veera AI";
+  const [displayedText, setDisplayedText] = useState("");
+  const [_isTypingComplete, setIsTypingComplete] = useState(false);
+
+  useEffect(() => {
+    let currentIndex = 0;
+    let timer: ReturnType<typeof setTimeout>;
+
+    const typeNextChar = () => {
+      if (currentIndex < fullText.length) {
+        currentIndex++;
+        setDisplayedText(fullText.slice(0, currentIndex));
+        // Slow motion typing cadence: 220ms per character
+        timer = setTimeout(typeNextChar, 220);
+      } else {
+        setIsTypingComplete(true);
+        // Display full text for 5.5s before gently cycling
+        timer = setTimeout(() => {
+          setIsTypingComplete(false);
+          currentIndex = 0;
+          setDisplayedText("");
+          timer = setTimeout(typeNextChar, 450);
+        }, 5500);
+      }
+    };
+
+    // Initial entrance pause
+    timer = setTimeout(typeNextChar, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <section className="relative pt-32 pb-20 sm:pt-44 sm:pb-28 overflow-hidden bg-[#080908]">
       {/* Multi-hue subtle ambient background aura */}
@@ -145,19 +176,27 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick })
               </g>
             </svg>
 
-            {/* VEERA AI Main Headline with Syne Stylish Display Typography & Slow Spectrum Shimmer */}
+            {/* VEERA AI Main Headline with Stylish Curving Handwriting & Slow-Motion Typing Animation (Strictly Single Line, No Cursor) */}
             <motion.div
               initial={{ opacity: 0, y: 16, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full flex justify-center text-center relative z-10"
+              className="w-full flex justify-center text-center relative z-10 py-1"
             >
               <h1 
-                style={{ fontFamily: "'Syne', sans-serif" }}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[7.6rem] font-bold tracking-[0.04em] sm:tracking-[0.06em] leading-none select-none text-center uppercase"
+                style={{ fontFamily: "'Dancing Script', 'Great Vibes', 'Alex Brush', cursive" }}
+                className="relative inline-flex items-center justify-center text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8.2rem] font-bold leading-[1.15] select-none text-center whitespace-nowrap"
               >
-                <span className="brand-gradient-text brand-glow inline-block text-center drop-shadow-md">
-                  {SITE_CONFIG.HEADLINE}
+                {/* Invisible phantom spacer to lock dimensions and eliminate layout jumping */}
+                <span className="invisible opacity-0 pointer-events-none select-none inline-block whitespace-nowrap" aria-hidden="true">
+                  {fullText}
+                </span>
+
+                {/* Animated slow-motion typed text without cursor point */}
+                <span className="absolute inset-0 flex items-center justify-center whitespace-nowrap">
+                  <span className="brand-gradient-text brand-glow inline-block text-center drop-shadow-lg whitespace-nowrap">
+                    {displayedText}
+                  </span>
                 </span>
               </h1>
             </motion.div>
