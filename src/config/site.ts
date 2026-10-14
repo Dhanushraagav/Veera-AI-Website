@@ -38,10 +38,10 @@ export const SITE_CONFIG = {
   ],
 
   // Windows installer metadata pointing directly to verified GitHub downloads repository
-  DOWNLOAD_URL: 'https://github.com/Dhanushraagav/Veera-AI-Downloads/raw/refs/heads/main/Veera-AI-Standard-2.0.0-x64-setup.exe',
-  INSTALLER_FILENAME: 'Veera-AI-Standard-2.0.0-x64-setup.exe',
-  INSTALLER_SIZE: '3.90 MB',
-  VERSION: '2.0.0',
+  DOWNLOAD_URL: 'https://github.com/Dhanushraagav/Veera-AI-Downloads/raw/refs/heads/main/Veera-AI-Standard-3.0.0-x64-setup.exe',
+  INSTALLER_FILENAME: 'Veera-AI-Standard-3.0.0-x64-setup.exe',
+  INSTALLER_SIZE: '3.99 MB',
+  VERSION: '3.0.0',
   SUPPORTED_PLATFORM: 'Windows 10 / Windows 11',
   ARCHITECTURE: '64-bit (x64) Windows Desktop App',
   REQUIREMENTS: 'Windows 10 (Build 19041+) or Windows 11 (64-bit), 4 GB RAM minimum',
@@ -50,7 +50,7 @@ export const SITE_CONFIG = {
     { label: 'Operating System', value: 'Windows 10 / 11 (64-bit native)' },
     { label: 'Processor', value: 'Intel Core i3 / AMD Ryzen 3 or higher' },
     { label: 'Memory', value: '4 GB RAM minimum' },
-    { label: 'Package Size', value: '3.83 MB standalone installer' },
+    { label: 'Package Size', value: '3.99 MB standalone installer' },
     { label: 'API Credentials', value: 'User-configured personal API keys in Settings' },
   ],
 

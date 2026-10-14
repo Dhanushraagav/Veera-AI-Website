@@ -7,7 +7,7 @@ export const DesktopFirst: React.FC = () => {
   const specs = [
     { icon: Monitor, title: "Windows 10 / 11 Native", desc: "Engineered specifically for 64-bit Windows." },
     { icon: Command, title: "Global Shortcut (Ctrl + D)", desc: "Show or hide the assistant instantly." },
-    { icon: HardDrive, title: "Lightweight Installer", desc: "Compact ~3.83 MB standalone setup package." },
+    { icon: HardDrive, title: "Lightweight Installer", desc: `Compact ~${SITE_CONFIG.INSTALLER_SIZE} standalone setup package.` },
     { icon: ShieldCheck, title: "Native Credential Vault", desc: "API keys stored locally in Windows security." },
   ];
 
