@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Download, Menu, X, ArrowUpRight } from "lucide-react";
 import { SITE_CONFIG } from "../config/site";
+import { CartoonDownloadGuide } from "./CartoonDownloadGuide";
 
 interface NavbarProps {
   onDownloadClick: () => void;
@@ -12,6 +13,8 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onDownloadClick: _onDownloadClick, activeRoute, onRouteChange }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [downloadHovered, setDownloadHovered] = useState(false);
+  const [downloadClicked, setDownloadClicked] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -89,17 +92,28 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadClick: _onDownloadClic
             ))}
           </nav>
 
-          {/* Download Button #1 (Navbar) */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Download Button #1 (Navbar) with Animated Cartoon Helper */}
+          <div
+            className="hidden md:flex items-center gap-3 relative py-1"
+            onMouseEnter={() => setDownloadHovered(true)}
+            onMouseLeave={() => setDownloadHovered(false)}
+          >
             <a
               href={SITE_CONFIG.DOWNLOAD_URL}
               download={SITE_CONFIG.INSTALLER_FILENAME}
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl metallic-button text-xs sm:text-sm font-semibold transition-all duration-200 active:scale-[0.98] cursor-pointer"
+              onClick={() => {
+                setDownloadClicked(true);
+                setTimeout(() => setDownloadClicked(false), 2800);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl metallic-button text-xs sm:text-sm font-semibold transition-all duration-200 active:scale-[0.98] cursor-pointer group hover:border-[#00F5D4]/60 hover:shadow-lg hover:shadow-[#00F5D4]/15"
             >
-              <Download className="w-3.5 h-3.5 text-[#087F5B]" />
+              <Download className="w-3.5 h-3.5 text-[#087F5B] transition-transform group-hover:-translate-y-0.5" />
               <span>Download for Windows</span>
             </a>
+
+            {/* Cartoon Mascot Helper Animation */}
+            <CartoonDownloadGuide isHovered={downloadHovered} isClicked={downloadClicked} />
           </div>
 
           {/* Mobile Menu Button */}
