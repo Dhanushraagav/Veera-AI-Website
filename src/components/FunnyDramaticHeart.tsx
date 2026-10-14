@@ -1,104 +1,168 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export const FunnyDramaticHeart: React.FC = () => {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const [isBroken, setIsBroken] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
-  const [dodgeCount, setDodgeCount] = useState(0);
+  const [tauntText, setTauntText] = useState<string | null>(null);
+
+  const heartRef = useRef<HTMLDivElement>(null);
   const runningTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const returnTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const tauntTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastEvadeTime = useRef<number>(0);
 
-  // When cursor comes close or hovers, RUN AWAY! 🏃‍♂️💨
-  const handleProximityEvade = () => {
-    if (isBroken) return;
+  const TAUNTS = ["Nope! 💨", "Too slow! 😜", "Never! 😎", "Nice try! 💅", "Catch me? Never! 🏃‍♂️"];
 
-    // After 4-5 clever dodges, it gets a bit tired so the user CAN catch and touch it!
-    if (dodgeCount >= 4) {
-      // Let user touch it to trigger the heartbreak drama
-      return;
-    }
+  // Evade away from the cursor's coordinates
+  const evade = useCallback((mouseX?: number, mouseY?: number) => {
+    const now = Date.now();
+    // 70ms throttle to allow snappy spring animation without stutter
+    if (now - lastEvadeTime.current < 70) return;
+    lastEvadeTime.current = now;
 
     setIsRunning(true);
-    setDodgeCount((prev) => prev + 1);
 
-    // Pick a funny new dodge location away from current mouse
-    const directions = [
-      { x: 55 + Math.random() * 50, y: (Math.random() - 0.5) * 40 },
-      { x: -(55 + Math.random() * 50), y: (Math.random() - 0.5) * 40 },
-      { x: (Math.random() - 0.5) * 80, y: -35 - Math.random() * 25 },
-      { x: (Math.random() - 0.5) * 80, y: 35 + Math.random() * 25 },
-    ];
-    const newTarget = directions[Math.floor(Math.random() * directions.length)];
+    // Random cheeky taunt
+    if (Math.random() > 0.4) {
+      const randomTaunt = TAUNTS[Math.floor(Math.random() * TAUNTS.length)];
+      setTauntText(randomTaunt);
+      if (tauntTimeoutRef.current) clearTimeout(tauntTimeoutRef.current);
+      tauntTimeoutRef.current = setTimeout(() => setTauntText(null), 1200);
+    }
 
-    setOffset({
-      x: Math.max(-120, Math.min(120, offset.x + newTarget.x)),
-      y: Math.max(-45, Math.min(45, offset.y + newTarget.y)),
+    setOffset((prev) => {
+      let dirX = (Math.random() - 0.5) * 2;
+      let dirY = (Math.random() - 0.5) * 2;
+
+      if (heartRef.current && mouseX !== undefined && mouseY !== undefined) {
+        const rect = heartRef.current.getBoundingClientRect();
+        const heartX = rect.left + rect.width / 2;
+        const heartY = rect.top + rect.height / 2;
+        const diffX = heartX - mouseX;
+        const diffY = heartY - mouseY;
+        const dist = Math.hypot(diffX, diffY) || 1;
+        dirX = diffX / dist;
+        dirY = diffY / dist;
+      }
+
+      // High-velocity leap away from cursor
+      const jump = 95 + Math.random() * 45;
+      // Perpendicular side-dodge to prevent ever getting pinned
+      const perpFactor = (Math.random() > 0.5 ? 1 : -1) * 40;
+      const perpX = -dirY * perpFactor;
+      const perpY = dirX * perpFactor;
+
+      let nextX = prev.x + dirX * jump + perpX;
+      let nextY = prev.y + dirY * jump + perpY;
+
+      // Wrap around bounds so it never gets cornered or caught at screen edges
+      if (nextX > 180) nextX = -130 + Math.random() * 30;
+      else if (nextX < -180) nextX = 130 - Math.random() * 30;
+
+      if (nextY > 50) nextY = -40;
+      else if (nextY < -50) nextY = 40;
+
+      return { x: nextX, y: nextY };
     });
 
     if (runningTimeoutRef.current) clearTimeout(runningTimeoutRef.current);
     runningTimeoutRef.current = setTimeout(() => {
       setIsRunning(false);
     }, 600);
-  };
 
-  // If touched / clicked: HEARTBREAK DRAMA! 💔😭
-  const handleHeartbreak = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsBroken(true);
-    setIsRunning(false);
-
-    // Dramatic sobbing for 4.2s, then heals with funny band-aid and returns home
-    setTimeout(() => {
-      setIsBroken(false);
-      setDodgeCount(0);
+    // If left alone for 3.5s, calmly swagger back home
+    if (returnTimeoutRef.current) clearTimeout(returnTimeoutRef.current);
+    returnTimeoutRef.current = setTimeout(() => {
       setOffset({ x: 0, y: 0 });
-    }, 4200);
-  };
+      setIsRunning(false);
+      setTauntText(null);
+    }, 3500);
+  }, []);
+
+  // Global proximity detector: flees whenever cursor comes within 125px!
+  useEffect(() => {
+    const handlePointerMove = (e: PointerEvent | MouseEvent) => {
+      if (!heartRef.current) return;
+      const rect = heartRef.current.getBoundingClientRect();
+      const heartX = rect.left + rect.width / 2;
+      const heartY = rect.top + rect.height / 2;
+
+      const dist = Math.hypot(heartX - e.clientX, heartY - e.clientY);
+      // If cursor approaches within 125px radius, flee instantly
+      if (dist < 125) {
+        evade(e.clientX, e.clientY);
+      }
+    };
+
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+      if (runningTimeoutRef.current) clearTimeout(runningTimeoutRef.current);
+      if (returnTimeoutRef.current) clearTimeout(returnTimeoutRef.current);
+      if (tauntTimeoutRef.current) clearTimeout(tauntTimeoutRef.current);
+    };
+  }, [evade]);
 
   return (
     <div
+      ref={heartRef}
       className="inline-block relative select-none ml-2 align-middle z-30"
-      onMouseEnter={handleProximityEvade}
-      onMouseMove={handleProximityEvade}
       style={{ touchAction: "none" }}
     >
-      {/* Invisible Expanded Proximity Detection Halo (Triggers runaway before cursor directly touches) */}
-      <div
-        onMouseEnter={handleProximityEvade}
-        className="absolute -inset-6 sm:-inset-8 rounded-full pointer-events-auto cursor-pointer"
-        title={isBroken ? "You broke its heart! 💔" : "Try to catch me! 🏃‍♂️"}
-      />
-
       {/* Main Animated Heart Container */}
       <motion.div
         animate={{
           x: offset.x,
           y: offset.y,
-          rotate: isBroken
-            ? [-12, 14, -16, 12, -8, 0]
-            : isRunning
-            ? [-16, 18, -16]
-            : [-3, 4, -3],
-          scale: isBroken ? [1, 1.3, 0.9, 1.1, 1] : isRunning ? [1, 1.1, 1] : 1,
+          rotate: isRunning ? [-18, 20, -18] : [-3, 4, -3],
+          scale: isRunning ? [1, 1.15, 1] : 1,
         }}
         transition={
-          isBroken
-            ? { duration: 0.7, ease: "easeOut" }
-            : isRunning
-            ? { type: "spring", stiffness: 500, damping: 20 }
+          isRunning
+            ? { type: "spring", stiffness: 650, damping: 22, mass: 0.6 }
             : { repeat: Infinity, duration: 2.2, ease: "easeInOut" }
         }
-        onClick={handleHeartbreak}
+        onPointerDown={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          evade(e.clientX, e.clientY);
+        }}
+        onTouchStart={(e) => {
+          e.preventDefault();
+          if (e.touches[0]) {
+            evade(e.touches[0].clientX, e.touches[0].clientY);
+          }
+        }}
+        onMouseEnter={(e) => {
+          evade(e.clientX, e.clientY);
+        }}
         className="w-8 h-8 sm:w-10 sm:h-10 relative cursor-pointer drop-shadow-[0_4px_14px_rgba(255,77,141,0.55)]"
+        title="Can't catch me! 😎"
       >
+        {/* Floating Cheeky Taunt Bubble */}
+        <AnimatePresence>
+          {tauntText && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.6, y: 0 }}
+              animate={{ opacity: 1, scale: 1, y: -24 }}
+              exit={{ opacity: 0, scale: 0.6, y: -32 }}
+              transition={{ duration: 0.2 }}
+              className="absolute -top-3 left-1/2 -translate-x-1/2 text-[11px] font-bold font-mono text-[#00F5D4] bg-[#0E120E]/90 px-2 py-0.5 rounded-full border border-[#00F5D4]/40 shadow-lg pointer-events-none select-none whitespace-nowrap z-40"
+            >
+              {tauntText}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Cartoon Running Dust Cloud Effect 💨 when scurrying away */}
         <AnimatePresence>
-          {isRunning && !isBroken && (
+          {isRunning && (
             <motion.div
               initial={{ opacity: 0, scale: 0.4, x: 0 }}
-              animate={{ opacity: 0.8, scale: 1.2, x: offset.x > 0 ? -16 : 16 }}
+              animate={{ opacity: 0.9, scale: 1.3, x: offset.x > 0 ? -18 : 18 }}
               exit={{ opacity: 0, scale: 1.6 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.35 }}
               className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-xs pointer-events-none select-none"
             >
               💨
@@ -112,28 +176,18 @@ export const FunnyDramaticHeart: React.FC = () => {
               <stop offset="0%" stopColor="#FF4D8D" />
               <stop offset="100%" stopColor="#D81159" />
             </linearGradient>
-
-            <filter id="tearGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="2.5" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
           </defs>
 
           {/* Tiny Cartoon Stick Legs - Frantically Windmilling / Running when escaping! */}
           <motion.g
             animate={
-              isBroken
-                ? { y: [0, 2, 0], rotate: [-6, 6, -6] }
-                : isRunning
+              isRunning
                 ? { rotate: [0, 180, 360], y: [0, -4, 0] }
                 : { rotate: [-4, 4, -4] }
             }
             transition={
               isRunning
-                ? { repeat: Infinity, duration: 0.22, ease: "linear" }
+                ? { repeat: Infinity, duration: 0.2, ease: "linear" }
                 : { repeat: Infinity, duration: 0.6 }
             }
             style={{ originX: "30px", originY: "52px" }}
@@ -147,123 +201,31 @@ export const FunnyDramaticHeart: React.FC = () => {
             <ellipse cx="45" cy="58" rx="4" ry="2" fill="#12181F" />
           </motion.g>
 
-          {/* HEART BODY: Split into cracked halves when broken! 💔 */}
-          {!isBroken ? (
-            /* INTACT HEART WITH SASSY SUNGLASSES */
-            <g>
-              <path
-                d="M 30 52 C 12 40 4 28 4 18 C 4 8 13 2 22 2 C 27 2 30 7 30 7 C 30 7 33 2 38 2 C 47 2 56 8 56 18 C 56 28 48 40 30 52 Z"
-                fill="url(#heartGrad)"
-                stroke="#12181F"
-                strokeWidth="2.6"
-              />
+          {/* INTACT HEART WITH SASSY SUNGLASSES */}
+          <g>
+            <path
+              d="M 30 52 C 12 40 4 28 4 18 C 4 8 13 2 22 2 C 27 2 30 7 30 7 C 30 7 33 2 38 2 C 47 2 56 8 56 18 C 56 28 48 40 30 52 Z"
+              fill="url(#heartGrad)"
+              stroke="#12181F"
+              strokeWidth="2.6"
+            />
 
-              {/* Cool Dark Sunglasses */}
-              <rect x="12" y="16" width="16" height="11" rx="3.5" fill="#12181F" />
-              <rect x="32" y="16" width="16" height="11" rx="3.5" fill="#12181F" />
-              <line x1="28" y1="20" x2="32" y2="20" stroke="#12181F" strokeWidth="2.5" />
-              <line x1="15" y1="18" x2="22" y2="25" stroke="#FFFFFF" strokeWidth="1.3" strokeLinecap="round" opacity="0.85" />
-              <line x1="35" y1="18" x2="42" y2="25" stroke="#FFFFFF" strokeWidth="1.3" strokeLinecap="round" opacity="0.85" />
+            {/* Cool Dark Sunglasses */}
+            <rect x="12" y="16" width="16" height="11" rx="3.5" fill="#12181F" />
+            <rect x="32" y="16" width="16" height="11" rx="3.5" fill="#12181F" />
+            <line x1="28" y1="20" x2="32" y2="20" stroke="#12181F" strokeWidth="2.5" />
+            <line x1="15" y1="18" x2="22" y2="25" stroke="#FFFFFF" strokeWidth="1.3" strokeLinecap="round" opacity="0.85" />
+            <line x1="35" y1="18" x2="42" y2="25" stroke="#FFFFFF" strokeWidth="1.3" strokeLinecap="round" opacity="0.85" />
 
-              {/* Sassy Smug Smirk */}
-              <path d="M 26 34 Q 30 38 36 33" stroke="#12181F" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+            {/* Sassy Smug Smirk */}
+            <path d="M 26 34 Q 30 38 36 33" stroke="#12181F" strokeWidth="2.2" strokeLinecap="round" fill="none" />
 
-              {/* Sweat drop if running away */}
-              {isRunning && (
-                <path d="M 47 10 C 47 10 50 14 47 16 C 45 16 45 13 47 10 Z" fill="#00F5D4" />
-              )}
-            </g>
-          ) : (
-            /* HEARTBREAK STATE: CRACKED IN HALF WITH DRAMATIC WATERFALL TEARS! 💔😭 */
-            <g>
-              {/* Left Cracked Half */}
-              <motion.path
-                animate={{ rotate: [-8, -12, -8], x: [-1, -3, -1] }}
-                transition={{ repeat: Infinity, duration: 0.4 }}
-                style={{ originX: "22px", originY: "30px" }}
-                d="M 30 8 C 30 8 27 2 22 2 C 13 2 4 8 4 18 C 4 28 12 40 30 52 L 28 42 L 33 34 L 27 26 L 31 18 L 30 8 Z"
-                fill="url(#heartGrad)"
-                stroke="#12181F"
-                strokeWidth="2.6"
-              />
-
-              {/* Right Cracked Half */}
-              <motion.path
-                animate={{ rotate: [8, 12, 8], x: [1, 3, 1] }}
-                transition={{ repeat: Infinity, duration: 0.4 }}
-                style={{ originX: "38px", originY: "30px" }}
-                d="M 30 8 L 31 18 L 27 26 L 33 34 L 28 42 L 30 52 C 48 40 56 28 56 18 C 56 8 47 2 38 2 C 33 2 30 8 30 8 Z"
-                fill="url(#heartGrad)"
-                stroke="#12181F"
-                strokeWidth="2.6"
-              />
-
-              {/* Giant Crying Anime Eyes */}
-              <circle cx="18" cy="22" r="7" fill="#FFFFFF" stroke="#12181F" strokeWidth="2.2" />
-              <circle cx="42" cy="22" r="7" fill="#FFFFFF" stroke="#12181F" strokeWidth="2.2" />
-              <ellipse cx="18" cy="23" r="3.5" fill="#12181F" />
-              <ellipse cx="42" cy="23" r="3.5" fill="#12181F" />
-              <circle cx="16" cy="21" r="1.6" fill="#FFFFFF" />
-              <circle cx="40" cy="21" r="1.6" fill="#FFFFFF" />
-
-              {/* Open Sobbing Mouth */}
-              <ellipse cx="30" cy="38" rx="8" ry="6.5" fill="#6A040F" stroke="#12181F" strokeWidth="2" />
-              <path d="M 25 40 Q 30 36 35 40" fill="#FF4D8D" />
-
-              {/* DRAMATIC WATERFALL TEARS SHOOTING OUT SIDEWAYS! 💦 */}
-              <motion.g
-                animate={{ scaleX: [0.9, 1.4, 0.9], scaleY: [0.9, 1.2, 0.9], opacity: [0.85, 1, 0.85] }}
-                transition={{ repeat: Infinity, duration: 0.22 }}
-              >
-                {/* Left Stream */}
-                <path
-                  d="M 12 24 C 4 20 -8 26 -16 36"
-                  stroke="#00F5D4"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  filter="url(#tearGlow)"
-                  fill="none"
-                />
-                <circle cx="-18" cy="38" r="3.5" fill="#00F5D4" filter="url(#tearGlow)" />
-
-                {/* Right Stream */}
-                <path
-                  d="M 48 24 C 56 20 68 26 76 36"
-                  stroke="#00F5D4"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  filter="url(#tearGlow)"
-                  fill="none"
-                />
-                <circle cx="78" cy="38" r="3.5" fill="#00F5D4" filter="url(#tearGlow)" />
-              </motion.g>
-
-              {/* Shattered Broken Sunglasses Falling Down */}
-              <motion.g
-                animate={{ y: [0, 8, 14], rotate: [-10, 25, 45], opacity: [1, 0.8, 0.4] }}
-                transition={{ repeat: Infinity, duration: 0.9 }}
-              >
-                <rect x="8" y="32" width="10" height="7" rx="2" fill="#12181F" />
-                <rect x="42" y="32" width="10" height="7" rx="2" fill="#12181F" />
-              </motion.g>
-            </g>
-          )}
+            {/* Sweat drop if running away */}
+            {isRunning && (
+              <path d="M 47 10 C 47 10 50 14 47 16 C 45 16 45 13 47 10 Z" fill="#00F5D4" />
+            )}
+          </g>
         </svg>
-
-        {/* Floating Heartbreak Emojis when broken */}
-        <AnimatePresence>
-          {isBroken && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5, y: 0 }}
-              animate={{ opacity: 1, scale: 1.2, y: -26 }}
-              exit={{ opacity: 0, y: -40 }}
-              transition={{ duration: 0.4 }}
-              className="absolute -top-6 left-1/2 -translate-x-1/2 text-sm pointer-events-none select-none whitespace-nowrap"
-            >
-              💔😭💦
-            </motion.div>
-          )}
-        </AnimatePresence>
       </motion.div>
     </div>
   );
