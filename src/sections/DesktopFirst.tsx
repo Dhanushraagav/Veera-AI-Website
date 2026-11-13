@@ -46,7 +46,7 @@ export const DesktopFirst: React.FC = () => {
 
   return (
     <section id="desktop" className="py-24 sm:py-32 relative overflow-hidden border-t border-[#292D29] bg-[#0c0d0c]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16">
         <div className="max-w-5xl mx-auto space-y-12">
           {/* Header */}
           <div className="text-center space-y-4">

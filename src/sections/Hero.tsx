@@ -47,7 +47,7 @@ export const Hero: React.FC = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[650px] bg-gradient-to-b from-[#00F5D4]/[0.14] via-[#8B5CF6]/[0.08] to-[#FF9F1C]/[0.06] blur-[130px] pointer-events-none -z-10" />
       <div className="absolute inset-0 subtle-grid opacity-20 pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16">
         {/* Centered Hero Content */}
         <div className="text-center max-w-5xl mx-auto flex flex-col items-center">
           {/* Release Badge */}

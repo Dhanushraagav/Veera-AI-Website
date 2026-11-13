@@ -27,7 +27,7 @@ export const FAQ: React.FC = () => {
 
   return (
     <section id="faq" className="py-24 sm:py-32 relative overflow-hidden border-t border-[#292D29] bg-[#0c0d0c]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full metallic-badge text-xs font-mono text-[#D4AF72]">

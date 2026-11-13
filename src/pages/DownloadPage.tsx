@@ -15,7 +15,7 @@ interface DownloadPageProps {
 
 export const DownloadPage: React.FC<DownloadPageProps> = ({ onBackToHome }) => {
   return (
-    <div className="min-h-screen pt-28 pb-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-[#070807]">
+    <div className="min-h-screen pt-28 pb-24 px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16 relative overflow-hidden bg-[#070807]">
       {/* Background ambient lighting */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-b from-[#00F5D4]/[0.08] via-[#087F5B]/[0.04] to-transparent blur-[140px] pointer-events-none -z-10" />
 

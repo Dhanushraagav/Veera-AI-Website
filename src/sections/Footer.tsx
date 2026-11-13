@@ -10,7 +10,7 @@ interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({ onRouteChange }) => {
   return (
     <footer className="border-t border-[#292D29] bg-[#060706] py-14 text-zinc-400 text-xs font-sans">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-[#292D29]">
           {/* Brand Column */}
           <div className="md:col-span-2 space-y-4">
