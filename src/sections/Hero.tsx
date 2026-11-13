@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Download, ChevronRight, CheckCircle2 } from "lucide-react";
+import { Download, ChevronRight, CheckCircle2, Shield, Sparkles } from "lucide-react";
 import { SITE_CONFIG } from "../config/site";
 import { FunnyDramaticHeart } from "../components/FunnyDramaticHeart";
+import { LiveHudStage } from "../components/LiveHudStage";
 
-interface HeroProps {
-  onDownloadClick: () => void;
-}
-
-export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick }) => {
+export const Hero: React.FC = () => {
   const fullText = "Veera AI";
   const [displayedText, setDisplayedText] = useState("");
   const [_isTypingComplete, setIsTypingComplete] = useState(false);
@@ -21,11 +18,9 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick })
       if (currentIndex < fullText.length) {
         currentIndex++;
         setDisplayedText(fullText.slice(0, currentIndex));
-        // Slow motion typing cadence: 220ms per character
         timer = setTimeout(typeNextChar, 220);
       } else {
         setIsTypingComplete(true);
-        // Display full text for 5.5s before gently cycling
         timer = setTimeout(() => {
           setIsTypingComplete(false);
           currentIndex = 0;
@@ -35,20 +30,37 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick })
       }
     };
 
-    // Initial entrance pause
     timer = setTimeout(typeNextChar, 500);
-
     return () => clearTimeout(timer);
   }, []);
+
+  const heroCapabilityPills = [
+    "Hardware Cloaked (DWM Exclusion)",
+    "Real-Time Question Detection",
+    "Personal API Keys (BYOK)",
+    "Global Hotkey (Ctrl + D)",
+  ];
+
   return (
-    <section className="relative pt-32 pb-20 sm:pt-44 sm:pb-28 overflow-hidden bg-[#080908]">
+    <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 overflow-hidden bg-[#080908]">
       {/* Multi-hue subtle ambient background aura */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[580px] bg-gradient-to-b from-[#00F5D4]/[0.12] via-[#8B5CF6]/[0.08] to-[#FF9F1C]/[0.07] blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[650px] bg-gradient-to-b from-[#00F5D4]/[0.14] via-[#8B5CF6]/[0.08] to-[#FF9F1C]/[0.06] blur-[130px] pointer-events-none -z-10" />
       <div className="absolute inset-0 subtle-grid opacity-20 pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Centered Hero Content */}
         <div className="text-center max-w-5xl mx-auto flex flex-col items-center">
+          {/* Release Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full metallic-badge text-xs font-mono text-[#D4AF72] mb-3"
+          >
+            <span className="w-2 h-2 rounded-full bg-[#00F5D4] animate-pulse" />
+            <span>NATIVE WINDOWS 10 / 11 COPILOT • v{SITE_CONFIG.VERSION}</span>
+          </motion.div>
+
           {/* Main Brand Headline with Dynamic Multi-Color Orbital Trails */}
           <div className="relative w-full flex items-center justify-center py-2 sm:py-4">
             {/* Luminous Multi-Color Energy Field */}
@@ -76,7 +88,6 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick })
                   <stop offset="100%" stopColor="#00F5D4" stopOpacity="0.8" />
                 </linearGradient>
 
-                {/* Multi-layer Radial Glow Filters */}
                 <filter id="superGlowCyan" x="-60%" y="-60%" width="220%" height="220%">
                   <feGaussianBlur stdDeviation="5" result="blur1" />
                   <feGaussianBlur stdDeviation="2" result="blur2" />
@@ -177,23 +188,21 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick })
               </g>
             </svg>
 
-            {/* VEERA AI Main Headline with Stylish Curving Handwriting & Slow-Motion Typing Animation (Strictly Single Line, No Cursor) */}
+            {/* VEERA AI Main Headline */}
             <motion.div
               initial={{ opacity: 0, y: 16, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="w-full flex justify-center text-center relative z-10 py-1"
             >
-              <h1 
+              <h1
                 style={{ fontFamily: "'Righteous', 'Syne', sans-serif" }}
                 className="relative inline-flex items-center justify-center text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[7.8rem] font-normal tracking-[0.03em] leading-tight select-none text-center whitespace-nowrap"
               >
-                {/* Invisible phantom spacer to lock dimensions and eliminate layout jumping */}
                 <span className="invisible opacity-0 pointer-events-none select-none inline-block whitespace-nowrap font-normal" aria-hidden="true">
                   {fullText}
                 </span>
 
-                {/* Animated slow-motion typed text without cursor point */}
                 <span className="absolute inset-0 flex items-center justify-center whitespace-nowrap">
                   <span className="brand-gradient-text inline-block text-center whitespace-nowrap font-normal">
                     {displayedText}
@@ -203,12 +212,12 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick })
             </motion.div>
           </div>
 
-          {/* Small, Elegant Tagline with matching slow multi-color spectrum animation */}
+          {/* Small, Elegant Tagline with dramatic heart */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="pt-4 sm:pt-5"
+            className="pt-2 sm:pt-3"
           >
             <p className="text-lg sm:text-xl md:text-2xl font-light sm:font-normal tracking-wide text-center flex items-center justify-center gap-1">
               <span className="tagline-spectrum font-normal inline-block text-center drop-shadow-sm">
@@ -218,12 +227,24 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick })
             </p>
           </motion.div>
 
-          {/* Primary CTA and Secondary Navigation */}
+          {/* High-Impact Subtitle */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="pt-4 max-w-2xl mx-auto"
+          >
+            <p className="text-sm sm:text-base text-[#B4B7B0] leading-relaxed">
+              The stealth desktop assistant for technical interviews. Real-time speech transcription, instant algorithmic code synthesis, and hardware-level Stealth Mode that stays 100% invisible during Zoom, Teams, and Google Meet screen shares.
+            </p>
+          </motion.div>
+
+          {/* Primary CTA and Secondary Navigation to Stealth Mode */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-7 sm:pt-9"
+            transition={{ duration: 0.5, delay: 0.28 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-6 sm:pt-8"
           >
             <a
               href={SITE_CONFIG.DOWNLOAD_URL}
@@ -232,18 +253,19 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick })
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl metallic-button font-semibold text-sm transition-all duration-200 active:scale-[0.98] shadow-lg group cursor-pointer"
             >
               <Download className="w-4 h-4 text-[#087F5B] transition-transform group-hover:-translate-y-0.5" />
-              <span>{SITE_CONFIG.PRIMARY_CTA}</span>
+              <span>Download Veera AI v{SITE_CONFIG.VERSION}</span>
               <span className="text-[11px] font-mono text-[#D4AF72] ml-1">
                 ({SITE_CONFIG.INSTALLER_SIZE})
               </span>
             </a>
 
             <a
-              href="#features"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-[#121512] hover:bg-[#191D19] border border-[#292D29] text-[#F7F5EF] text-sm font-medium transition-colors cursor-pointer"
+              href="#stealth-mode"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-[#121512] hover:bg-[#191D19] border border-[#292D29] hover:border-[#00F5D4]/40 text-[#F7F5EF] text-sm font-medium transition-all cursor-pointer group"
             >
-              <span>{SITE_CONFIG.SECONDARY_CTA}</span>
-              <ChevronRight className="w-4 h-4 text-[#D4AF72]" />
+              <Shield className="w-4 h-4 text-[#00F5D4]" />
+              <span>Experience Stealth Mode</span>
+              <ChevronRight className="w-4 h-4 text-[#D4AF72] transition-transform group-hover:translate-x-0.5" />
             </a>
           </motion.div>
 
@@ -254,15 +276,29 @@ export const Hero: React.FC<HeroProps> = ({ onDownloadClick: _onDownloadClick })
             transition={{ duration: 0.5, delay: 0.35 }}
             className="pt-6 sm:pt-7 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-mono"
           >
-            {SITE_CONFIG.CAPABILITY_LABELS.map((label) => (
+            {heroCapabilityPills.map((label) => (
               <span
                 key={label}
                 className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#121512] border border-[#292D29] text-[#B4B7B0]"
               >
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#087F5B]" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#00F5D4]" />
                 <span className="text-[#F7F5EF] font-medium">{label}</span>
               </span>
             ))}
+          </motion.div>
+
+          {/* THE FLAGSHIP LIVE HUD STAGE SIMULATION */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.45 }}
+            className="w-full mt-12 sm:mt-16"
+          >
+            <div className="text-center mb-3 text-[11px] font-mono text-[#D4AF72] uppercase tracking-wider flex items-center justify-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-[#00F5D4]" />
+              <span>Interactive Desktop HUD Preview</span>
+            </div>
+            <LiveHudStage />
           </motion.div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { CustomCursor } from "./components/CustomCursor";
 import { Hero } from "./sections/Hero";
+import { StealthMode } from "./sections/StealthMode";
 import { Features } from "./sections/Features";
 import { HowItWorks } from "./sections/HowItWorks";
 import { AIProviders } from "./sections/AIProviders";
@@ -51,10 +52,6 @@ export const App: React.FC = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleDownloadClick = () => {
-    handleRouteChange("download");
-  };
-
   return (
     <div className="min-h-screen bg-[#080908] text-[#F7F5EF] selection:bg-[#191D19] selection:text-[#D4AF72] flex flex-col font-sans">
       <CustomCursor />
@@ -63,7 +60,6 @@ export const App: React.FC = () => {
       <Navbar
         activeRoute={activeRoute}
         onRouteChange={handleRouteChange}
-        onDownloadClick={handleDownloadClick}
       />
 
       <main className="flex-grow">
@@ -71,10 +67,13 @@ export const App: React.FC = () => {
           <DownloadPage onBackToHome={() => handleRouteChange("home")} />
         ) : (
           <>
-            {/* 1. Hero (Contains Download Button #2) */}
-            <Hero onDownloadClick={handleDownloadClick} />
+            {/* 1. Hero with Interactive HUD Stage */}
+            <Hero />
 
-            {/* 2. 4 Features Cards */}
+            {/* 2. Flagship Stealth Mode (Hardware Screen Share Invisibility) */}
+            <StealthMode />
+
+            {/* 3. Verified Capabilities Cards */}
             <Features />
 
             {/* 3. Compact 3-Step: Capture -> Analyze -> Solve */}
@@ -97,7 +96,6 @@ export const App: React.FC = () => {
 
       {/* Footer (No prominent download button) */}
       <Footer
-        onDownloadClick={handleDownloadClick}
         onRouteChange={handleRouteChange}
       />
     </div>

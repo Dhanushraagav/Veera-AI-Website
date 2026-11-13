@@ -5,12 +5,11 @@ import { SITE_CONFIG } from "../config/site";
 import { CartoonDownloadGuide } from "./CartoonDownloadGuide";
 
 interface NavbarProps {
-  onDownloadClick: () => void;
   activeRoute: "home" | "download";
   onRouteChange: (route: "home" | "download") => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onDownloadClick: _onDownloadClick, activeRoute, onRouteChange }) => {
+export const Navbar: React.FC<NavbarProps> = ({ activeRoute, onRouteChange }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [downloadHovered, setDownloadHovered] = useState(false);
@@ -25,6 +24,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadClick: _onDownloadClic
   }, []);
 
   const navLinks = [
+    { label: "Stealth Mode", href: "#stealth-mode" },
     { label: "Features", href: "#features" },
     { label: "How It Works", href: "#how-it-works" },
     { label: "Reliability", href: "#providers" },
@@ -72,8 +72,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadClick: _onDownloadClic
               <span className="font-bold tracking-wider text-base sm:text-lg text-[#F7F5EF] font-mono leading-none">
                 {SITE_CONFIG.SITE_NAME}
               </span>
-              <span className="text-[10px] uppercase font-mono tracking-widest text-[#D4AF72] px-1.5 py-0.5 rounded bg-[#191D19] border border-[#292D29] leading-none hidden sm:inline">
-                {SITE_CONFIG.SMALL_LABEL}
+              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#121512] border border-[#087F5B]/40 text-[10px] font-mono text-[#00F5D4] leading-none hidden sm:inline-flex">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00F5D4] animate-pulse" />
+                v{SITE_CONFIG.VERSION}
               </span>
             </div>
           </button>
@@ -94,10 +95,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onDownloadClick: _onDownloadClic
 
           {/* Download Button #1 (Navbar) with Animated Cartoon Helper */}
           <div
-            className="hidden md:flex items-center gap-3 relative py-1"
+            className="hidden md:flex items-center gap-2.5 relative py-1"
             onMouseEnter={() => setDownloadHovered(true)}
             onMouseLeave={() => setDownloadHovered(false)}
           >
+            <span className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#121512] border border-[#292D29] text-[11px] font-mono text-[#B4B7B0]">
+              <span className="text-[#D4AF72]">HUD:</span>
+              <kbd className="px-1.5 py-0.5 rounded bg-black/60 border border-white/10 text-white font-bold text-[10px]">Ctrl + D</kbd>
+            </span>
+
             <a
               href={SITE_CONFIG.DOWNLOAD_URL}
               download={SITE_CONFIG.INSTALLER_FILENAME}

@@ -1,11 +1,17 @@
-﻿export const BRAND_TOKENS = {
+export const BRAND_TOKENS = {
   emerald: '#087F5B',
+  emeraldGlow: '#00F5D4',
   champagne: '#D4AF72',
+  champagneLight: '#E8C88A',
   warmWhite: '#F7F5EF',
   background: '#080908',
+  void: '#060706',
   surface: '#121512',
   surfaceElevated: '#191D19',
+  surfaceGlass: 'rgba(18, 21, 18, 0.75)',
   border: '#292D29',
+  borderMetallic: 'rgba(212, 175, 114, 0.18)',
+  borderGlow: 'rgba(0, 245, 212, 0.35)',
   textSecondary: '#B4B7B0',
   success: '#087F5B',
 } as const;

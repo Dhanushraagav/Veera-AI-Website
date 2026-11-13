@@ -38,10 +38,10 @@ export const SITE_CONFIG = {
   ],
 
   // Windows installer metadata pointing directly to verified GitHub downloads repository
-  DOWNLOAD_URL: 'https://github.com/Dhanushraagav/Veera-AI-Downloads/raw/refs/heads/main/Veera-AI-Standard-3.0.0-x64-setup.exe',
-  INSTALLER_FILENAME: 'Veera-AI-Standard-3.0.0-x64-setup.exe',
-  INSTALLER_SIZE: '3.99 MB',
-  VERSION: '3.0.0',
+  DOWNLOAD_URL: 'https://github.com/Dhanushraagav/Veera-AI-Downloads/raw/refs/heads/main/Veera-AI-3.0.1-x64-setup.exe',
+  INSTALLER_FILENAME: 'Veera-AI-3.0.1-x64-setup.exe',
+  INSTALLER_SIZE: '4.26 MB',
+  VERSION: '3.0.1',
   SUPPORTED_PLATFORM: 'Windows 10 / Windows 11',
   ARCHITECTURE: '64-bit (x64) Windows Desktop App',
   REQUIREMENTS: 'Windows 10 (Build 19041+) or Windows 11 (64-bit), 4 GB RAM minimum',
@@ -50,7 +50,7 @@ export const SITE_CONFIG = {
     { label: 'Operating System', value: 'Windows 10 / 11 (64-bit native)' },
     { label: 'Processor', value: 'Intel Core i3 / AMD Ryzen 3 or higher' },
     { label: 'Memory', value: '4 GB RAM minimum' },
-    { label: 'Package Size', value: '3.99 MB standalone installer' },
+    { label: 'Package Size', value: '4.26 MB standalone installer' },
     { label: 'API Credentials', value: 'User-configured personal API keys in Settings' },
   ],
 
@@ -183,33 +183,50 @@ export const SITE_CONFIG = {
     },
   ] as ReliabilityPillar[],
 
-  // Honest, Accurate FAQs
+  // Honest, Accurate FAQs with Categories
   FAQS: [
     {
+      category: 'Stealth & Screen Share',
+      question: 'Is Veera AI really invisible on Zoom, Microsoft Teams, and Google Meet?',
+      answer: 'Yes. Veera AI utilizes native Windows Desktop Window Manager (DWM) hardware capture exclusion (SetWindowDisplayAffinity with WDA_EXCLUDEFROMCAPTURE). When you share your desktop or application window on Zoom, Teams, Meet, or OBS, Windows omits Veera’s window at the GPU compositor level before the video frame is captured. The interviewer sees only your clean code editor or desktop with zero black boxes or flickering.',
+    },
+    {
+      category: 'Stealth & Screen Share',
+      question: 'How does the Ctrl + D global hotkey work?',
+      answer: 'Ctrl + D is a global panic hotkey registered at the OS level. Tapping Ctrl + D flips the HUD visibility on or off in under 16ms (a single frame) from within any IDE, browser, or full-screen window. Background microphone listening and question intent detection continue running seamlessly while cloaked.',
+    },
+    {
+      category: 'General',
       question: 'What is Veera AI?',
       answer: 'Veera AI is a lightweight 64-bit Windows desktop companion designed for intelligent interview practice and problem solving. It combines live speech transcription, question intent detection, answer-first aptitude reasoning, coding solutions, and screenshot analysis in a compact desktop workflow.',
     },
     {
+      category: 'Keys & Providers',
       question: 'How do personal API keys work in Veera AI?',
-      answer: 'Veera AI operates on a Bring-Your-Own-Key (BYOK) model. You input your own supported API credentials inside desktop Settings, where they are saved securely in native Windows credential storage. You control your accounts, usage limits, and provider billing directly.',
+      answer: 'Veera AI operates on a Bring-Your-Own-Key (BYOK) model. You input your own supported API credentials inside desktop Settings, where they are saved securely in native Windows credential storage (DPAPI). You control your accounts, usage limits, and provider billing directly with zero middleman markup.',
     },
     {
+      category: 'Audio & Languages',
       question: 'Which languages are supported for live speech understanding?',
-      answer: 'Speech transcription and question detection are verified for English and Tamil, including natural code-switching (Tanglish). The system recognizes the interviewer\'s actual question intent, direct and indirect questions, and follow-ups.',
+      answer: 'Speech transcription and question detection are verified for English and Tamil, including natural code-switching (Tanglish). The system recognizes the interviewer\'s actual question intent, direct and indirect questions, and follow-ups while ignoring conversational filler.',
     },
     {
+      category: 'Keys & Providers',
       question: 'How does provider routing and fallback work?',
-      answer: 'You can configure multiple supported providers in application settings. Veera AI automatically selects a compatible provider for speech, vision, or reasoning tasks, and gracefully falls back to your next configured provider if rate limits (HTTP 429) or transient errors occur.',
+      answer: 'You can configure multiple supported providers in desktop Settings (Groq, Anthropic, OpenAI, Gemini, OpenRouter). Veera AI automatically routes transcription, vision, or coding tasks to the best-suited provider, and seamlessly redirects to your configured backup in <150ms if rate limits (HTTP 429) or transient errors occur.',
     },
     {
+      category: 'General',
       question: 'What controls do I have during an active practice session?',
-      answer: 'You have full operator control: trigger solutions on demand with "Answer Now", toggle optional hands-free "Auto Answers", show or hide the application using the global hotkey (Ctrl + D), and wipe session history instantly using Clear Chat or End Session.',
+      answer: 'You have full operator control: trigger solutions on demand with "Answer Now", toggle hands-free "Auto Answers", flip visibility with the global hotkey (Ctrl + D), adjust HUD opacity from 30% to 100%, and wipe session history instantly using Clear Session.',
     },
     {
+      category: 'Privacy & Security',
       question: 'How is my session privacy protected?',
-      answer: 'Audio streams and problem buffers exist only in temporary local memory during your session and are discarded upon completion. Inference requests travel directly from your local desktop client to your chosen provider APIs without intermediate relay servers.',
+      answer: 'Audio streams, speech buffers, and screenshots exist only in temporary local RAM during your session and are permanently wiped when closed. Inference requests travel directly from your local desktop client to your chosen provider APIs via TLS 1.3 without intermediary relay servers.',
     },
     {
+      category: 'General',
       question: 'Does Veera AI guarantee interview outcomes?',
       answer: 'No. Veera AI is an assistive practice and preparation companion. While it provides structured reasoning, algorithmic approaches, and explanations, AI outputs should always be critically evaluated during study and preparation.',
     },
