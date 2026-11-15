@@ -71,7 +71,7 @@ const SUPPORTED_PROVIDERS: ProviderSpec[] = [
 export const AIProviders: React.FC = () => {
   const [selectedProvider, setSelectedProvider] = useState<ProviderSpec>(SUPPORTED_PROVIDERS[0]);
   const [simulatingFailover, setSimulatingFailover] = useState<boolean>(false);
-  const [activeRouteStatus, setActiveRouteStatus] = useState<string>("Primary (Groq)");
+  const [activeRouteStatus, setActiveRouteStatus] = useState<string>("Primary Route (Groq) &bull; Healthy");
 
   const handleTriggerFailoverDemo = () => {
     setSimulatingFailover(true);
@@ -80,30 +80,30 @@ export const AIProviders: React.FC = () => {
       setActiveRouteStatus("Auto-rerouted to Anthropic Claude in 118ms (Zero Session Loss)");
       setTimeout(() => {
         setSimulatingFailover(false);
-        setActiveRouteStatus("Primary Healthy • Dynamic Failover Active");
+        setActiveRouteStatus("Primary Healthy &bull; Dynamic Failover Active");
       }, 3500);
     }, 1200);
   };
 
   return (
-    <section id="providers" className="py-24 sm:py-32 relative overflow-hidden border-t border-[#292D29] bg-[#070807]">
-      {/* Ambient background light */}
-      <div className="absolute top-1/4 left-1/3 w-[800px] h-[400px] bg-gradient-to-b from-[#00F5D4]/[0.05] via-[#D4AF72]/[0.04] to-transparent blur-[140px] pointer-events-none -z-10" />
+    <section id="providers" className="py-24 sm:py-32 relative overflow-hidden border-t border-[#1a241f] bg-[#060907]">
+      {/* Zero-Lag Hardware-Accelerated Ambient Glow */}
+      <div className="absolute inset-0 section-radial-glow pointer-events-none -z-10" />
 
       <div className="max-w-[1600px] 2xl:max-w-[1720px] w-full mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00F5D4]/10 border border-[#00F5D4]/35 text-xs font-mono text-[#00F5D4] shadow-[0_0_15px_rgba(0,245,212,0.15)]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#00F5D4]/10 border border-[#00F5D4]/30 text-xs font-mono text-[#00F5D4]">
             <Cpu className="w-3.5 h-3.5 text-[#00F5D4]" />
-            <span className="tracking-wider uppercase">2050 NEURAL LATTICE // ARBITRATED PROVIDER FABRIC</span>
+            <span className="tracking-wider uppercase font-semibold">PROVIDER FABRIC &bull; DYNAMIC ROUTING</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-cyber font-extrabold tracking-tight text-[#F7F5EF] leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
             Bring your own keys. <br />
-            <span className="brand-gradient-text drop-shadow-[0_0_35px_rgba(0,245,212,0.35)]">Zero vendor lock-in.</span>
+            <span className="brand-gradient-text">Zero vendor lock-in.</span>
           </h2>
 
-          <p className="text-sm sm:text-base text-[#9aa39e] leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl mx-auto font-normal">
             Configure your personal API keys in desktop Settings. Veera AI handles task-specific provider routing, transcription dispatch, and automatic sub-150ms failover when rate limits are hit.
           </p>
         </div>
@@ -117,9 +117,9 @@ export const AIProviders: React.FC = () => {
         <div className="w-full max-w-[1400px] 2xl:max-w-[1550px] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
           {/* Left Column: Supported Providers List */}
           <div className="lg:col-span-2 space-y-3">
-            <div className="flex items-center justify-between text-xs font-mono text-[#D4AF72] mb-1">
+            <div className="flex items-center justify-between text-xs font-mono text-[#D4AF72] mb-1 font-semibold">
               <span>SUPPORTED NATIVE PROVIDERS</span>
-              <span className="text-zinc-500">SELECT TO INSPECT</span>
+              <span className="text-slate-400">SELECT TO INSPECT</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -131,8 +131,8 @@ export const AIProviders: React.FC = () => {
                     onClick={() => setSelectedProvider(provider)}
                     className={`p-4 rounded-xl border text-left transition-all duration-200 cursor-pointer flex flex-col justify-between space-y-3 ${
                       isSelected
-                        ? "bg-[#141a14] border-[#00F5D4]/50 shadow-[0_0_20px_rgba(0,245,212,0.15)]"
-                        : "bg-[#101310] border-[#292D29] hover:border-white/20"
+                        ? "bg-[#0e1712] border-[#00F5D4]/50 shadow-md"
+                        : "bg-[#0a0f0c] border-white/10 hover:border-white/20"
                     }`}
                   >
                     <div className="flex items-center justify-between">
@@ -141,22 +141,22 @@ export const AIProviders: React.FC = () => {
                           className="w-2.5 h-2.5 rounded-full"
                           style={{ backgroundColor: provider.badgeColor }}
                         />
-                        <span className="font-bold font-mono text-sm text-[#F7F5EF]">
+                        <span className="font-bold font-mono text-sm text-white">
                           {provider.name}
                         </span>
                       </div>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-black/40 border border-white/5 text-[#D4AF72]">
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-black/50 border border-white/10 text-[#D4AF72]">
                         {provider.latency}
                       </span>
                     </div>
 
-                    <p className="text-xs text-[#B4B7B0] leading-snug">
+                    <p className="text-xs text-slate-300 leading-snug font-normal">
                       {provider.bestFor}
                     </p>
 
-                    <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-zinc-400">
+                    <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-400">
                       <span>{provider.models}</span>
-                      <ArrowRight className={`w-3 h-3 ${isSelected ? "text-[#00F5D4]" : "text-zinc-600"}`} />
+                      <ArrowRight className={`w-3 h-3 ${isSelected ? "text-[#00F5D4]" : "text-slate-500"}`} />
                     </div>
                   </button>
                 );
@@ -176,24 +176,24 @@ export const AIProviders: React.FC = () => {
                   RESILIENT QUOTA FAILOVER
                 </span>
                 <span className="text-[10px] px-2 py-0.5 rounded bg-[#00F5D4]/10 text-[#00F5D4] font-bold border border-[#00F5D4]/30">
-                  // ARMED
+                  ARMED
                 </span>
               </div>
 
-              <p className="text-xs text-[#B4B7B0] leading-relaxed">
-                If your primary provider encounters rate limits (HTTP 429), quota exhaustion, or temporary latency spikes, Veera AI instantly redirects the request to your configured backup provider with zero chat interruption.
+              <p className="text-xs text-slate-300 leading-relaxed font-normal">
+                If your primary provider encounters rate limits (HTTP 429), quota exhaustion, or temporary latency spikes, Veera AI instantly redirects the request to your configured backup provider with zero session loss.
               </p>
 
               {/* Status Box */}
-              <div className="p-3.5 rounded-xl bg-[#040605] border border-[#00F5D4]/20 space-y-2 font-mono text-xs">
-                <div className="text-[10px] text-zinc-500 uppercase tracking-wider flex items-center justify-between">
-                  <span>// LIVE ROUTER TELEMETRY</span>
-                  <span className="text-[9px] text-[#00F5D4]">CYCLE: 118ms</span>
+              <div className="p-3.5 rounded-xl bg-[#090e0b] border border-white/10 space-y-2 font-mono text-xs">
+                <div className="text-[10px] text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                  <span>// ROUTER TELEMETRY</span>
+                  <span className="text-[9px] text-[#00F5D4]">118ms FAILOVER</span>
                 </div>
                 <div className={`text-xs font-bold tracking-wide ${simulatingFailover ? "text-amber-300 animate-pulse" : "text-[#00F5D4]"}`}>
                   {activeRouteStatus}
                 </div>
-                <div className="text-[10px] text-zinc-400 pt-1 border-t border-white/5">
+                <div className="text-[10px] text-slate-400 pt-1 border-t border-white/5">
                   Fallback Target: <strong className="text-white">Anthropic Claude / OpenRouter</strong>
                 </div>
               </div>
@@ -203,12 +203,12 @@ export const AIProviders: React.FC = () => {
                 disabled={simulatingFailover}
                 className="w-full py-3 px-4 cyber-btn-primary text-xs font-bold cursor-pointer transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2"
               >
-                <Zap className="w-3.5 h-3.5 text-black" />
-                <span>{simulatingFailover ? "[ SIMULATING AUTO-FAILOVER... ]" : "[ SIMULATE RATE LIMIT FAILOVER ]"}</span>
+                <Zap className="w-3.5 h-3.5 text-[#040605]" />
+                <span>{simulatingFailover ? "Failover in Progress..." : "Simulate Rate Limit Failover"}</span>
               </button>
             </div>
 
-            <div className="pt-3 border-t border-[#1e2822] text-[11px] font-mono text-zinc-400 flex items-center gap-1.5">
+            <div className="pt-3 border-t border-white/10 text-[11px] font-mono text-slate-300 flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#00F5D4] shrink-0" />
               <span>Direct client-to-API inference. Zero proxy servers.</span>
             </div>
@@ -223,8 +223,8 @@ export const AIProviders: React.FC = () => {
             <div className="w-9 h-9 rounded-lg bg-[#00F5D4]/10 border border-[#00F5D4]/30 flex items-center justify-center text-[#D4AF72]">
               <Key className="w-4 h-4" />
             </div>
-            <h3 className="text-sm font-bold text-[#F7F5EF] font-cyber">Personal Key Ownership</h3>
-            <p className="text-xs text-[#9aa39e] leading-relaxed">
+            <h3 className="text-sm font-bold text-white">Personal Key Ownership</h3>
+            <p className="text-xs text-slate-300 leading-relaxed font-normal">
               Use your personal API keys. Usage limits, rate quotas, and tier billing remain entirely under your accounts with zero markups.
             </p>
           </div>
@@ -235,8 +235,8 @@ export const AIProviders: React.FC = () => {
             <div className="w-9 h-9 rounded-lg bg-[#00F5D4]/10 border border-[#00F5D4]/30 flex items-center justify-center text-[#00F5D4]">
               <Shuffle className="w-4 h-4" />
             </div>
-            <h3 className="text-sm font-bold text-[#F7F5EF] font-cyber">Smart Task Routing</h3>
-            <p className="text-xs text-[#9aa39e] leading-relaxed">
+            <h3 className="text-sm font-bold text-white">Smart Task Routing</h3>
+            <p className="text-xs text-slate-300 leading-relaxed font-normal">
               Dynamically routes speech transcription, vision OCR, coding solutions, and system design to whichever configured model performs best.
             </p>
           </div>
@@ -247,8 +247,8 @@ export const AIProviders: React.FC = () => {
             <div className="w-9 h-9 rounded-lg bg-[#D4AF72]/10 border border-[#D4AF72]/30 flex items-center justify-center text-[#D4AF72]">
               <Zap className="w-4 h-4" />
             </div>
-            <h3 className="text-sm font-bold text-[#F7F5EF] font-cyber">Sub-150ms Failover</h3>
-            <p className="text-xs text-[#9aa39e] leading-relaxed">
+            <h3 className="text-sm font-bold text-white">Sub-150ms Failover</h3>
+            <p className="text-xs text-slate-300 leading-relaxed font-normal">
               If an endpoint returns an error or HTTP 429, the internal router gracefully falls back to your secondary configured model instantly.
             </p>
           </div>
@@ -259,18 +259,18 @@ export const AIProviders: React.FC = () => {
             <div className="w-9 h-9 rounded-lg bg-[#00F5D4]/10 border border-[#00F5D4]/30 flex items-center justify-center text-[#00F5D4]">
               <ShieldCheck className="w-4 h-4 text-[#00F5D4]" />
             </div>
-            <h3 className="text-sm font-bold text-[#F7F5EF] font-cyber">Direct Local Encryption</h3>
-            <p className="text-xs text-[#9aa39e] leading-relaxed">
+            <h3 className="text-sm font-bold text-white">Direct Local Encryption</h3>
+            <p className="text-xs text-slate-300 leading-relaxed font-normal">
               All keys are encrypted locally using Windows DPAPI. Requests are dispatched directly via TLS 1.3 straight to provider endpoints.
             </p>
           </div>
         </div>
 
         {/* Responsible BYOK Notice */}
-        <div className="mt-10 p-4 rounded-xl cyber-card max-w-3xl mx-auto text-center text-xs text-[#9aa39e] font-mono leading-relaxed relative">
+        <div className="mt-10 p-4 rounded-xl cyber-card max-w-3xl mx-auto text-center text-xs text-slate-300 font-mono leading-relaxed relative">
           <div className="cyber-reticle cyber-reticle-tl" />
           <div className="cyber-reticle cyber-reticle-br" />
-          <span className="text-[#D4AF72] font-semibold tracking-wider uppercase">[ USER ACCOUNT TELEMETRY ]:</span> Bring-Your-Own-Key (BYOK). Requests are billed directly to your respective provider developer accounts. No middleman subscription fees or proprietary token taxes.
+          <span className="text-[#D4AF72] font-semibold tracking-wider uppercase">[ USER ACCOUNT NOTICE ]:</span> Bring-Your-Own-Key (BYOK). Requests are billed directly to your respective provider developer accounts. No middleman subscription fees or proprietary token taxes.
         </div>
       </div>
     </section>

@@ -50,19 +50,19 @@ export const Navbar: React.FC<NavbarProps> = ({ activeRoute, onRouteChange }) =>
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? "bg-[#040605]/95 backdrop-blur-2xl border-b border-[#00F5D4]/20 shadow-[0_10px_35px_-5px_rgba(0,0,0,0.9)] py-3"
+          ? "bg-[#060907]/90 backdrop-blur-xl border-b border-white/10 shadow-lg py-3"
           : "bg-transparent py-4.5"
       }`}
     >
       <div className="w-full max-w-[1600px] 2xl:max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
         <div className="flex items-center justify-between">
-          {/* 2050 Sci-Fi Cyber Brand Logo */}
+          {/* Brand Logo */}
           <button
             onClick={() => onRouteChange("home")}
             className="flex items-center gap-3 group focus:outline-none rounded-lg p-1 text-left cursor-pointer"
             aria-label="Veera AI Home"
           >
-            <div className="relative w-9 h-9 rounded-xl bg-[#0a0f0c] border border-[#00F5D4]/50 flex items-center justify-center transition-all duration-300 group-hover:border-[#00F5D4] group-hover:shadow-[0_0_20px_rgba(0,245,212,0.4)]">
+            <div className="relative w-9 h-9 rounded-xl bg-[#0c120e] border border-white/15 flex items-center justify-center transition-all duration-300 group-hover:border-[#00F5D4]/60">
               {/* Corner brackets */}
               <div className="cyber-reticle cyber-reticle-tl" />
               <div className="cyber-reticle cyber-reticle-tr" />
@@ -74,24 +74,24 @@ export const Navbar: React.FC<NavbarProps> = ({ activeRoute, onRouteChange }) =>
               </svg>
             </div>
             <div className="flex items-center gap-2.5">
-              <span className="font-cyber font-extrabold tracking-widest text-base sm:text-lg text-[#F7F5EF] leading-none group-hover:text-white">
+              <span className="font-bold tracking-wide text-base sm:text-lg text-white leading-none">
                 {SITE_CONFIG.SITE_NAME}
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#00F5D4]/10 border border-[#00F5D4]/35 text-[10px] font-mono text-[#00F5D4] leading-none hidden sm:inline-flex">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#00F5D4]/10 border border-[#00F5D4]/30 text-[10px] font-mono text-[#00F5D4] leading-none hidden sm:inline-flex">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00F5D4] animate-pulse" />
-                <span>v{SITE_CONFIG.VERSION} // ARMED</span>
+                <span>v{SITE_CONFIG.VERSION}</span>
               </span>
             </div>
           </button>
 
-          {/* Desktop Sci-Fi Cockpit Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 px-4 py-1.5 rounded-full bg-[#0a0f0c]/90 border border-[#00F5D4]/20 backdrop-blur-xl shadow-inner" aria-label="Main Navigation">
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex items-center gap-1 px-4 py-1.5 rounded-full bg-[#0c120e]/90 border border-white/10 backdrop-blur-xl shadow-inner" aria-label="Main Navigation">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => handleLinkClick(link)}
-                className="px-3.5 py-1 text-xs font-mono uppercase tracking-wider text-[#9aa39e] hover:text-[#00F5D4] rounded-full transition-all hover:bg-[#00F5D4]/10 cursor-pointer"
+                className="px-3.5 py-1 text-xs font-mono uppercase tracking-wider text-slate-300 hover:text-white rounded-full transition-all hover:bg-white/5 cursor-pointer"
               >
                 {link.label}
               </a>
@@ -104,9 +104,9 @@ export const Navbar: React.FC<NavbarProps> = ({ activeRoute, onRouteChange }) =>
             onMouseEnter={() => setDownloadHovered(true)}
             onMouseLeave={() => setDownloadHovered(false)}
           >
-            <span className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-[#0a0f0c] border border-white/10 text-[11px] font-mono text-[#9aa39e]">
+            <span className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-[#0c120e] border border-white/10 text-[11px] font-mono text-slate-300">
               <span className="text-[#00F5D4]">CLOAK:</span>
-              <kbd className="px-1.5 py-0.5 rounded bg-black border border-[#00F5D4]/40 text-[#00F5D4] font-bold text-[10px]">Ctrl + D</kbd>
+              <kbd className="px-1.5 py-0.5 rounded bg-black/60 border border-white/15 text-[#00F5D4] font-bold text-[10px]">Ctrl + D</kbd>
             </span>
 
             <a
@@ -120,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeRoute, onRouteChange }) =>
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl cyber-btn-primary text-xs font-bold transition-all duration-200 active:scale-[0.98] cursor-pointer group"
             >
               <Download className="w-3.5 h-3.5 text-[#040605] transition-transform group-hover:-translate-y-0.5" />
-              <span>DOWNLOAD v3.0.1</span>
+              <span>Download v{SITE_CONFIG.VERSION}</span>
             </a>
 
             {/* Cartoon Mascot Helper Animation */}

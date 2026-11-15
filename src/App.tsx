@@ -53,7 +53,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#040605] text-[#F7F5EF] selection:bg-[#00F5D4]/20 selection:text-[#00F5D4] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#060907] text-[#F8FAFC] selection:bg-[#00F5D4]/20 selection:text-[#00F5D4] flex flex-col font-sans">
       <CustomCursor />
 
       {/* Navigation (Contains Download Button #1) */}

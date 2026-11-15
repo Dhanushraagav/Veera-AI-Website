@@ -44,7 +44,7 @@ const SCENARIOS: SampleScenario[] = [
     codeSnippet: {
       language: "Python / Redis",
       code: `def allow_request(user_id: str, limit: int = 100, window: int = 60) -> bool:
-    # 1. Check ultra-fast local memory bucket
+    # 1. Check ultra-fast local memory bucket (<1ms)
     if local_bucket.consume(user_id):
         return True
     # 2. Reconcile with regional Redis pipeline
@@ -83,6 +83,30 @@ const SCENARIOS: SampleScenario[] = [
     },
   },
   {
+    id: "tanglish",
+    category: "Tanglish Audio Intent",
+    question: "Idhula binary tree-la Lowest Common Ancestor (LCA) find panna enna approach best?",
+    provider: "Groq Whisper + Claude 3.5",
+    latency: "235ms",
+    complexity: "Time: O(N) | Space: O(H) recursion stack",
+    directAnswer:
+      "Use bottom-up DFS post-order traversal: if current root matches either p or q, return root. If left and right subtrees both return non-null nodes, the current root is the Lowest Common Ancestor.",
+    bulletPoints: [
+      "Isolated technical intent: Lowest Common Ancestor in Binary Tree.",
+      "Bottom-up DFS avoids re-traversing parent paths.",
+      "Handles general binary trees without requiring binary search tree ordering properties.",
+    ],
+    codeSnippet: {
+      language: "Python 3",
+      code: `def lowestCommonAncestor(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+    if not root or root == p or root == q:
+        return root
+    left = lowestCommonAncestor(root.left, p, q)
+    right = lowestCommonAncestor(root.right, p, q)
+    return root if (left and right) else (left or right)`,
+    },
+  },
+  {
     id: "behavioral",
     category: "STAR Behavioral",
     question: "Tell me about a time you strongly disagreed with a senior engineer's architectural decision.",
@@ -108,86 +132,83 @@ export const LiveHudStage: React.FC = () => {
     }`;
     navigator.clipboard?.writeText?.(content);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2200);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <div className="w-full max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto relative group">
-      {/* Outer Holographic Glow Halo */}
-      <div className="relative rounded-2xl p-[1px] bg-gradient-to-b from-[#00F5D4]/60 via-[#D4AF72]/40 to-[#8B5CF6]/30 shadow-[0_30px_90px_-20px_rgba(0,245,212,0.25)]">
-        {/* Sci-Fi Corner Reticles */}
+    <div className="w-full max-w-5xl xl:max-w-6xl mx-auto relative group">
+      {/* Outer Clean Border Frame */}
+      <div className="relative rounded-2xl p-[1px] bg-gradient-to-b from-[#00F5D4]/40 via-white/10 to-transparent shadow-2xl">
+        {/* Corner Reticles */}
         <div className="cyber-reticle cyber-reticle-tl" />
         <div className="cyber-reticle cyber-reticle-tr" />
         <div className="cyber-reticle cyber-reticle-bl" />
         <div className="cyber-reticle cyber-reticle-br" />
 
-        {/* Main Floating Glass HUD Window (2050 Cockpit) */}
-        <div className="rounded-2xl bg-[#060907]/95 backdrop-blur-2xl border border-[#00F5D4]/20 overflow-hidden text-[#F7F5EF] flex flex-col shadow-2xl">
-          {/* Top Window Titlebar (2050 Cyber Cockpit) */}
-          <div className="px-4 py-3 bg-[#0a0f0c] border-b border-[#00F5D4]/20 flex flex-wrap items-center justify-between gap-3 select-none">
+        {/* Main Floating Glass HUD Window */}
+        <div className="rounded-2xl bg-[#0c120f]/95 backdrop-blur-xl border border-white/10 overflow-hidden text-white flex flex-col shadow-2xl">
+          {/* Top Window Titlebar */}
+          <div className="px-4 py-3 bg-[#0f1713] border-b border-white/10 flex flex-wrap items-center justify-between gap-3 select-none">
             {/* Left Controls & Logo */}
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-rose-500/90 shadow-[0_0_8px_rgba(244,63,94,0.6)]" />
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/90 shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
-                <span className="w-2.5 h-2.5 rounded-full bg-[#00F5D4] shadow-[0_0_8px_rgba(0,245,212,0.6)]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
               </div>
 
               <div className="h-4 w-[1px] bg-white/10" />
 
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded bg-[#0a0f0c] border border-[#00F5D4]/60 flex items-center justify-center">
-                  <span className="w-1.5 h-1.5 bg-[#00F5D4] rounded-full animate-ping" />
-                </div>
-                <span className="text-xs font-cyber font-bold tracking-wider text-[#F7F5EF]">
-                  QUANTUM HUD CORE
+                <span className="text-xs font-bold tracking-wider text-white">
+                  VEERA HUD COPILOT
                 </span>
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#00F5D4]/10 border border-[#00F5D4]/30 text-[#00F5D4] font-semibold">
-                  v3.0.1 // PROD
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#00F5D4]/15 border border-[#00F5D4]/40 text-[#00F5D4] font-semibold">
+                  v3.0.1
                 </span>
               </div>
             </div>
 
             {/* Middle Live Status Indicators */}
             <div className="flex items-center gap-2 text-[11px] font-mono">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00F5D4]/10 border border-[#00F5D4]/30 text-[#00F5D4] shadow-[0_0_12px_rgba(0,245,212,0.2)]">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00F5D4]/10 border border-[#00F5D4]/30 text-[#00F5D4]">
                 <span className="w-2 h-2 rounded-full bg-[#00F5D4] animate-pulse" />
-                <span className="tracking-wide">NEURAL EAR: 48kHz ACTIVE</span>
+                <span className="font-semibold">EAR: 48kHz ACTIVE</span>
               </span>
 
-              <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#111714] border border-[#D4AF72]/30 text-[#D4AF72]">
+              <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[#D4AF72]">
                 <Zap className="w-3 h-3 text-[#D4AF72]" />
-                <span>{activeScenario.latency} LATENCY</span>
+                <span className="font-semibold">{activeScenario.latency}</span>
               </span>
             </div>
 
             {/* Right Cloaking & Hotkey Indicators */}
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[#00F5D4]/15 border border-[#00F5D4]/50 text-[10px] font-mono text-[#00F5D4] font-bold shadow-[0_0_10px_rgba(0,245,212,0.25)]" title="Window excluded from screen captures and video calls">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/40 text-[10px] font-mono text-emerald-300 font-bold" title="Window excluded from screen captures and video calls">
                 <EyeOff className="w-3 h-3" />
-                <span className="hidden md:inline">DWM CLOAK: 100%</span>
+                <span className="hidden md:inline">CLOAKED (DWM)</span>
               </span>
 
-              <kbd className="hidden sm:inline-block px-2 py-0.5 rounded bg-black border border-[#00F5D4]/30 text-[10px] font-mono text-[#00F5D4] font-bold">
+              <kbd className="hidden sm:inline-block px-2 py-0.5 rounded bg-black/60 border border-white/15 text-[10px] font-mono text-[#00F5D4] font-bold">
                 Ctrl + D
               </kbd>
             </div>
           </div>
 
-          {/* Interactive Question Mode Switcher Tabs */}
-          <div className="px-4 py-2 bg-[#050806] border-b border-[#00F5D4]/15 flex items-center justify-between gap-2 overflow-x-auto">
-            <span className="text-[10px] font-mono text-[#9aa39e] uppercase shrink-0 hidden sm:inline tracking-wider">
-              // TELEMETRY SIMULATOR:
+          {/* Interactive Scenario Tabs */}
+          <div className="px-4 py-2 bg-[#090d0b] border-b border-white/10 flex items-center justify-between gap-2 overflow-x-auto">
+            <span className="text-[10px] font-mono text-slate-400 uppercase shrink-0 hidden sm:inline tracking-wider font-semibold">
+              // SELECT TOPIC:
             </span>
-            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+            <div className="flex items-center gap-1.5 overflow-x-auto">
               {SCENARIOS.map((sc) => (
                 <button
                   key={sc.id}
                   onClick={() => setActiveScenario(sc)}
                   className={`px-3 py-1 rounded-lg text-xs font-mono transition-all shrink-0 cursor-pointer ${
                     activeScenario.id === sc.id
-                      ? "bg-[#00F5D4]/20 text-[#00F5D4] border border-[#00F5D4]/50 shadow-[0_0_15px_rgba(0,245,212,0.25)] font-bold"
-                      : "text-[#9aa39e] hover:text-[#F7F5EF] hover:bg-white/[0.04] border border-transparent"
+                      ? "bg-[#00F5D4]/20 text-[#00F5D4] border border-[#00F5D4]/50 font-bold"
+                      : "text-slate-400 hover:text-white hover:bg-white/5 border border-transparent"
                   }`}
                 >
                   {sc.category}
@@ -198,18 +219,18 @@ export const LiveHudStage: React.FC = () => {
 
           {/* Live Content Feed */}
           <div className="p-4 sm:p-6 space-y-4">
-            {/* Detected Question Banner with Animated Multi-Frequency Equalizer */}
-            <div className="p-4 rounded-xl bg-[#0a0f0c] border border-[#00F5D4]/25 space-y-2.5 relative overflow-hidden">
+            {/* Detected Question Banner with Clean Audio Equalizer */}
+            <div className="p-4 rounded-xl bg-[#0f1713] border border-white/10 space-y-2.5 relative overflow-hidden">
               <div className="flex items-center justify-between text-[11px] font-mono">
                 <div className="flex items-center gap-2 text-[#00F5D4]">
                   <Mic className="w-3.5 h-3.5 text-[#00F5D4]" />
                   <span className="font-bold uppercase tracking-wider">
-                    INTERVIEWER QUESTION DETECTED [SPEECH_ISOLATION_OK]
+                    SPEECH DETECTED &bull; REAL-TIME TRANSCRIPT
                   </span>
                 </div>
 
-                {/* Animated Soundwave Equalizer (8 Frequency Bands) */}
-                <div className="flex items-center gap-1 h-3.5 px-2.5 py-0.5 rounded bg-black/60 border border-[#00F5D4]/30 shadow-inner">
+                {/* Animated Equalizer */}
+                <div className="flex items-center gap-1 h-3.5 px-2 py-0.5 rounded bg-black/50 border border-white/10">
                   <span className="w-0.5 h-2 rounded bg-[#00F5D4] animate-pulse" />
                   <span className="w-0.5 h-3.5 rounded bg-[#00F5D4] animate-pulse" style={{ animationDelay: "120ms" }} />
                   <span className="w-0.5 h-1.5 rounded bg-[#00F5D4] animate-pulse" style={{ animationDelay: "240ms" }} />
@@ -217,11 +238,10 @@ export const LiveHudStage: React.FC = () => {
                   <span className="w-0.5 h-2.5 rounded bg-[#00F5D4] animate-pulse" style={{ animationDelay: "180ms" }} />
                   <span className="w-0.5 h-1 rounded bg-[#00F5D4] animate-pulse" style={{ animationDelay: "300ms" }} />
                   <span className="w-0.5 h-3.5 rounded bg-[#D4AF72] animate-pulse" style={{ animationDelay: "90ms" }} />
-                  <span className="w-0.5 h-2 rounded bg-[#00F5D4] animate-pulse" style={{ animationDelay: "210ms" }} />
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm font-medium text-[#F7F5EF] leading-snug">
+              <p className="text-xs sm:text-sm font-semibold text-white leading-snug">
                 "{activeScenario.question}"
               </p>
             </div>
@@ -230,24 +250,24 @@ export const LiveHudStage: React.FC = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeScenario.id}
-                initial={{ opacity: 0, y: 8 }}
+                initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.2 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.18 }}
                 className="space-y-3"
               >
-                {/* Direct Answer-First Conclusion (Cyber Synthesis) */}
-                <div className="p-4 rounded-xl bg-[#08120e] border border-[#00F5D4]/40 shadow-[0_0_20px_rgba(0,245,212,0.12)] space-y-2.5">
+                {/* Direct Answer-First Conclusion */}
+                <div className="p-4 rounded-xl bg-[#0d1612] border border-[#00F5D4]/30 space-y-2.5">
                   <div className="flex items-center justify-between text-[11px] font-mono">
                     <span className="text-[#00F5D4] font-bold flex items-center gap-1.5 uppercase tracking-wide">
                       <Sparkles className="w-3.5 h-3.5" />
-                      COGNITIVE SYNTHESIS [DIRECT CONCLUSION FIRST]
+                      DIRECT CONCLUSION FIRST
                     </span>
 
                     <button
                       onClick={handleCopy}
-                      className="inline-flex items-center gap-1 text-[11px] font-mono text-[#9aa39e] hover:text-[#00F5D4] transition-colors cursor-pointer px-2.5 py-0.5 rounded bg-white/[0.04] border border-white/5"
-                      title="Copy full suggested response"
+                      className="inline-flex items-center gap-1 text-[11px] font-mono text-slate-300 hover:text-white transition-colors cursor-pointer px-2.5 py-0.5 rounded bg-white/5 border border-white/10"
+                      title="Copy response"
                     >
                       {copied ? (
                         <>
@@ -263,15 +283,15 @@ export const LiveHudStage: React.FC = () => {
                     </button>
                   </div>
 
-                  <p className="text-xs sm:text-sm text-[#F7F5EF] font-medium leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-100 font-medium leading-relaxed">
                     {activeScenario.directAnswer}
                   </p>
 
                   {/* Bullet Takeaways */}
-                  <div className="pt-2 space-y-1.5 border-t border-white/10">
+                  <div className="pt-2.5 space-y-1.5 border-t border-white/10">
                     {activeScenario.bulletPoints.map((pt, i) => (
-                      <div key={i} className="flex items-start gap-2 text-xs text-[#9aa39e] leading-relaxed">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#00F5D4] mt-1.5 shrink-0 shadow-[0_0_6px_#00F5D4]" />
+                      <div key={i} className="flex items-start gap-2 text-xs text-slate-200 leading-relaxed">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#00F5D4] mt-1.5 shrink-0" />
                         <span>{pt}</span>
                       </div>
                     ))}
@@ -280,11 +300,11 @@ export const LiveHudStage: React.FC = () => {
 
                 {/* Optional Syntax Highlighted Code Snippet */}
                 {activeScenario.codeSnippet && (
-                  <div className="rounded-xl bg-[#040705] border border-[#00F5D4]/25 overflow-hidden text-xs shadow-lg">
-                    <div className="flex items-center justify-between px-3 py-1.5 bg-[#0a0f0c] border-b border-[#00F5D4]/20">
+                  <div className="rounded-xl bg-[#080d0a] border border-white/10 overflow-hidden text-xs">
+                    <div className="flex items-center justify-between px-3 py-1.5 bg-[#0f1713] border-b border-white/10">
                       <div className="flex items-center gap-2 text-[10px] font-mono text-[#D4AF72]">
                         <Code2 className="w-3.5 h-3.5 text-[#00F5D4]" />
-                        <span className="font-bold uppercase tracking-wider">{activeScenario.codeSnippet.language} // CODE SYNTHESIS</span>
+                        <span className="font-bold uppercase tracking-wider">{activeScenario.codeSnippet.language} // CODE SOLUTION</span>
                       </div>
 
                       {activeScenario.complexity && (
@@ -304,15 +324,15 @@ export const LiveHudStage: React.FC = () => {
           </div>
 
           {/* Bottom HUD Bar */}
-          <div className="px-4 py-2.5 bg-[#101410] border-t border-[#292D29] flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono text-[#B4B7B0]">
+          <div className="px-4 py-2.5 bg-[#0c120f] border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono text-slate-300">
             <div className="flex items-center gap-2">
               <Shield className="w-3.5 h-3.5 text-[#00F5D4]" />
-              <span className="text-[#F7F5EF]">Zero Cloud Relay:</span>
-              <span className="text-[#B4B7B0]">Direct local-to-provider inference</span>
+              <span className="text-white font-semibold">Zero Cloud Relay:</span>
+              <span>Direct local-to-provider inference</span>
             </div>
 
             <div className="flex items-center gap-3">
-              <span className="text-zinc-500">Provider:</span>
+              <span className="text-slate-400">Model:</span>
               <span className="text-[#D4AF72] font-semibold">{activeScenario.provider}</span>
             </div>
           </div>
