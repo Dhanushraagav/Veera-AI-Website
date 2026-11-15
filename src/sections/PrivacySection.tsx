@@ -44,7 +44,7 @@ export const PrivacySection: React.FC = () => {
       {/* Subtle emerald and gold ambient aura */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[850px] h-[450px] bg-gradient-to-b from-[#00F5D4]/[0.05] via-[#087F5B]/[0.03] to-transparent blur-[140px] pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16">
+      <div className="max-w-[1600px] 2xl:max-w-[1720px] w-full mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full metallic-badge text-xs font-mono text-[#D4AF72]">
@@ -63,7 +63,7 @@ export const PrivacySection: React.FC = () => {
         </div>
 
         {/* Visual Architecture Flow Diagram */}
-        <div className="max-w-4xl mx-auto mb-14 p-6 sm:p-7 rounded-2xl bg-[#0f120f] border border-[#292D29] shadow-2xl relative overflow-hidden">
+        <div className="w-full max-w-[1400px] 2xl:max-w-[1550px] mx-auto mb-14 p-6 sm:p-7 rounded-2xl bg-[#0f120f] border border-[#292D29] shadow-2xl relative overflow-hidden">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
             {/* Node 1: Local PC */}
             <div className="flex items-center gap-3 p-3.5 rounded-xl bg-[#141814] border border-[#292D29] w-full sm:w-auto">
@@ -102,7 +102,7 @@ export const PrivacySection: React.FC = () => {
         </div>
 
         {/* 4 Security Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-[1400px] 2xl:max-w-[1550px] mx-auto">
           {securityPillars.map((item, i) => {
             const Icon = item.icon;
             return (

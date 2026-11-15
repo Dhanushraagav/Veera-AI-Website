@@ -78,7 +78,7 @@ export const HowItWorks: React.FC = () => {
       {/* Background aura */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-gradient-to-b from-[#00F5D4]/[0.05] via-[#D4AF72]/[0.03] to-transparent blur-[140px] pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16">
+      <div className="max-w-[1600px] 2xl:max-w-[1720px] w-full mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full metallic-badge text-xs font-mono text-[#D4AF72]">
@@ -96,7 +96,7 @@ export const HowItWorks: React.FC = () => {
         </div>
 
         {/* Step Progression Bar with Glowing Connectors */}
-        <div className="max-w-5xl mx-auto mb-12 hidden md:block">
+        <div className="w-full max-w-[1400px] 2xl:max-w-[1550px] mx-auto mb-12 hidden md:block">
           <div className="relative flex items-center justify-between">
             {/* Background connecting track */}
             <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[2px] bg-[#1a1f1a] -z-0" />
@@ -145,7 +145,7 @@ export const HowItWorks: React.FC = () => {
         </div>
 
         {/* 3 Step Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[1400px] 2xl:max-w-[1550px] mx-auto mb-10">
           {STEPS.map((step, idx) => {
             const Icon = step.icon;
             const isActive = idx === activeStepIndex;
@@ -217,7 +217,7 @@ export const HowItWorks: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25 }}
-            className="max-w-5xl mx-auto p-6 sm:p-8 rounded-2xl bg-[#0e120e] border border-[#292D29] shadow-2xl relative overflow-hidden"
+            className="w-full max-w-[1400px] 2xl:max-w-[1550px] mx-auto p-6 sm:p-8 rounded-2xl bg-[#0e120e] border border-[#292D29] shadow-2xl relative overflow-hidden"
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
               {/* Left Detail Description */}

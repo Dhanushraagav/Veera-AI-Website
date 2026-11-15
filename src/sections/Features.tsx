@@ -36,7 +36,7 @@ export const Features: React.FC = () => {
       {/* Background ambient light */}
       <div className="absolute top-1/3 right-1/4 w-[750px] h-[450px] bg-gradient-to-b from-[#00F5D4]/[0.06] via-[#D4AF72]/[0.04] to-transparent blur-[140px] pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16">
+      <div className="max-w-[1600px] 2xl:max-w-[1720px] w-full mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full metallic-badge text-xs font-mono text-[#D4AF72]">
@@ -54,7 +54,7 @@ export const Features: React.FC = () => {
         </div>
 
         {/* 6 Perfectly Equal-Aligned Feature Bento Cards (3x2 Grid) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mx-auto">
           {/* CARD 01: Live Audio & Tanglish Intent Engine */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -86,7 +86,7 @@ export const Features: React.FC = () => {
               </div>
 
               {/* Interactive Tanglish Intent Box */}
-              <div className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] space-y-2.5">
+              <div className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] space-y-2.5 min-h-[145px] flex flex-col justify-between">
                 <div className="flex items-center justify-between text-[11px] font-mono">
                   <span className="text-[#D4AF72] flex items-center gap-1 font-semibold text-[10px]">
                     <Globe2 className="w-3 h-3 text-[#00F5D4]" />
@@ -186,7 +186,7 @@ export const Features: React.FC = () => {
               {/* Interactive Laser Scanning Simulation Box */}
               <div
                 onClick={() => setScreenshotScanning(!screenshotScanning)}
-                className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] relative overflow-hidden cursor-pointer group/scanner select-none"
+                className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] relative overflow-hidden cursor-pointer group/scanner select-none min-h-[145px] flex flex-col justify-between"
                 title="Click to trigger OCR scan animation"
               >
                 <div className="space-y-1.5 font-mono text-[10px] text-zinc-400">
@@ -260,7 +260,7 @@ export const Features: React.FC = () => {
               </div>
 
               {/* Interactive Mode Toggle Box */}
-              <div className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] space-y-2.5 font-mono text-xs">
+              <div className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] space-y-2.5 font-mono text-xs min-h-[145px] flex flex-col justify-between">
                 <div className="flex items-center justify-between">
                   <span className="text-zinc-400 text-[10px]">Auto Answer Mode:</span>
                   <button
@@ -332,7 +332,7 @@ export const Features: React.FC = () => {
               </div>
 
               {/* Code Complexity Card */}
-              <div className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] space-y-2 font-mono text-[11px]">
+              <div className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] space-y-2 font-mono text-[11px] min-h-[145px] flex flex-col justify-between">
                 <div className="flex items-center justify-between text-[#00F5D4]">
                   <span className="text-[10px] uppercase font-bold">Complexity Benchmarks</span>
                   <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/30 font-bold">
@@ -394,7 +394,7 @@ export const Features: React.FC = () => {
               </div>
 
               {/* Interactive STAR / Aptitude Tab View */}
-              <div className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] space-y-2 font-mono text-xs">
+              <div className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] space-y-2 font-mono text-xs min-h-[145px] flex flex-col justify-between">
                 <div className="flex items-center justify-between pb-1.5 border-b border-white/5 text-[10px]">
                   <span className="text-zinc-500">Framework:</span>
                   <div className="flex gap-1">
@@ -481,7 +481,7 @@ export const Features: React.FC = () => {
               </div>
 
               {/* DPAPI Security Badge Box */}
-              <div className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] space-y-2 font-mono text-[10px]">
+              <div className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] space-y-2 font-mono text-[10px] min-h-[145px] flex flex-col justify-between">
                 <div className="flex items-center justify-between text-[#00F5D4] font-bold">
                   <span className="flex items-center gap-1">
                     <Lock className="w-3 h-3" />

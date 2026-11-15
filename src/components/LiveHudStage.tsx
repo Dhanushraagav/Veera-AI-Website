@@ -112,7 +112,7 @@ export const LiveHudStage: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
       {/* Outer Glow Halo */}
       <div className="relative rounded-2xl p-[1px] bg-gradient-to-b from-[#00F5D4]/40 via-[#D4AF72]/30 to-transparent shadow-[0_25px_70px_-15px_rgba(0,0,0,0.85)]">
         {/* Main Floating Glass HUD Window */}

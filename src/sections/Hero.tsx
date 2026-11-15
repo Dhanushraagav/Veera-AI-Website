@@ -47,9 +47,9 @@ export const Hero: React.FC = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[650px] bg-gradient-to-b from-[#00F5D4]/[0.14] via-[#8B5CF6]/[0.08] to-[#FF9F1C]/[0.06] blur-[130px] pointer-events-none -z-10" />
       <div className="absolute inset-0 subtle-grid opacity-20 pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16">
+      <div className="max-w-[1600px] 2xl:max-w-[1720px] w-full mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
         {/* Centered Hero Content */}
-        <div className="text-center max-w-5xl mx-auto flex flex-col items-center">
+        <div className="text-center max-w-6xl w-full mx-auto flex flex-col items-center">
           {/* Release Badge */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -196,15 +196,15 @@ export const Hero: React.FC = () => {
               className="w-full flex justify-center text-center relative z-10 py-1"
             >
               <h1
-                style={{ fontFamily: "'Righteous', 'Syne', sans-serif" }}
-                className="relative inline-flex items-center justify-center text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[7.8rem] font-normal tracking-[0.03em] leading-tight select-none text-center whitespace-nowrap"
+                style={{ fontFamily: "'Space Grotesk', 'Plus Jakarta Sans', sans-serif" }}
+                className="relative inline-flex items-center justify-center text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[11rem] font-extrabold tracking-[-0.04em] leading-none select-none text-center whitespace-nowrap uppercase"
               >
-                <span className="invisible opacity-0 pointer-events-none select-none inline-block whitespace-nowrap font-normal" aria-hidden="true">
+                <span className="invisible opacity-0 pointer-events-none select-none inline-block whitespace-nowrap font-extrabold" aria-hidden="true">
                   {fullText}
                 </span>
 
                 <span className="absolute inset-0 flex items-center justify-center whitespace-nowrap">
-                  <span className="brand-gradient-text inline-block text-center whitespace-nowrap font-normal">
+                  <span className="brand-gradient-text inline-block text-center whitespace-nowrap font-extrabold">
                     {displayedText}
                   </span>
                 </span>
@@ -232,9 +232,9 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="pt-4 max-w-2xl mx-auto"
+            className="pt-4 max-w-3xl mx-auto"
           >
-            <p className="text-sm sm:text-base text-[#B4B7B0] leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-[#B4B7B0] leading-relaxed">
               The stealth desktop assistant for technical interviews. Real-time speech transcription, instant algorithmic code synthesis, and hardware-level Stealth Mode that stays 100% invisible during Zoom, Teams, and Google Meet screen shares.
             </p>
           </motion.div>

@@ -90,7 +90,7 @@ export const AIProviders: React.FC = () => {
       {/* Ambient background light */}
       <div className="absolute top-1/4 left-1/3 w-[800px] h-[400px] bg-gradient-to-b from-[#00F5D4]/[0.05] via-[#D4AF72]/[0.04] to-transparent blur-[140px] pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16">
+      <div className="max-w-[1600px] 2xl:max-w-[1720px] w-full mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full metallic-badge text-xs font-mono text-[#D4AF72]">
@@ -114,7 +114,7 @@ export const AIProviders: React.FC = () => {
         </div>
 
         {/* Interactive Provider Cards & Failover Lab */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+        <div className="w-full max-w-[1400px] 2xl:max-w-[1550px] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
           {/* Left Column: Supported Providers List */}
           <div className="lg:col-span-2 space-y-3">
             <div className="flex items-center justify-between text-xs font-mono text-[#D4AF72] mb-1">
@@ -212,7 +212,7 @@ export const AIProviders: React.FC = () => {
         </div>
 
         {/* 4 Architectural Reliability Pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-[1400px] 2xl:max-w-[1550px] mx-auto">
           <div className="p-5 rounded-2xl bg-[#121612] border border-[#292D29] space-y-3">
             <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-[#292D29] flex items-center justify-center text-[#D4AF72]">
               <Key className="w-4 h-4" />

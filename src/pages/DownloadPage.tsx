@@ -19,7 +19,7 @@ export const DownloadPage: React.FC<DownloadPageProps> = ({ onBackToHome }) => {
       {/* Background ambient lighting */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-b from-[#00F5D4]/[0.08] via-[#087F5B]/[0.04] to-transparent blur-[140px] pointer-events-none -z-10" />
 
-      <div className="max-w-4xl mx-auto space-y-8">
+      <div className="w-full max-w-5xl mx-auto px-6 sm:px-8 space-y-8">
         {/* Navigation back */}
         <button
           onClick={onBackToHome}

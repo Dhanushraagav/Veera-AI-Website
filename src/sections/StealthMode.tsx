@@ -26,7 +26,7 @@ export const StealthMode: React.FC = () => {
       {/* Background ambient lighting */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[450px] bg-gradient-to-b from-[#00F5D4]/[0.08] via-[#087F5B]/[0.05] to-transparent blur-[140px] pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16">
+      <div className="max-w-[1600px] 2xl:max-w-[1720px] w-full mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full metallic-badge text-xs font-mono text-[#D4AF72]">
@@ -45,7 +45,7 @@ export const StealthMode: React.FC = () => {
         </div>
 
         {/* Interactive Comparison Controls Bar */}
-        <div className="max-w-4xl mx-auto mb-8 p-2 rounded-2xl bg-[#121612] border border-[#292D29] flex flex-wrap items-center justify-between gap-3 shadow-xl">
+        <div className="max-w-5xl mx-auto mb-8 p-2 rounded-2xl bg-[#121612] border border-[#292D29] flex flex-wrap items-center justify-between gap-3 shadow-xl">
           {/* View Selector Buttons */}
           <div className="flex items-center gap-1.5 overflow-x-auto">
             <button
@@ -103,7 +103,7 @@ export const StealthMode: React.FC = () => {
         </div>
 
         {/* The Interactive Dual Stage Comparison Canvas */}
-        <div className="max-w-6xl mx-auto">
+        <div className="w-full max-w-[1500px] 2xl:max-w-[1650px] mx-auto">
           <div className={`grid gap-6 ${activeView === "split" ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-1"}`}>
             {/* 1. LEFT SCREEN: User Physical Monitor (What You See) */}
             {(activeView === "split" || activeView === "user") && (

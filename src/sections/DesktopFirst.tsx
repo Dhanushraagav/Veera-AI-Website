@@ -46,8 +46,8 @@ export const DesktopFirst: React.FC = () => {
 
   return (
     <section id="desktop" className="py-24 sm:py-32 relative overflow-hidden border-t border-[#292D29] bg-[#0c0d0c]">
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16">
-        <div className="max-w-5xl mx-auto space-y-12">
+      <div className="max-w-[1600px] 2xl:max-w-[1720px] w-full mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
+        <div className="w-full max-w-[1400px] 2xl:max-w-[1550px] mx-auto space-y-12">
           {/* Header */}
           <div className="text-center space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full metallic-badge text-xs font-mono text-[#D4AF72]">

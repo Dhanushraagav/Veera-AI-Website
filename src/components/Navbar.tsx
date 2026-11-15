@@ -54,7 +54,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeRoute, onRouteChange }) =>
           : "bg-transparent py-4.5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16">
+      <div className="w-full max-w-[1600px] 2xl:max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
         <div className="flex items-center justify-between">
           {/* Brand Logo & Emblem */}
           <button
