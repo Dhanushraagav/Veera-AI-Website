@@ -39,17 +39,17 @@ export const Features: React.FC = () => {
       <div className="max-w-[1600px] 2xl:max-w-[1720px] w-full mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full metallic-badge text-xs font-mono text-[#D4AF72]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00F5D4]/10 border border-[#00F5D4]/35 text-xs font-mono text-[#00F5D4] shadow-[0_0_15px_rgba(0,245,212,0.15)]">
             <Sparkles className="w-3.5 h-3.5 text-[#00F5D4]" />
-            <span>VERIFIED DESKTOP CAPABILITIES</span>
+            <span className="tracking-wider uppercase">2050 COGNITIVE ARSENAL // NATIVE SUBSYSTEMS</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#F7F5EF] leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-cyber font-extrabold tracking-tight text-[#F7F5EF] leading-tight">
             Engineered for high-stakes interviews.
           </h2>
 
-          <p className="text-sm sm:text-base text-[#B4B7B0] leading-relaxed max-w-2xl mx-auto">
-            Every feature in Veera AI is grounded in real desktop functionality &mdash; from live Tanglish speech understanding to visual screenshot solving and direct-to-provider key ownership.
+          <p className="text-sm sm:text-base text-[#9aa39e] leading-relaxed max-w-2xl mx-auto">
+            Every subsystem in Veera AI is grounded in native desktop execution &mdash; from live Tanglish speech understanding to visual screenshot solving and direct-to-provider key ownership.
           </p>
         </div>
 
@@ -61,15 +61,19 @@ export const Features: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.35 }}
-            className="p-6 sm:p-7 rounded-2xl bg-[#121512] border border-[#292D29] hover:border-[#00F5D4]/40 transition-all duration-300 flex flex-col justify-between space-y-5 group relative overflow-hidden h-full"
+            className="cyber-card p-6 sm:p-7 rounded-2xl flex flex-col justify-between space-y-5 group relative overflow-hidden h-full"
           >
+            {/* Sci-Fi Corner Reticles */}
+            <div className="cyber-reticle cyber-reticle-tl" />
+            <div className="cyber-reticle cyber-reticle-br" />
+
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-[#292D29] flex items-center justify-center text-[#00F5D4] group-hover:bg-[#087F5B]/20 group-hover:border-[#00F5D4]/40 transition-all">
+                <div className="w-10 h-10 rounded-xl bg-[#00F5D4]/10 border border-[#00F5D4]/30 flex items-center justify-center text-[#00F5D4] group-hover:scale-110 transition-transform">
                   <Mic className="w-5 h-5 text-[#00F5D4]" />
                 </div>
-                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#191D19] border border-[#292D29] text-[#D4AF72]">
-                  01
+                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#00F5D4]/10 border border-[#00F5D4]/30 text-[#00F5D4] font-bold">
+                  // SUBSYS-01
                 </span>
               </div>
 
@@ -77,10 +81,10 @@ export const Features: React.FC = () => {
                 <span className="text-[10px] font-mono uppercase tracking-wider text-[#D4AF72] block mb-1">
                   Speech &amp; Multilingual Intent
                 </span>
-                <h3 className="text-lg font-bold text-[#F7F5EF] group-hover:text-white transition-colors">
+                <h3 className="text-lg font-cyber font-bold text-[#F7F5EF] group-hover:text-white transition-colors">
                   Live Audio &amp; Tanglish Detection
                 </h3>
-                <p className="text-xs text-[#B4B7B0] leading-relaxed mt-1">
+                <p className="text-xs text-[#9aa39e] leading-relaxed mt-1">
                   Continuous real-time speech transcription. Verified for English and Tamil colloquial code-switching (Tanglish), extracting intent rather than literal translation.
                 </p>
               </div>
@@ -159,15 +163,19 @@ export const Features: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.35, delay: 0.08 }}
-            className="p-6 sm:p-7 rounded-2xl bg-[#121512] border border-[#292D29] hover:border-[#D4AF72]/40 transition-all duration-300 flex flex-col justify-between space-y-5 group relative overflow-hidden h-full"
+            className="cyber-card p-6 sm:p-7 rounded-2xl flex flex-col justify-between space-y-5 group relative overflow-hidden h-full"
           >
+            {/* Corner reticles */}
+            <div className="cyber-reticle cyber-reticle-gold-tl" />
+            <div className="cyber-reticle cyber-reticle-gold-br" />
+
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-[#292D29] flex items-center justify-center text-[#D4AF72] group-hover:bg-[#D4AF72]/15 group-hover:border-[#D4AF72]/40 transition-all">
+                <div className="w-10 h-10 rounded-xl bg-[#D4AF72]/10 border border-[#D4AF72]/30 flex items-center justify-center text-[#D4AF72] group-hover:scale-110 transition-transform">
                   <Crop className="w-5 h-5 text-[#D4AF72]" />
                 </div>
-                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#191D19] border border-[#292D29] text-[#D4AF72]">
-                  02
+                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#D4AF72]/10 border border-[#D4AF72]/30 text-[#D4AF72] font-bold">
+                  // SUBSYS-02
                 </span>
               </div>
 
@@ -175,10 +183,10 @@ export const Features: React.FC = () => {
                 <span className="text-[10px] font-mono uppercase tracking-wider text-[#D4AF72] block mb-1">
                   Visual Problem Ingestion
                 </span>
-                <h3 className="text-lg font-bold text-[#F7F5EF] group-hover:text-white transition-colors">
+                <h3 className="text-lg font-cyber font-bold text-[#F7F5EF] group-hover:text-white transition-colors">
                   Screenshot &amp; MCQ Solver
                 </h3>
-                <p className="text-xs text-[#B4B7B0] leading-relaxed mt-1">
+                <p className="text-xs text-[#9aa39e] leading-relaxed mt-1">
                   Instantly crop on-screen multiple-choice questions, complex geometry, system diagrams, or code snippets using active window cropping or clipboard import.
                 </p>
               </div>
@@ -186,13 +194,13 @@ export const Features: React.FC = () => {
               {/* Interactive Laser Scanning Simulation Box */}
               <div
                 onClick={() => setScreenshotScanning(!screenshotScanning)}
-                className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] relative overflow-hidden cursor-pointer group/scanner select-none min-h-[145px] flex flex-col justify-between"
+                className="p-3.5 rounded-xl bg-[#080d0a] border border-[#00F5D4]/25 relative overflow-hidden cursor-pointer group/scanner select-none min-h-[145px] flex flex-col justify-between"
                 title="Click to trigger OCR scan animation"
               >
                 <div className="space-y-1.5 font-mono text-[10px] text-zinc-400">
                   <div className="flex items-center justify-between text-zinc-500">
                     <span>Active Crop [1024x768]</span>
-                    <span className="text-[#00F5D4] text-[9px]">Click to Rescan</span>
+                    <span className="text-[#00F5D4] text-[9px] font-bold">// CLICK TO RESCAN</span>
                   </div>
                   <p className="text-white font-semibold text-[11px]">Q: Which data structure guarantees O(1) amortized insertion?</p>
                   <div className="space-y-0.5 text-zinc-300 text-[10px]">
@@ -211,7 +219,7 @@ export const Features: React.FC = () => {
                 )}
               </div>
 
-              <div className="space-y-1.5 pt-2 border-t border-[#292D29]/60 text-xs text-zinc-300">
+              <div className="space-y-1.5 pt-2 border-t border-white/5 text-xs text-zinc-300">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#D4AF72] shrink-0" />
                   <span>Active window crop &amp; clipboard paste</span>
@@ -223,7 +231,7 @@ export const Features: React.FC = () => {
               </div>
             </div>
 
-            <div className="pt-3 border-t border-[#292D29] flex items-center justify-between text-[11px] font-mono text-[#B4B7B0]">
+            <div className="pt-3 border-t border-[#00F5D4]/15 flex items-center justify-between text-[11px] font-mono text-[#9aa39e]">
               <span>VISION OCR ENGINE</span>
               <span className="text-[#D4AF72] font-semibold">INSTANT</span>
             </div>
@@ -235,15 +243,19 @@ export const Features: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.35, delay: 0.12 }}
-            className="p-6 sm:p-7 rounded-2xl bg-[#121512] border border-[#292D29] hover:border-[#00F5D4]/40 transition-all duration-300 flex flex-col justify-between space-y-5 group relative overflow-hidden h-full"
+            className="cyber-card p-6 sm:p-7 rounded-2xl flex flex-col justify-between space-y-5 group relative overflow-hidden h-full"
           >
+            {/* Corner reticles */}
+            <div className="cyber-reticle cyber-reticle-tl" />
+            <div className="cyber-reticle cyber-reticle-br" />
+
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-[#292D29] flex items-center justify-center text-[#00F5D4] group-hover:bg-[#087F5B]/20 group-hover:border-[#00F5D4]/40 transition-all">
+                <div className="w-10 h-10 rounded-xl bg-[#00F5D4]/10 border border-[#00F5D4]/30 flex items-center justify-center text-[#00F5D4] group-hover:scale-110 transition-transform">
                   <Sliders className="w-5 h-5 text-[#00F5D4]" />
                 </div>
-                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#191D19] border border-[#292D29] text-[#D4AF72]">
-                  03
+                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#00F5D4]/10 border border-[#00F5D4]/30 text-[#00F5D4] font-bold">
+                  // SUBSYS-03
                 </span>
               </div>
 
@@ -251,10 +263,10 @@ export const Features: React.FC = () => {
                 <span className="text-[10px] font-mono uppercase tracking-wider text-[#D4AF72] block mb-1">
                   Operator Control Matrix
                 </span>
-                <h3 className="text-lg font-bold text-[#F7F5EF] group-hover:text-white transition-colors">
+                <h3 className="text-lg font-cyber font-bold text-[#F7F5EF] group-hover:text-white transition-colors">
                   Manual &amp; Automated Triggers
                 </h3>
-                <p className="text-xs text-[#B4B7B0] leading-relaxed mt-1">
+                <p className="text-xs text-[#9aa39e] leading-relaxed mt-1">
                   Maintain total discretion with the "Answer Now" manual trigger, hands-free auto-answers, and the global hotkey (Ctrl + D) to cloak or reveal in &lt;16ms.
                 </p>
               </div>
@@ -307,15 +319,19 @@ export const Features: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.35, delay: 0.16 }}
-            className="p-6 sm:p-7 rounded-2xl bg-[#121512] border border-[#292D29] hover:border-[#D4AF72]/40 transition-all duration-300 flex flex-col justify-between space-y-5 group relative overflow-hidden h-full"
+            className="cyber-card p-6 sm:p-7 rounded-2xl flex flex-col justify-between space-y-5 group relative overflow-hidden h-full"
           >
+            {/* Corner reticles */}
+            <div className="cyber-reticle cyber-reticle-gold-tl" />
+            <div className="cyber-reticle cyber-reticle-gold-br" />
+
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-[#292D29] flex items-center justify-center text-[#D4AF72] group-hover:bg-[#D4AF72]/15 group-hover:border-[#D4AF72]/40 transition-all">
+                <div className="w-10 h-10 rounded-xl bg-[#D4AF72]/10 border border-[#D4AF72]/30 flex items-center justify-center text-[#D4AF72] group-hover:scale-110 transition-transform">
                   <Code2 className="w-5 h-5 text-[#D4AF72]" />
                 </div>
-                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#191D19] border border-[#292D29] text-[#D4AF72]">
-                  04
+                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#D4AF72]/10 border border-[#D4AF72]/30 text-[#D4AF72] font-bold">
+                  // SUBSYS-04
                 </span>
               </div>
 
@@ -323,29 +339,29 @@ export const Features: React.FC = () => {
                 <span className="text-[10px] font-mono uppercase tracking-wider text-[#D4AF72] block mb-1">
                   Algorithms &amp; Production Code
                 </span>
-                <h3 className="text-lg font-bold text-[#F7F5EF] group-hover:text-white transition-colors">
+                <h3 className="text-lg font-cyber font-bold text-[#F7F5EF] group-hover:text-white transition-colors">
                   Algorithmic Depth &amp; Big-O
                 </h3>
-                <p className="text-xs text-[#B4B7B0] leading-relaxed mt-1">
+                <p className="text-xs text-[#9aa39e] leading-relaxed mt-1">
                   Synthesizes clean, production-grade code for algorithmic challenges with explicit Big-O time and space complexity benchmarks, trade-off notes, and edge-case handling.
                 </p>
               </div>
 
               {/* Code Complexity Card */}
-              <div className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] space-y-2 font-mono text-[11px] min-h-[145px] flex flex-col justify-between">
+              <div className="p-3.5 rounded-xl bg-[#080d0a] border border-[#00F5D4]/25 space-y-2 font-mono text-[11px] min-h-[145px] flex flex-col justify-between">
                 <div className="flex items-center justify-between text-[#00F5D4]">
-                  <span className="text-[10px] uppercase font-bold">Complexity Benchmarks</span>
-                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/30 font-bold">
-                    OPTIMAL
+                  <span className="text-[10px] uppercase font-bold tracking-wider">// COMPLEXITY BENCHMARKS</span>
+                  <span className="text-[9px] px-2 py-0.5 rounded bg-[#00F5D4]/15 border border-[#00F5D4]/40 font-bold text-[#00F5D4]">
+                    OPTIMAL O(1)
                   </span>
                 </div>
                 <div className="space-y-1 text-zinc-300 text-[10px]">
-                  <div>Time Complexity: <strong className="text-white">O(N log K)</strong> with Min-Heap</div>
-                  <div>Space Complexity: <strong className="text-white">O(K)</strong> aux memory</div>
+                  <div>Time Complexity: <strong className="text-[#00F5D4]">O(N log K)</strong> with Min-Heap</div>
+                  <div>Space Complexity: <strong className="text-[#D4AF72]">O(K)</strong> aux memory</div>
                 </div>
               </div>
 
-              <div className="space-y-1.5 pt-2 border-t border-[#292D29]/60 text-xs text-zinc-300">
+              <div className="space-y-1.5 pt-2 border-t border-white/5 text-xs text-zinc-300">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#D4AF72] shrink-0" />
                   <span>Python, TS, Java, C++, Go, Rust</span>
@@ -357,7 +373,7 @@ export const Features: React.FC = () => {
               </div>
             </div>
 
-            <div className="pt-3 border-t border-[#292D29] flex items-center justify-between text-[11px] font-mono text-[#B4B7B0]">
+            <div className="pt-3 border-t border-[#00F5D4]/15 flex items-center justify-between text-[11px] font-mono text-[#9aa39e]">
               <span>BIG-O OPTIMIZER</span>
               <span className="text-[#D4AF72] font-semibold">VERIFIED</span>
             </div>
@@ -369,15 +385,19 @@ export const Features: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.35, delay: 0.2 }}
-            className="p-6 sm:p-7 rounded-2xl bg-[#121512] border border-[#292D29] hover:border-[#00F5D4]/40 transition-all duration-300 flex flex-col justify-between space-y-5 group relative overflow-hidden h-full"
+            className="cyber-card p-6 sm:p-7 rounded-2xl flex flex-col justify-between space-y-5 group relative overflow-hidden h-full"
           >
+            {/* Corner reticles */}
+            <div className="cyber-reticle cyber-reticle-tl" />
+            <div className="cyber-reticle cyber-reticle-br" />
+
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-[#292D29] flex items-center justify-center text-[#00F5D4] group-hover:bg-[#087F5B]/20 group-hover:border-[#00F5D4]/40 transition-all">
+                <div className="w-10 h-10 rounded-xl bg-[#00F5D4]/10 border border-[#00F5D4]/30 flex items-center justify-center text-[#00F5D4] group-hover:scale-110 transition-transform">
                   <Brain className="w-5 h-5 text-[#00F5D4]" />
                 </div>
-                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#191D19] border border-[#292D29] text-[#D4AF72]">
-                  05
+                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#00F5D4]/10 border border-[#00F5D4]/30 text-[#00F5D4] font-bold">
+                  // SUBSYS-05
                 </span>
               </div>
 
@@ -385,23 +405,23 @@ export const Features: React.FC = () => {
                 <span className="text-[10px] font-mono uppercase tracking-wider text-[#D4AF72] block mb-1">
                   Reasoning &amp; Formatting
                 </span>
-                <h3 className="text-lg font-bold text-[#F7F5EF] group-hover:text-white transition-colors">
+                <h3 className="text-lg font-cyber font-bold text-[#F7F5EF] group-hover:text-white transition-colors">
                   Intelligent Answer-First Clarity
                 </h3>
-                <p className="text-xs text-[#B4B7B0] leading-relaxed mt-1">
+                <p className="text-xs text-[#9aa39e] leading-relaxed mt-1">
                   Immediate answer-first conclusions for quantitative aptitude, deep architectural explanations for system design, and role-adapted STAR breakdowns for behavioral prompts.
                 </p>
               </div>
 
               {/* Interactive STAR / Aptitude Tab View */}
-              <div className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] space-y-2 font-mono text-xs min-h-[145px] flex flex-col justify-between">
+              <div className="p-3.5 rounded-xl bg-[#080d0a] border border-[#00F5D4]/25 space-y-2 font-mono text-xs min-h-[145px] flex flex-col justify-between">
                 <div className="flex items-center justify-between pb-1.5 border-b border-white/5 text-[10px]">
-                  <span className="text-zinc-500">Framework:</span>
+                  <span className="text-zinc-500 uppercase tracking-wider">// FRAMEWORK:</span>
                   <div className="flex gap-1">
                     <button
                       onClick={() => setActiveAnswerTab("aptitude")}
                       className={`px-2 py-0.5 rounded text-[9px] cursor-pointer ${
-                        activeAnswerTab === "aptitude" ? "bg-[#087F5B]/30 text-[#00F5D4] font-bold" : "text-zinc-400"
+                        activeAnswerTab === "aptitude" ? "bg-[#00F5D4]/20 text-[#00F5D4] font-bold border border-[#00F5D4]/40" : "text-zinc-400"
                       }`}
                     >
                       Aptitude
@@ -409,7 +429,7 @@ export const Features: React.FC = () => {
                     <button
                       onClick={() => setActiveAnswerTab("star")}
                       className={`px-2 py-0.5 rounded text-[9px] cursor-pointer ${
-                        activeAnswerTab === "star" ? "bg-[#087F5B]/30 text-[#00F5D4] font-bold" : "text-zinc-400"
+                        activeAnswerTab === "star" ? "bg-[#00F5D4]/20 text-[#00F5D4] font-bold border border-[#00F5D4]/40" : "text-zinc-400"
                       }`}
                     >
                       STAR Matrix
@@ -432,7 +452,7 @@ export const Features: React.FC = () => {
                 </div>
               </div>
 
-              <div className="space-y-1.5 pt-2 border-t border-[#292D29]/60 text-xs text-zinc-300">
+              <div className="space-y-1.5 pt-2 border-t border-white/5 text-xs text-zinc-300">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#00F5D4] shrink-0" />
                   <span>Immediate answer-first clarity</span>
@@ -444,7 +464,7 @@ export const Features: React.FC = () => {
               </div>
             </div>
 
-            <div className="pt-3 border-t border-[#292D29] flex items-center justify-between text-[11px] font-mono text-[#B4B7B0]">
+            <div className="pt-3 border-t border-[#00F5D4]/15 flex items-center justify-between text-[11px] font-mono text-[#9aa39e]">
               <span>REASONING ADAPTER</span>
               <span className="text-[#00F5D4] font-semibold">ROLE ADAPTED</span>
             </div>
@@ -456,15 +476,19 @@ export const Features: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.35, delay: 0.24 }}
-            className="p-6 sm:p-7 rounded-2xl bg-[#121512] border border-[#292D29] hover:border-[#D4AF72]/40 transition-all duration-300 flex flex-col justify-between space-y-5 group relative overflow-hidden h-full"
+            className="cyber-card p-6 sm:p-7 rounded-2xl flex flex-col justify-between space-y-5 group relative overflow-hidden h-full"
           >
+            {/* Corner reticles */}
+            <div className="cyber-reticle cyber-reticle-gold-tl" />
+            <div className="cyber-reticle cyber-reticle-gold-br" />
+
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-[#292D29] flex items-center justify-center text-[#D4AF72] group-hover:bg-[#D4AF72]/15 group-hover:border-[#D4AF72]/40 transition-all">
+                <div className="w-10 h-10 rounded-xl bg-[#D4AF72]/10 border border-[#D4AF72]/30 flex items-center justify-center text-[#D4AF72] group-hover:scale-110 transition-transform">
                   <ShieldCheck className="w-5 h-5 text-[#D4AF72]" />
                 </div>
-                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#191D19] border border-[#292D29] text-[#D4AF72]">
-                  06
+                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#D4AF72]/10 border border-[#D4AF72]/30 text-[#D4AF72] font-bold">
+                  // SUBSYS-06
                 </span>
               </div>
 
@@ -472,29 +496,29 @@ export const Features: React.FC = () => {
                 <span className="text-[10px] font-mono uppercase tracking-wider text-[#D4AF72] block mb-1">
                   Security &amp; Key Privacy
                 </span>
-                <h3 className="text-lg font-bold text-[#F7F5EF] group-hover:text-white transition-colors">
+                <h3 className="text-lg font-cyber font-bold text-[#F7F5EF] group-hover:text-white transition-colors">
                   Personal Keys &amp; DPAPI Vault
                 </h3>
-                <p className="text-xs text-[#B4B7B0] leading-relaxed mt-1">
+                <p className="text-xs text-[#9aa39e] leading-relaxed mt-1">
                   Your credentials stay strictly encrypted on your machine inside native Windows Credential Storage (DPAPI). All AI inferences originate directly from your PC to provider APIs with zero intermediate proxy servers.
                 </p>
               </div>
 
               {/* DPAPI Security Badge Box */}
-              <div className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] space-y-2 font-mono text-[10px] min-h-[145px] flex flex-col justify-between">
+              <div className="p-3.5 rounded-xl bg-[#080d0a] border border-[#00F5D4]/25 space-y-2 font-mono text-[10px] min-h-[145px] flex flex-col justify-between">
                 <div className="flex items-center justify-between text-[#00F5D4] font-bold">
                   <span className="flex items-center gap-1">
                     <Lock className="w-3 h-3" />
                     Zero Relay Servers
                   </span>
-                  <span className="text-zinc-500">TLS 1.3</span>
+                  <span className="text-zinc-500">TLS 1.3 DIRECT</span>
                 </div>
                 <p className="text-zinc-400 text-[10px] leading-relaxed">
                   Keys are encrypted locally with hardware-bound user certificates. Never logged, never forwarded to remote clouds.
                 </p>
               </div>
 
-              <div className="space-y-1.5 pt-2 border-t border-[#292D29]/60 text-xs text-zinc-300">
+              <div className="space-y-1.5 pt-2 border-t border-white/5 text-xs text-zinc-300">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#D4AF72] shrink-0" />
                   <span>Windows DPAPI local encryption</span>
@@ -506,7 +530,7 @@ export const Features: React.FC = () => {
               </div>
             </div>
 
-            <div className="pt-3 border-t border-[#292D29] flex items-center justify-between text-[11px] font-mono text-[#B4B7B0]">
+            <div className="pt-3 border-t border-[#00F5D4]/15 flex items-center justify-between text-[11px] font-mono text-[#9aa39e]">
               <span>CLIENT ARCHITECTURE</span>
               <span className="text-[#D4AF72] font-semibold">100% PRIVATE</span>
             </div>

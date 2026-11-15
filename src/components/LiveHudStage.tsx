@@ -112,74 +112,72 @@ export const LiveHudStage: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
-      {/* Outer Glow Halo */}
-      <div className="relative rounded-2xl p-[1px] bg-gradient-to-b from-[#00F5D4]/40 via-[#D4AF72]/30 to-transparent shadow-[0_25px_70px_-15px_rgba(0,0,0,0.85)]">
-        {/* Main Floating Glass HUD Window */}
-        <div className="rounded-2xl bg-[#0c0f0d]/95 backdrop-blur-2xl border border-white/[0.08] overflow-hidden text-[#F7F5EF] flex flex-col">
-          {/* Top Window Titlebar (Tauri Styled) */}
-          <div className="px-4 py-3 bg-[#131713]/80 border-b border-[#292D29] flex flex-wrap items-center justify-between gap-3 select-none">
+    <div className="w-full max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto relative group">
+      {/* Outer Holographic Glow Halo */}
+      <div className="relative rounded-2xl p-[1px] bg-gradient-to-b from-[#00F5D4]/60 via-[#D4AF72]/40 to-[#8B5CF6]/30 shadow-[0_30px_90px_-20px_rgba(0,245,212,0.25)]">
+        {/* Sci-Fi Corner Reticles */}
+        <div className="cyber-reticle cyber-reticle-tl" />
+        <div className="cyber-reticle cyber-reticle-tr" />
+        <div className="cyber-reticle cyber-reticle-bl" />
+        <div className="cyber-reticle cyber-reticle-br" />
+
+        {/* Main Floating Glass HUD Window (2050 Cockpit) */}
+        <div className="rounded-2xl bg-[#060907]/95 backdrop-blur-2xl border border-[#00F5D4]/20 overflow-hidden text-[#F7F5EF] flex flex-col shadow-2xl">
+          {/* Top Window Titlebar (2050 Cyber Cockpit) */}
+          <div className="px-4 py-3 bg-[#0a0f0c] border-b border-[#00F5D4]/20 flex flex-wrap items-center justify-between gap-3 select-none">
             {/* Left Controls & Logo */}
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                <span className="w-2.5 h-2.5 rounded-full bg-rose-500/90 shadow-[0_0_8px_rgba(244,63,94,0.6)]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/90 shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#00F5D4] shadow-[0_0_8px_rgba(0,245,212,0.6)]" />
               </div>
 
               <div className="h-4 w-[1px] bg-white/10" />
 
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded bg-[#191D19] border border-[#D4AF72]/40 flex items-center justify-center">
-                  <svg viewBox="0 0 24 24" fill="none" className="w-2.5 h-2.5 text-[#D4AF72]">
-                    <path
-                      d="M5 6.5L12 18.5L19 6.5"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                <div className="w-4 h-4 rounded bg-[#0a0f0c] border border-[#00F5D4]/60 flex items-center justify-center">
+                  <span className="w-1.5 h-1.5 bg-[#00F5D4] rounded-full animate-ping" />
                 </div>
-                <span className="text-xs font-mono font-bold tracking-wider text-[#F7F5EF]">
-                  VEERA HUD
+                <span className="text-xs font-cyber font-bold tracking-wider text-[#F7F5EF]">
+                  QUANTUM HUD CORE
                 </span>
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/[0.04] border border-[#292D29] text-[#D4AF72] font-semibold">
-                  v3.0.1
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#00F5D4]/10 border border-[#00F5D4]/30 text-[#00F5D4] font-semibold">
+                  v3.0.1 // PROD
                 </span>
               </div>
             </div>
 
             {/* Middle Live Status Indicators */}
             <div className="flex items-center gap-2 text-[11px] font-mono">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#087F5B]/15 border border-[#087F5B]/40 text-[#00F5D4]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00F5D4] animate-pulse" />
-                <span>LISTENING (SYSTEM MIC)</span>
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00F5D4]/10 border border-[#00F5D4]/30 text-[#00F5D4] shadow-[0_0_12px_rgba(0,245,212,0.2)]">
+                <span className="w-2 h-2 rounded-full bg-[#00F5D4] animate-pulse" />
+                <span className="tracking-wide">NEURAL EAR: 48kHz ACTIVE</span>
               </span>
 
-              <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#191D19] border border-[#292D29] text-[#D4AF72]">
+              <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#111714] border border-[#D4AF72]/30 text-[#D4AF72]">
                 <Zap className="w-3 h-3 text-[#D4AF72]" />
-                <span>{activeScenario.latency}</span>
+                <span>{activeScenario.latency} LATENCY</span>
               </span>
             </div>
 
             {/* Right Cloaking & Hotkey Indicators */}
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#087F5B]/20 border border-[#087F5B]/40 text-[10px] font-mono text-[#00F5D4] font-medium" title="Window excluded from screen captures and video calls">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[#00F5D4]/15 border border-[#00F5D4]/50 text-[10px] font-mono text-[#00F5D4] font-bold shadow-[0_0_10px_rgba(0,245,212,0.25)]" title="Window excluded from screen captures and video calls">
                 <EyeOff className="w-3 h-3" />
-                <span className="hidden md:inline">STEALTH CLOAKED</span>
+                <span className="hidden md:inline">DWM CLOAK: 100%</span>
               </span>
 
-              <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-black/60 border border-white/10 text-[10px] font-mono text-[#B4B7B0]">
+              <kbd className="hidden sm:inline-block px-2 py-0.5 rounded bg-black border border-[#00F5D4]/30 text-[10px] font-mono text-[#00F5D4] font-bold">
                 Ctrl + D
               </kbd>
             </div>
           </div>
 
           {/* Interactive Question Mode Switcher Tabs */}
-          <div className="px-4 py-2 bg-[#090b09] border-b border-[#292D29] flex items-center justify-between gap-2 overflow-x-auto">
-            <span className="text-[10px] font-mono text-[#B4B7B0] uppercase shrink-0 hidden sm:inline">
-              Simulate Live Question:
+          <div className="px-4 py-2 bg-[#050806] border-b border-[#00F5D4]/15 flex items-center justify-between gap-2 overflow-x-auto">
+            <span className="text-[10px] font-mono text-[#9aa39e] uppercase shrink-0 hidden sm:inline tracking-wider">
+              // TELEMETRY SIMULATOR:
             </span>
             <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
               {SCENARIOS.map((sc) => (
@@ -188,8 +186,8 @@ export const LiveHudStage: React.FC = () => {
                   onClick={() => setActiveScenario(sc)}
                   className={`px-3 py-1 rounded-lg text-xs font-mono transition-all shrink-0 cursor-pointer ${
                     activeScenario.id === sc.id
-                      ? "bg-[#191D19] text-[#00F5D4] border border-[#00F5D4]/40 shadow-sm"
-                      : "text-[#B4B7B0] hover:text-[#F7F5EF] hover:bg-white/[0.03] border border-transparent"
+                      ? "bg-[#00F5D4]/20 text-[#00F5D4] border border-[#00F5D4]/50 shadow-[0_0_15px_rgba(0,245,212,0.25)] font-bold"
+                      : "text-[#9aa39e] hover:text-[#F7F5EF] hover:bg-white/[0.04] border border-transparent"
                   }`}
                 >
                   {sc.category}
@@ -200,23 +198,26 @@ export const LiveHudStage: React.FC = () => {
 
           {/* Live Content Feed */}
           <div className="p-4 sm:p-6 space-y-4">
-            {/* Detected Question Banner with Animated Waveform */}
-            <div className="p-3.5 sm:p-4 rounded-xl bg-[#121612] border border-[#292D29] space-y-2">
+            {/* Detected Question Banner with Animated Multi-Frequency Equalizer */}
+            <div className="p-4 rounded-xl bg-[#0a0f0c] border border-[#00F5D4]/25 space-y-2.5 relative overflow-hidden">
               <div className="flex items-center justify-between text-[11px] font-mono">
-                <div className="flex items-center gap-2 text-[#D4AF72]">
+                <div className="flex items-center gap-2 text-[#00F5D4]">
                   <Mic className="w-3.5 h-3.5 text-[#00F5D4]" />
-                  <span className="font-semibold uppercase tracking-wider">
-                    Interviewer Question Detected
+                  <span className="font-bold uppercase tracking-wider">
+                    INTERVIEWER QUESTION DETECTED [SPEECH_ISOLATION_OK]
                   </span>
                 </div>
 
-                {/* Animated Soundwave Audio Bars */}
-                <div className="flex items-center gap-0.5 h-3 px-2 py-0.5 rounded bg-black/40 border border-white/5">
+                {/* Animated Soundwave Equalizer (8 Frequency Bands) */}
+                <div className="flex items-center gap-1 h-3.5 px-2.5 py-0.5 rounded bg-black/60 border border-[#00F5D4]/30 shadow-inner">
                   <span className="w-0.5 h-2 rounded bg-[#00F5D4] animate-pulse" />
-                  <span className="w-0.5 h-3 rounded bg-[#00F5D4] animate-pulse" style={{ animationDelay: "150ms" }} />
-                  <span className="w-0.5 h-1.5 rounded bg-[#00F5D4] animate-pulse" style={{ animationDelay: "300ms" }} />
-                  <span className="w-0.5 h-2.5 rounded bg-[#00F5D4] animate-pulse" style={{ animationDelay: "75ms" }} />
-                  <span className="w-0.5 h-1 rounded bg-[#00F5D4] animate-pulse" style={{ animationDelay: "220ms" }} />
+                  <span className="w-0.5 h-3.5 rounded bg-[#00F5D4] animate-pulse" style={{ animationDelay: "120ms" }} />
+                  <span className="w-0.5 h-1.5 rounded bg-[#00F5D4] animate-pulse" style={{ animationDelay: "240ms" }} />
+                  <span className="w-0.5 h-3 rounded bg-[#0DFA9E] animate-pulse" style={{ animationDelay: "60ms" }} />
+                  <span className="w-0.5 h-2.5 rounded bg-[#00F5D4] animate-pulse" style={{ animationDelay: "180ms" }} />
+                  <span className="w-0.5 h-1 rounded bg-[#00F5D4] animate-pulse" style={{ animationDelay: "300ms" }} />
+                  <span className="w-0.5 h-3.5 rounded bg-[#D4AF72] animate-pulse" style={{ animationDelay: "90ms" }} />
+                  <span className="w-0.5 h-2 rounded bg-[#00F5D4] animate-pulse" style={{ animationDelay: "210ms" }} />
                 </div>
               </div>
 
@@ -235,17 +236,17 @@ export const LiveHudStage: React.FC = () => {
                 transition={{ duration: 0.2 }}
                 className="space-y-3"
               >
-                {/* Direct Answer-First Conclusion */}
-                <div className="p-4 rounded-xl bg-[#141a14] border border-[#087F5B]/30 space-y-2">
+                {/* Direct Answer-First Conclusion (Cyber Synthesis) */}
+                <div className="p-4 rounded-xl bg-[#08120e] border border-[#00F5D4]/40 shadow-[0_0_20px_rgba(0,245,212,0.12)] space-y-2.5">
                   <div className="flex items-center justify-between text-[11px] font-mono">
-                    <span className="text-[#00F5D4] font-semibold flex items-center gap-1.5 uppercase">
+                    <span className="text-[#00F5D4] font-bold flex items-center gap-1.5 uppercase tracking-wide">
                       <Sparkles className="w-3.5 h-3.5" />
-                      Suggested Solution (Direct Answer)
+                      COGNITIVE SYNTHESIS [DIRECT CONCLUSION FIRST]
                     </span>
 
                     <button
                       onClick={handleCopy}
-                      className="inline-flex items-center gap-1 text-[11px] font-mono text-[#B4B7B0] hover:text-[#00F5D4] transition-colors cursor-pointer px-2 py-0.5 rounded bg-white/[0.04]"
+                      className="inline-flex items-center gap-1 text-[11px] font-mono text-[#9aa39e] hover:text-[#00F5D4] transition-colors cursor-pointer px-2.5 py-0.5 rounded bg-white/[0.04] border border-white/5"
                       title="Copy full suggested response"
                     >
                       {copied ? (
@@ -267,10 +268,10 @@ export const LiveHudStage: React.FC = () => {
                   </p>
 
                   {/* Bullet Takeaways */}
-                  <div className="pt-2 space-y-1.5 border-t border-white/5">
+                  <div className="pt-2 space-y-1.5 border-t border-white/10">
                     {activeScenario.bulletPoints.map((pt, i) => (
-                      <div key={i} className="flex items-start gap-2 text-xs text-[#B4B7B0] leading-relaxed">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF72] mt-1.5 shrink-0" />
+                      <div key={i} className="flex items-start gap-2 text-xs text-[#9aa39e] leading-relaxed">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#00F5D4] mt-1.5 shrink-0 shadow-[0_0_6px_#00F5D4]" />
                         <span>{pt}</span>
                       </div>
                     ))}
@@ -279,21 +280,21 @@ export const LiveHudStage: React.FC = () => {
 
                 {/* Optional Syntax Highlighted Code Snippet */}
                 {activeScenario.codeSnippet && (
-                  <div className="rounded-xl bg-[#090b09] border border-[#292D29] overflow-hidden text-xs">
-                    <div className="flex items-center justify-between px-3 py-1.5 bg-[#121512] border-b border-[#222722]">
+                  <div className="rounded-xl bg-[#040705] border border-[#00F5D4]/25 overflow-hidden text-xs shadow-lg">
+                    <div className="flex items-center justify-between px-3 py-1.5 bg-[#0a0f0c] border-b border-[#00F5D4]/20">
                       <div className="flex items-center gap-2 text-[10px] font-mono text-[#D4AF72]">
                         <Code2 className="w-3.5 h-3.5 text-[#00F5D4]" />
-                        <span className="font-semibold uppercase">{activeScenario.codeSnippet.language}</span>
+                        <span className="font-bold uppercase tracking-wider">{activeScenario.codeSnippet.language} // CODE SYNTHESIS</span>
                       </div>
 
                       {activeScenario.complexity && (
-                        <span className="text-[10px] font-mono text-[#B4B7B0]">
+                        <span className="text-[10px] font-mono text-[#00F5D4] font-bold px-2 py-0.5 rounded bg-[#00F5D4]/10 border border-[#00F5D4]/30">
                           {activeScenario.complexity}
                         </span>
                       )}
                     </div>
 
-                    <pre className="p-3.5 font-mono text-[11px] text-emerald-300/90 overflow-x-auto leading-relaxed max-h-40">
+                    <pre className="p-3.5 font-mono text-[11px] text-[#00F5D4] overflow-x-auto leading-relaxed max-h-40 selection:bg-[#00F5D4]/20">
                       <code>{activeScenario.codeSnippet.code}</code>
                     </pre>
                   </div>

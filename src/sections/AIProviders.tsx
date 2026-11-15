@@ -93,18 +93,18 @@ export const AIProviders: React.FC = () => {
       <div className="max-w-[1600px] 2xl:max-w-[1720px] w-full mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full metallic-badge text-xs font-mono text-[#D4AF72]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00F5D4]/10 border border-[#00F5D4]/35 text-xs font-mono text-[#00F5D4] shadow-[0_0_15px_rgba(0,245,212,0.15)]">
             <Cpu className="w-3.5 h-3.5 text-[#00F5D4]" />
-            <span>PROVIDER RESILIENCE &amp; KEY OWNERSHIP</span>
+            <span className="tracking-wider uppercase">2050 NEURAL LATTICE // ARBITRATED PROVIDER FABRIC</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#F7F5EF] leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-cyber font-extrabold tracking-tight text-[#F7F5EF] leading-tight">
             Bring your own keys. <br />
-            <span className="brand-gradient-text">Zero vendor lock-in.</span>
+            <span className="brand-gradient-text drop-shadow-[0_0_35px_rgba(0,245,212,0.35)]">Zero vendor lock-in.</span>
           </h2>
 
-          <p className="text-sm sm:text-base text-[#B4B7B0] leading-relaxed max-w-2xl mx-auto">
-            Configure your personal API keys in desktop Settings. Veera AI handles task-specific provider routing, transcription dispatch, and automatic failover when rate limits are hit.
+          <p className="text-sm sm:text-base text-[#9aa39e] leading-relaxed max-w-2xl mx-auto">
+            Configure your personal API keys in desktop Settings. Veera AI handles task-specific provider routing, transcription dispatch, and automatic sub-150ms failover when rate limits are hit.
           </p>
         </div>
 
@@ -165,15 +165,18 @@ export const AIProviders: React.FC = () => {
           </div>
 
           {/* Right Column: Failover & Quota Routing Simulator */}
-          <div className="p-6 rounded-2xl bg-[#101310] border border-[#292D29] flex flex-col justify-between space-y-5">
+          <div className="cyber-card p-6 rounded-2xl flex flex-col justify-between space-y-5">
+            <div className="cyber-reticle cyber-reticle-tl" />
+            <div className="cyber-reticle cyber-reticle-br" />
+
             <div className="space-y-3">
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-[#D4AF72] font-semibold flex items-center gap-1.5 uppercase">
+                <span className="text-[#00F5D4] font-bold flex items-center gap-1.5 uppercase tracking-wide">
                   <Shuffle className="w-3.5 h-3.5 text-[#00F5D4]" />
-                  Resilient Quota Failover
+                  RESILIENT QUOTA FAILOVER
                 </span>
-                <span className="text-[10px] px-2 py-0.5 rounded bg-white/[0.04] text-[#00F5D4]">
-                  ACTIVE
+                <span className="text-[10px] px-2 py-0.5 rounded bg-[#00F5D4]/10 text-[#00F5D4] font-bold border border-[#00F5D4]/30">
+                  // ARMED
                 </span>
               </div>
 
@@ -182,11 +185,12 @@ export const AIProviders: React.FC = () => {
               </p>
 
               {/* Status Box */}
-              <div className="p-3.5 rounded-xl bg-[#090b09] border border-[#292D29] space-y-2 font-mono text-xs">
-                <div className="text-[10px] text-zinc-500 uppercase tracking-wider">
-                  Live Router Status:
+              <div className="p-3.5 rounded-xl bg-[#040605] border border-[#00F5D4]/20 space-y-2 font-mono text-xs">
+                <div className="text-[10px] text-zinc-500 uppercase tracking-wider flex items-center justify-between">
+                  <span>// LIVE ROUTER TELEMETRY</span>
+                  <span className="text-[9px] text-[#00F5D4]">CYCLE: 118ms</span>
                 </div>
-                <div className={`text-xs font-medium ${simulatingFailover ? "text-amber-300 animate-pulse" : "text-[#00F5D4]"}`}>
+                <div className={`text-xs font-bold tracking-wide ${simulatingFailover ? "text-amber-300 animate-pulse" : "text-[#00F5D4]"}`}>
                   {activeRouteStatus}
                 </div>
                 <div className="text-[10px] text-zinc-400 pt-1 border-t border-white/5">
@@ -197,14 +201,14 @@ export const AIProviders: React.FC = () => {
               <button
                 onClick={handleTriggerFailoverDemo}
                 disabled={simulatingFailover}
-                className="w-full py-2.5 px-4 rounded-xl metallic-button text-xs font-semibold cursor-pointer transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2"
+                className="w-full py-3 px-4 cyber-btn-primary text-xs font-bold cursor-pointer transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2"
               >
-                <Zap className="w-3.5 h-3.5 text-[#087F5B]" />
-                <span>{simulatingFailover ? "Failover in Progress..." : "Simulate Rate Limit Failover"}</span>
+                <Zap className="w-3.5 h-3.5 text-black" />
+                <span>{simulatingFailover ? "[ SIMULATING AUTO-FAILOVER... ]" : "[ SIMULATE RATE LIMIT FAILOVER ]"}</span>
               </button>
             </div>
 
-            <div className="pt-3 border-t border-[#292D29] text-[11px] font-mono text-zinc-400 flex items-center gap-1.5">
+            <div className="pt-3 border-t border-[#1e2822] text-[11px] font-mono text-zinc-400 flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#00F5D4] shrink-0" />
               <span>Direct client-to-API inference. Zero proxy servers.</span>
             </div>
@@ -213,50 +217,60 @@ export const AIProviders: React.FC = () => {
 
         {/* 4 Architectural Reliability Pillars */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-[1400px] 2xl:max-w-[1550px] mx-auto">
-          <div className="p-5 rounded-2xl bg-[#121612] border border-[#292D29] space-y-3">
-            <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-[#292D29] flex items-center justify-center text-[#D4AF72]">
+          <div className="cyber-card p-5 rounded-xl space-y-3">
+            <div className="cyber-reticle cyber-reticle-tl" />
+            <div className="cyber-reticle cyber-reticle-br" />
+            <div className="w-9 h-9 rounded-lg bg-[#00F5D4]/10 border border-[#00F5D4]/30 flex items-center justify-center text-[#D4AF72]">
               <Key className="w-4 h-4" />
             </div>
-            <h3 className="text-sm font-bold text-[#F7F5EF] font-mono">Personal Key Ownership (BYOK)</h3>
-            <p className="text-xs text-[#B4B7B0] leading-relaxed">
+            <h3 className="text-sm font-bold text-[#F7F5EF] font-cyber">Personal Key Ownership</h3>
+            <p className="text-xs text-[#9aa39e] leading-relaxed">
               Use your personal API keys. Usage limits, rate quotas, and tier billing remain entirely under your accounts with zero markups.
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-[#121612] border border-[#292D29] space-y-3">
-            <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-[#292D29] flex items-center justify-center text-[#00F5D4]">
+          <div className="cyber-card p-5 rounded-xl space-y-3">
+            <div className="cyber-reticle cyber-reticle-tl" />
+            <div className="cyber-reticle cyber-reticle-br" />
+            <div className="w-9 h-9 rounded-lg bg-[#00F5D4]/10 border border-[#00F5D4]/30 flex items-center justify-center text-[#00F5D4]">
               <Shuffle className="w-4 h-4" />
             </div>
-            <h3 className="text-sm font-bold text-[#F7F5EF] font-mono">Smart Task Routing</h3>
-            <p className="text-xs text-[#B4B7B0] leading-relaxed">
+            <h3 className="text-sm font-bold text-[#F7F5EF] font-cyber">Smart Task Routing</h3>
+            <p className="text-xs text-[#9aa39e] leading-relaxed">
               Dynamically routes speech transcription, vision OCR, coding solutions, and system design to whichever configured model performs best.
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-[#121612] border border-[#292D29] space-y-3">
-            <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-[#292D29] flex items-center justify-center text-[#D4AF72]">
+          <div className="cyber-card p-5 rounded-xl space-y-3">
+            <div className="cyber-reticle cyber-reticle-tl" />
+            <div className="cyber-reticle cyber-reticle-br" />
+            <div className="w-9 h-9 rounded-lg bg-[#D4AF72]/10 border border-[#D4AF72]/30 flex items-center justify-center text-[#D4AF72]">
               <Zap className="w-4 h-4" />
             </div>
-            <h3 className="text-sm font-bold text-[#F7F5EF] font-mono">Sub-150ms Failover</h3>
-            <p className="text-xs text-[#B4B7B0] leading-relaxed">
+            <h3 className="text-sm font-bold text-[#F7F5EF] font-cyber">Sub-150ms Failover</h3>
+            <p className="text-xs text-[#9aa39e] leading-relaxed">
               If an endpoint returns an error or HTTP 429, the internal router gracefully falls back to your secondary configured model instantly.
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-[#121612] border border-[#292D29] space-y-3">
-            <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-[#292D29] flex items-center justify-center text-[#087F5B]">
+          <div className="cyber-card p-5 rounded-xl space-y-3">
+            <div className="cyber-reticle cyber-reticle-tl" />
+            <div className="cyber-reticle cyber-reticle-br" />
+            <div className="w-9 h-9 rounded-lg bg-[#00F5D4]/10 border border-[#00F5D4]/30 flex items-center justify-center text-[#00F5D4]">
               <ShieldCheck className="w-4 h-4 text-[#00F5D4]" />
             </div>
-            <h3 className="text-sm font-bold text-[#F7F5EF] font-mono">Direct Local Encryption</h3>
-            <p className="text-xs text-[#B4B7B0] leading-relaxed">
+            <h3 className="text-sm font-bold text-[#F7F5EF] font-cyber">Direct Local Encryption</h3>
+            <p className="text-xs text-[#9aa39e] leading-relaxed">
               All keys are encrypted locally using Windows DPAPI. Requests are dispatched directly via TLS 1.3 straight to provider endpoints.
             </p>
           </div>
         </div>
 
         {/* Responsible BYOK Notice */}
-        <div className="mt-10 p-4 rounded-xl bg-[#101310] border border-[#292D29] max-w-3xl mx-auto text-center text-xs text-[#B4B7B0] font-mono leading-relaxed">
-          <span className="text-[#D4AF72] font-semibold">User Account Notice:</span> Bring-Your-Own-Key (BYOK). Requests are billed directly to your respective provider developer accounts. No middleman subscription fees or proprietary token taxes.
+        <div className="mt-10 p-4 rounded-xl cyber-card max-w-3xl mx-auto text-center text-xs text-[#9aa39e] font-mono leading-relaxed relative">
+          <div className="cyber-reticle cyber-reticle-tl" />
+          <div className="cyber-reticle cyber-reticle-br" />
+          <span className="text-[#D4AF72] font-semibold tracking-wider uppercase">[ USER ACCOUNT TELEMETRY ]:</span> Bring-Your-Own-Key (BYOK). Requests are billed directly to your respective provider developer accounts. No middleman subscription fees or proprietary token taxes.
         </div>
       </div>
     </section>

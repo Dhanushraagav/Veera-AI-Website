@@ -29,18 +29,18 @@ export const StealthMode: React.FC = () => {
       <div className="max-w-[1600px] 2xl:max-w-[1720px] w-full mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full metallic-badge text-xs font-mono text-[#D4AF72]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00F5D4]/10 border border-[#00F5D4]/35 text-xs font-mono text-[#00F5D4] shadow-[0_0_15px_rgba(0,245,212,0.15)]">
             <Shield className="w-3.5 h-3.5 text-[#00F5D4]" />
-            <span>HARDWARE-LEVEL CLOAKING ENGINE</span>
+            <span className="tracking-wider uppercase">PROJECT PHANTOM // DWM KERNEL HARDWARE CLOAK</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F7F5EF] leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-cyber font-extrabold tracking-tight text-[#F7F5EF] leading-tight">
             Invisible on Screen Share. <br />
-            <span className="brand-gradient-text">Crystal clear to you.</span>
+            <span className="brand-gradient-text drop-shadow-[0_0_35px_rgba(0,245,212,0.35)]">Crystal clear to you.</span>
           </h2>
 
-          <p className="text-sm sm:text-base text-[#B4B7B0] leading-relaxed max-w-2xl mx-auto">
-            Powered directly by native Windows Desktop Window Manager (DWM) hardware exclusion (<code className="text-[#00F5D4] text-xs px-1.5 py-0.5 rounded bg-black/60 font-mono">WDA_EXCLUDEFROMCAPTURE</code>). When sharing your full desktop or application on Zoom, Microsoft Teams, or Google Meet, Veera is completely omitted from the video stream at the OS kernel level.
+          <p className="text-sm sm:text-base text-[#9aa39e] leading-relaxed max-w-2xl mx-auto">
+            Powered directly by native Windows Desktop Window Manager (DWM) hardware exclusion (<code className="text-[#00F5D4] text-xs px-2 py-0.5 rounded bg-black/60 border border-[#00F5D4]/30 font-mono">WDA_EXCLUDEFROMCAPTURE</code>). When sharing your full desktop on Zoom, Microsoft Teams, or Google Meet, Veera is completely omitted from the video frame at the OS kernel level.
           </p>
         </div>
 
@@ -111,17 +111,23 @@ export const StealthMode: React.FC = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35 }}
-                className="rounded-2xl bg-[#0f120f] border border-[#292D29] overflow-hidden shadow-2xl flex flex-col relative group"
+                className="cyber-card rounded-2xl overflow-hidden shadow-2xl flex flex-col relative group"
               >
+                {/* Corner reticles */}
+                <div className="cyber-reticle cyber-reticle-gold-tl" />
+                <div className="cyber-reticle cyber-reticle-gold-tr" />
+                <div className="cyber-reticle cyber-reticle-gold-bl" />
+                <div className="cyber-reticle cyber-reticle-gold-br" />
+
                 {/* Screen Header Badge */}
-                <div className="px-4 py-3 bg-[#141814] border-b border-[#292D29] flex items-center justify-between">
+                <div className="px-4 py-3 bg-[#0a0f0c] border-b border-[#00F5D4]/20 flex items-center justify-between">
                   <div className="flex items-center gap-2 text-xs font-mono text-[#D4AF72]">
                     <Monitor className="w-4 h-4 text-[#D4AF72]" />
-                    <span className="font-bold uppercase tracking-wider">YOUR PHYSICAL MONITOR</span>
+                    <span className="font-bold uppercase tracking-wider font-cyber">PILOT RETINA VIEW (YOUR DISPLAY)</span>
                   </div>
 
-                  <span className="px-2.5 py-0.5 rounded-full bg-[#D4AF72]/15 border border-[#D4AF72]/30 text-[10px] font-mono text-[#D4AF72] font-semibold">
-                    100% VISIBLE TO YOU
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#D4AF72]/15 border border-[#D4AF72]/40 text-[10px] font-mono text-[#D4AF72] font-bold">
+                    100% VISIBLE TO PILOT
                   </span>
                 </div>
 
@@ -187,23 +193,37 @@ export const StealthMode: React.FC = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: 0.08 }}
-                className="rounded-2xl bg-[#0f120f] border border-[#292D29] overflow-hidden shadow-2xl flex flex-col relative group"
+                className="cyber-card rounded-2xl overflow-hidden shadow-2xl flex flex-col relative group"
               >
+                {/* Corner reticles */}
+                <div className="cyber-reticle cyber-reticle-tl" />
+                <div className="cyber-reticle cyber-reticle-tr" />
+                <div className="cyber-reticle cyber-reticle-bl" />
+                <div className="cyber-reticle cyber-reticle-br" />
+
                 {/* Screen Header Badge */}
-                <div className="px-4 py-3 bg-[#141814] border-b border-[#292D29] flex items-center justify-between">
+                <div className="px-4 py-3 bg-[#0a0f0c] border-b border-rose-500/20 flex items-center justify-between">
                   <div className="flex items-center gap-2 text-xs font-mono text-rose-400">
                     <Video className="w-4 h-4 text-rose-400" />
-                    <span className="font-bold uppercase tracking-wider">INTERVIEWER SCREEN SHARE FEED</span>
+                    <span className="font-bold uppercase tracking-wider font-cyber">SURVEILLANCE RADAR (INTERVIEWER VIEW)</span>
                   </div>
 
-                  <span className="px-2.5 py-0.5 rounded-full bg-[#087F5B]/20 border border-[#087F5B]/40 text-[10px] font-mono text-[#00F5D4] font-semibold flex items-center gap-1">
+                  <span className="px-2.5 py-0.5 rounded-full bg-rose-500/20 border border-rose-500/40 text-[10px] font-mono text-rose-300 font-bold flex items-center gap-1 shadow-[0_0_10px_rgba(244,63,94,0.3)]">
                     <EyeOff className="w-3 h-3" />
-                    VEERA HUD CLOAKED (INVISIBLE)
+                    DWM CLOAK: 100% INVISIBLE
                   </span>
                 </div>
 
                 {/* Simulated Meeting Viewport */}
-                <div className="relative min-h-[380px] p-4 bg-[#0a0c0a] flex flex-col justify-between overflow-hidden">
+                <div className="relative min-h-[380px] p-4 bg-[#050705] flex flex-col justify-between overflow-hidden">
+                  {/* Real-time sweeping laser line indicating screen scan */}
+                  {screenShareActive && (
+                    <motion.div
+                      animate={{ top: ["0%", "100%", "0%"] }}
+                      transition={{ duration: 2.8, repeat: Infinity, ease: "linear" }}
+                      className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-rose-500/90 to-transparent shadow-[0_0_15px_rgba(244,63,94,0.9)] pointer-events-none z-20"
+                    />
+                  )}
                   {/* Meeting Status Bar */}
                   <div className="mb-2 px-3 py-1.5 rounded-lg bg-black/60 border border-white/10 flex items-center justify-between text-[10px] font-mono text-zinc-400">
                     <div className="flex items-center gap-1.5">
@@ -256,43 +276,51 @@ export const StealthMode: React.FC = () => {
         </div>
 
         {/* 4 Technical Pillars of Stealth Architecture */}
-        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
-          <div className="p-5 rounded-2xl bg-[#121612] border border-[#292D29] space-y-3">
-            <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-[#292D29] flex items-center justify-center text-[#00F5D4]">
+        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-[1400px] 2xl:max-w-[1550px] mx-auto">
+          <div className="cyber-card p-5 rounded-2xl space-y-3 relative group">
+            <div className="cyber-reticle cyber-reticle-tl" />
+            <div className="cyber-reticle cyber-reticle-br" />
+            <div className="w-9 h-9 rounded-xl bg-[#00F5D4]/10 border border-[#00F5D4]/30 flex items-center justify-center text-[#00F5D4] group-hover:scale-110 transition-transform">
               <Shield className="w-4 h-4" />
             </div>
-            <h3 className="text-sm font-bold text-[#F7F5EF] font-mono">DWM Kernel Exclusion</h3>
-            <p className="text-xs text-[#B4B7B0] leading-relaxed">
+            <h3 className="text-sm font-bold text-[#F7F5EF] font-cyber">DWM Kernel Exclusion</h3>
+            <p className="text-xs text-[#9aa39e] leading-relaxed">
               Configured with native Windows <code className="text-[#00F5D4]">WDA_EXCLUDEFROMCAPTURE</code> display affinity. Capture APIs cannot record what the graphics engine excludes.
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-[#121612] border border-[#292D29] space-y-3">
-            <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-[#292D29] flex items-center justify-center text-[#D4AF72]">
+          <div className="cyber-card p-5 rounded-2xl space-y-3 relative group">
+            <div className="cyber-reticle cyber-reticle-gold-tl" />
+            <div className="cyber-reticle cyber-reticle-gold-br" />
+            <div className="w-9 h-9 rounded-xl bg-[#D4AF72]/10 border border-[#D4AF72]/30 flex items-center justify-center text-[#D4AF72] group-hover:scale-110 transition-transform">
               <Sliders className="w-4 h-4" />
             </div>
-            <h3 className="text-sm font-bold text-[#F7F5EF] font-mono">No Black Box Glitches</h3>
-            <p className="text-xs text-[#B4B7B0] leading-relaxed">
+            <h3 className="text-sm font-bold text-[#F7F5EF] font-cyber">No Black Box Glitches</h3>
+            <p className="text-xs text-[#9aa39e] leading-relaxed">
               Web overlays leave dark rectangular voids on recordings. Veera AI desktop passes through genuine underlying pixels with zero rendering corruption.
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-[#121612] border border-[#292D29] space-y-3">
-            <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-[#292D29] flex items-center justify-center text-[#087F5B]">
+          <div className="cyber-card p-5 rounded-2xl space-y-3 relative group">
+            <div className="cyber-reticle cyber-reticle-tl" />
+            <div className="cyber-reticle cyber-reticle-br" />
+            <div className="w-9 h-9 rounded-xl bg-[#00F5D4]/10 border border-[#00F5D4]/30 flex items-center justify-center text-[#00F5D4] group-hover:scale-110 transition-transform">
               <Zap className="w-4 h-4 text-[#00F5D4]" />
             </div>
-            <h3 className="text-sm font-bold text-[#F7F5EF] font-mono">Anti-Cursor Flickering</h3>
-            <p className="text-xs text-[#B4B7B0] leading-relaxed">
+            <h3 className="text-sm font-bold text-[#F7F5EF] font-cyber">Anti-Cursor Flickering</h3>
+            <p className="text-xs text-[#9aa39e] leading-relaxed">
               Maintains standard Windows cursor shapes across the entire screen so your pointer never flips into window-resize arrows during screen broadcast.
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-[#121612] border border-[#292D29] space-y-3">
-            <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-[#292D29] flex items-center justify-center text-[#D4AF72]">
+          <div className="cyber-card p-5 rounded-2xl space-y-3 relative group">
+            <div className="cyber-reticle cyber-reticle-gold-tl" />
+            <div className="cyber-reticle cyber-reticle-gold-br" />
+            <div className="w-9 h-9 rounded-xl bg-[#D4AF72]/10 border border-[#D4AF72]/30 flex items-center justify-center text-[#D4AF72] group-hover:scale-110 transition-transform">
               <Lock className="w-4 h-4" />
             </div>
-            <h3 className="text-sm font-bold text-[#F7F5EF] font-mono">Instant Panic Key (Ctrl+D)</h3>
-            <p className="text-xs text-[#B4B7B0] leading-relaxed">
+            <h3 className="text-sm font-bold text-[#F7F5EF] font-cyber">Instant Panic Key (Ctrl+D)</h3>
+            <p className="text-xs text-[#9aa39e] leading-relaxed">
               Instantly toggle the entire HUD on or off in under 16ms (a single screen refresh) without halting real-time audio capture or question processing.
             </p>
           </div>

@@ -50,47 +50,52 @@ export const DesktopFirst: React.FC = () => {
         <div className="w-full max-w-[1400px] 2xl:max-w-[1550px] mx-auto space-y-12">
           {/* Header */}
           <div className="text-center space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full metallic-badge text-xs font-mono text-[#D4AF72]">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00F5D4]/10 border border-[#00F5D4]/35 text-xs font-mono text-[#00F5D4] shadow-[0_0_15px_rgba(0,245,212,0.15)]">
               <Monitor className="w-3.5 h-3.5 text-[#00F5D4]" />
-              <span>NATIVE DESKTOP PERFORMANCE</span>
+              <span className="tracking-wider uppercase">NATIVE WINDOWS HARDWARE ARCHITECTURE</span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#F7F5EF] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-cyber font-extrabold tracking-tight text-[#F7F5EF] leading-tight">
               Engineered exclusively for Windows.
             </h2>
 
-            <p className="text-sm sm:text-base text-[#B4B7B0] max-w-xl mx-auto leading-relaxed">
-              Designed as a stealth desktop companion that hovers silently over your workspace without draining CPU or memory.
+            <p className="text-sm sm:text-base text-[#9aa39e] max-w-xl mx-auto leading-relaxed">
+              Designed as a stealth cyber companion that hovers silently over your workspace without draining CPU or memory.
             </p>
           </div>
 
           {/* Interactive Global Hotkey Showcase Box */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-[#121612] border border-[#292D29] shadow-2xl relative overflow-hidden">
+          <div className="cyber-card p-6 sm:p-8 rounded-2xl relative overflow-hidden">
+            <div className="cyber-reticle cyber-reticle-tl" />
+            <div className="cyber-reticle cyber-reticle-tr" />
+            <div className="cyber-reticle cyber-reticle-bl" />
+            <div className="cyber-reticle cyber-reticle-br" />
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="space-y-4">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-[#D4AF72] px-2.5 py-0.5 rounded bg-white/[0.04] border border-[#292D29]">
-                  Instant Panic Key
+                <span className="text-[10px] font-mono uppercase tracking-wider text-[#00F5D4] px-2.5 py-0.5 rounded bg-[#00F5D4]/10 border border-[#00F5D4]/30">
+                  INSTANT HARDWARE PANIC KEY
                 </span>
-                <h3 className="text-2xl font-bold text-[#F7F5EF]">
+                <h3 className="text-2xl font-cyber font-bold text-[#F7F5EF]">
                   Instant HUD Cloaking with <span className="text-[#00F5D4]">Ctrl + D</span>
                 </h3>
-                <p className="text-xs sm:text-sm text-[#B4B7B0] leading-relaxed">
-                  The global shortcut works across any active application &mdash; full-screen IDEs, browser tabs, or video calls. Tap once to reveal the overlay; tap again to vanish it in a single frame. Background audio recording and question parsing continue seamlessly.
+                <p className="text-xs sm:text-sm text-[#9aa39e] leading-relaxed">
+                  The global shortcut works across any active application &mdash; full-screen IDEs, browser tabs, or video calls. Tap once to reveal the overlay; tap again to vanish it in a single frame (16ms). Background audio recording and question parsing continue seamlessly.
                 </p>
 
                 <div className="flex items-center gap-3 pt-2">
                   <button
                     onClick={handleSimulateHotkey}
-                    className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-2 ${
+                    className={`px-5 py-2.5 rounded-xl text-xs font-cyber font-bold transition-all cursor-pointer flex items-center gap-2 ${
                       hotkeyTriggered
-                        ? "bg-[#00F5D4] text-black shadow-lg shadow-[#00F5D4]/30 scale-95"
-                        : "metallic-button text-black hover:border-[#00F5D4]/40"
+                        ? "bg-[#00F5D4] text-black shadow-[0_0_20px_#00F5D4] scale-95"
+                        : "cyber-btn-primary text-black"
                     }`}
                   >
-                    <Zap className="w-3.5 h-3.5 text-[#087F5B]" />
-                    <span>{hotkeyTriggered ? "HUD Toggled (16ms)!" : "Test Shortcut Reaction"}</span>
+                    <Zap className="w-3.5 h-3.5 text-black" />
+                    <span>{hotkeyTriggered ? "HUD CLOAKED (16ms)!" : "TEST SHORTCUT REACTION"}</span>
                   </button>
-                  <span className="text-[11px] font-mono text-zinc-500">Sub-16ms toggle response</span>
+                  <span className="text-[11px] font-mono text-[#00F5D4] font-semibold">// 16MS SWITCH FRAME</span>
                 </div>
               </div>
 
@@ -142,24 +147,25 @@ export const DesktopFirst: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.35, delay: idx * 0.08 }}
-                  className="p-5 rounded-2xl bg-[#121612] border border-[#292D29] hover:border-[#D4AF72]/30 transition-all flex flex-col justify-between space-y-3 group"
+                  className="cyber-card p-5 rounded-2xl flex flex-col justify-between space-y-3 group"
                 >
+                  <div className="cyber-reticle cyber-reticle-tl" />
                   <div className="space-y-2.5">
                     <div className="flex items-center justify-between">
-                      <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-[#292D29] flex items-center justify-center text-[#00F5D4] group-hover:bg-[#087F5B]/20 transition-all">
+                      <div className="w-8 h-8 rounded-lg bg-[#00F5D4]/10 border border-[#00F5D4]/30 flex items-center justify-center text-[#00F5D4] group-hover:scale-110 transition-transform">
                         <Icon className="w-4 h-4" />
                       </div>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-black/40 border border-white/5 text-[#D4AF72]">
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#00F5D4]/10 border border-[#00F5D4]/30 text-[#00F5D4] font-bold">
                         {item.stat}
                       </span>
                     </div>
 
-                    <h3 className="text-sm font-bold text-[#F7F5EF]">{item.title}</h3>
-                    <p className="text-xs text-[#B4B7B0] leading-relaxed">{item.desc}</p>
+                    <h3 className="text-sm font-cyber font-bold text-[#F7F5EF]">{item.title}</h3>
+                    <p className="text-xs text-[#9aa39e] leading-relaxed">{item.desc}</p>
                   </div>
 
-                  <div className="pt-2 border-t border-[#292D29]/60 text-[10px] font-mono text-zinc-500">
-                    NATIVE DESKTOP API
+                  <div className="pt-2 border-t border-white/5 text-[10px] font-mono text-[#00F5D4]">
+                    // NATIVE DESKTOP API
                   </div>
                 </motion.div>
               );
@@ -167,12 +173,12 @@ export const DesktopFirst: React.FC = () => {
           </div>
 
           {/* Technical Specs Strip */}
-          <div className="p-4 rounded-xl bg-[#121612] border border-[#292D29] flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#B4B7B0]">
+          <div className="cyber-card p-4 rounded-xl flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#9aa39e]">
             <div>
               <span className="text-zinc-500">PACKAGE:</span> <span className="text-white font-semibold">{SITE_CONFIG.INSTALLER_FILENAME}</span>
             </div>
             <div>
-              <span className="text-zinc-500">SIZE:</span> <span className="text-[#D4AF72] font-semibold">{SITE_CONFIG.INSTALLER_SIZE}</span>
+              <span className="text-zinc-500">SIZE:</span> <span className="text-[#00F5D4] font-bold">{SITE_CONFIG.INSTALLER_SIZE}</span>
             </div>
             <div>
               <span className="text-zinc-500">RUNTIME:</span> <span className="text-[#00F5D4] font-semibold">Tauri 2.x + Rust (x64)</span>

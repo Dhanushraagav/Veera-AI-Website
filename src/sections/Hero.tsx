@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Download, ChevronRight, CheckCircle2, Shield, Sparkles } from "lucide-react";
+import { Download, ChevronRight, Shield, Sparkles } from "lucide-react";
 import { SITE_CONFIG } from "../config/site";
 import { FunnyDramaticHeart } from "../components/FunnyDramaticHeart";
 import { LiveHudStage } from "../components/LiveHudStage";
@@ -55,10 +55,10 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full metallic-badge text-xs font-mono text-[#D4AF72] mb-3"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00F5D4]/10 border border-[#00F5D4]/40 text-xs font-mono text-[#00F5D4] mb-3 shadow-[0_0_15px_rgba(0,245,212,0.2)]"
           >
-            <span className="w-2 h-2 rounded-full bg-[#00F5D4] animate-pulse" />
-            <span>NATIVE WINDOWS 10 / 11 COPILOT • v{SITE_CONFIG.VERSION}</span>
+            <span className="w-2 h-2 rounded-full bg-[#00F5D4] animate-ping" />
+            <span className="tracking-wider uppercase">CYBERNETIC DESKTOP COPILOT // WIN 10/11 x64 // v{SITE_CONFIG.VERSION}</span>
           </motion.div>
 
           {/* Main Brand Headline with Dynamic Multi-Color Orbital Trails */}
@@ -196,15 +196,15 @@ export const Hero: React.FC = () => {
               className="w-full flex justify-center text-center relative z-10 py-1"
             >
               <h1
-                style={{ fontFamily: "'Space Grotesk', 'Plus Jakarta Sans', sans-serif" }}
-                className="relative inline-flex items-center justify-center text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[11rem] font-extrabold tracking-[-0.04em] leading-none select-none text-center whitespace-nowrap uppercase"
+                style={{ fontFamily: "'Orbitron', 'Space Grotesk', sans-serif" }}
+                className="relative inline-flex items-center justify-center text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[11rem] font-extrabold tracking-[-0.02em] leading-none select-none text-center whitespace-nowrap uppercase"
               >
                 <span className="invisible opacity-0 pointer-events-none select-none inline-block whitespace-nowrap font-extrabold" aria-hidden="true">
                   {fullText}
                 </span>
 
                 <span className="absolute inset-0 flex items-center justify-center whitespace-nowrap">
-                  <span className="brand-gradient-text inline-block text-center whitespace-nowrap font-extrabold">
+                  <span className="brand-gradient-text inline-block text-center whitespace-nowrap font-extrabold drop-shadow-[0_0_35px_rgba(0,245,212,0.4)]">
                     {displayedText}
                   </span>
                 </span>
@@ -234,38 +234,38 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="pt-4 max-w-3xl mx-auto"
           >
-            <p className="text-base sm:text-lg md:text-xl text-[#B4B7B0] leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-[#9aa39e] leading-relaxed">
               The stealth desktop assistant for technical interviews. Real-time speech transcription, instant algorithmic code synthesis, and hardware-level Stealth Mode that stays 100% invisible during Zoom, Teams, and Google Meet screen shares.
             </p>
           </motion.div>
 
-          {/* Primary CTA and Secondary Navigation to Stealth Mode */}
+          {/* 2050 Cyber CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.28 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-6 sm:pt-8"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6 sm:pt-8 w-full max-w-xl mx-auto"
           >
             <a
               href={SITE_CONFIG.DOWNLOAD_URL}
               download={SITE_CONFIG.INSTALLER_FILENAME}
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl metallic-button font-semibold text-sm transition-all duration-200 active:scale-[0.98] shadow-lg group cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl cyber-btn-primary font-bold text-sm transition-all duration-200 active:scale-[0.98] shadow-xl group cursor-pointer"
             >
-              <Download className="w-4 h-4 text-[#087F5B] transition-transform group-hover:-translate-y-0.5" />
-              <span>Download Veera AI v{SITE_CONFIG.VERSION}</span>
-              <span className="text-[11px] font-mono text-[#D4AF72] ml-1">
-                ({SITE_CONFIG.INSTALLER_SIZE})
+              <Download className="w-4 h-4 text-[#040605] transition-transform group-hover:-translate-y-0.5" />
+              <span>DOWNLOAD v{SITE_CONFIG.VERSION}</span>
+              <span className="text-[11px] font-mono text-[#040605]/80 ml-1 px-1.5 py-0.5 rounded bg-black/10">
+                {SITE_CONFIG.INSTALLER_SIZE}
               </span>
             </a>
 
             <a
               href="#stealth-mode"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-[#121512] hover:bg-[#191D19] border border-[#292D29] hover:border-[#00F5D4]/40 text-[#F7F5EF] text-sm font-medium transition-all cursor-pointer group"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl cyber-btn-secondary text-sm font-semibold transition-all cursor-pointer group"
             >
               <Shield className="w-4 h-4 text-[#00F5D4]" />
-              <span>Experience Stealth Mode</span>
-              <ChevronRight className="w-4 h-4 text-[#D4AF72] transition-transform group-hover:translate-x-0.5" />
+              <span>EXPERIENCE STEALTH MODE</span>
+              <ChevronRight className="w-4 h-4 text-[#00F5D4] transition-transform group-hover:translate-x-1" />
             </a>
           </motion.div>
 
@@ -279,10 +279,10 @@ export const Hero: React.FC = () => {
             {heroCapabilityPills.map((label) => (
               <span
                 key={label}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#121512] border border-[#292D29] text-[#B4B7B0]"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#0a0f0c] border border-[#00F5D4]/25 text-[11px] font-mono shadow-sm hover:border-[#00F5D4]/60 transition-colors"
               >
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#00F5D4]" />
-                <span className="text-[#F7F5EF] font-medium">{label}</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00F5D4] shadow-[0_0_8px_#00F5D4]" />
+                <span className="text-[#F7F5EF] font-medium tracking-wide uppercase">{label}</span>
               </span>
             ))}
           </motion.div>

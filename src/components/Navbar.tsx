@@ -50,43 +50,48 @@ export const Navbar: React.FC<NavbarProps> = ({ activeRoute, onRouteChange }) =>
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? "bg-[#080908]/92 backdrop-blur-xl border-b border-[#292D29] shadow-lg shadow-black/50 py-3"
+          ? "bg-[#040605]/95 backdrop-blur-2xl border-b border-[#00F5D4]/20 shadow-[0_10px_35px_-5px_rgba(0,0,0,0.9)] py-3"
           : "bg-transparent py-4.5"
       }`}
     >
       <div className="w-full max-w-[1600px] 2xl:max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
         <div className="flex items-center justify-between">
-          {/* Brand Logo & Emblem */}
+          {/* 2050 Sci-Fi Cyber Brand Logo */}
           <button
             onClick={() => onRouteChange("home")}
-            className="flex items-center gap-3 group focus:outline-none focus:ring-1 focus:ring-[#087F5B]/50 rounded-lg p-1 text-left cursor-pointer"
+            className="flex items-center gap-3 group focus:outline-none rounded-lg p-1 text-left cursor-pointer"
             aria-label="Veera AI Home"
           >
-            <div className="w-8 h-8 rounded-lg bg-[#121512] border border-[#D4AF72]/30 flex items-center justify-center transition-transform group-hover:scale-105 shadow-inner">
-              <svg className="w-4 h-4 text-[#D4AF72]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <div className="relative w-9 h-9 rounded-xl bg-[#0a0f0c] border border-[#00F5D4]/50 flex items-center justify-center transition-all duration-300 group-hover:border-[#00F5D4] group-hover:shadow-[0_0_20px_rgba(0,245,212,0.4)]">
+              {/* Corner brackets */}
+              <div className="cyber-reticle cyber-reticle-tl" />
+              <div className="cyber-reticle cyber-reticle-tr" />
+              <div className="cyber-reticle cyber-reticle-bl" />
+              <div className="cyber-reticle cyber-reticle-br" />
+              <svg className="w-4 h-4 text-[#00F5D4]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M4 4l8 16 8-16" />
-                <circle cx="12" cy="14" r="1.5" fill="#087F5B" />
+                <circle cx="12" cy="14" r="1.5" fill="#D4AF72" />
               </svg>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="font-bold tracking-wider text-base sm:text-lg text-[#F7F5EF] font-mono leading-none">
+            <div className="flex items-center gap-2.5">
+              <span className="font-cyber font-extrabold tracking-widest text-base sm:text-lg text-[#F7F5EF] leading-none group-hover:text-white">
                 {SITE_CONFIG.SITE_NAME}
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#121512] border border-[#087F5B]/40 text-[10px] font-mono text-[#00F5D4] leading-none hidden sm:inline-flex">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#00F5D4]/10 border border-[#00F5D4]/35 text-[10px] font-mono text-[#00F5D4] leading-none hidden sm:inline-flex">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00F5D4] animate-pulse" />
-                v{SITE_CONFIG.VERSION}
+                <span>v{SITE_CONFIG.VERSION} // ARMED</span>
               </span>
             </div>
           </button>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#121512]/80 border border-[#292D29] backdrop-blur-md" aria-label="Main Navigation">
+          {/* Desktop Sci-Fi Cockpit Navigation Links */}
+          <nav className="hidden md:flex items-center gap-1 px-4 py-1.5 rounded-full bg-[#0a0f0c]/90 border border-[#00F5D4]/20 backdrop-blur-xl shadow-inner" aria-label="Main Navigation">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => handleLinkClick(link)}
-                className="px-3.5 py-1 text-xs lg:text-sm font-medium text-[#B4B7B0] hover:text-[#F7F5EF] rounded-full transition-colors hover:bg-white/[0.04]"
+                className="px-3.5 py-1 text-xs font-mono uppercase tracking-wider text-[#9aa39e] hover:text-[#00F5D4] rounded-full transition-all hover:bg-[#00F5D4]/10 cursor-pointer"
               >
                 {link.label}
               </a>
@@ -95,13 +100,13 @@ export const Navbar: React.FC<NavbarProps> = ({ activeRoute, onRouteChange }) =>
 
           {/* Download Button #1 (Navbar) with Animated Cartoon Helper */}
           <div
-            className="hidden md:flex items-center gap-2.5 relative py-1"
+            className="hidden md:flex items-center gap-3 relative py-1"
             onMouseEnter={() => setDownloadHovered(true)}
             onMouseLeave={() => setDownloadHovered(false)}
           >
-            <span className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#121512] border border-[#292D29] text-[11px] font-mono text-[#B4B7B0]">
-              <span className="text-[#D4AF72]">HUD:</span>
-              <kbd className="px-1.5 py-0.5 rounded bg-black/60 border border-white/10 text-white font-bold text-[10px]">Ctrl + D</kbd>
+            <span className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-[#0a0f0c] border border-white/10 text-[11px] font-mono text-[#9aa39e]">
+              <span className="text-[#00F5D4]">CLOAK:</span>
+              <kbd className="px-1.5 py-0.5 rounded bg-black border border-[#00F5D4]/40 text-[#00F5D4] font-bold text-[10px]">Ctrl + D</kbd>
             </span>
 
             <a
@@ -112,10 +117,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeRoute, onRouteChange }) =>
                 setDownloadClicked(true);
                 setTimeout(() => setDownloadClicked(false), 2800);
               }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl metallic-button text-xs sm:text-sm font-semibold transition-all duration-200 active:scale-[0.98] cursor-pointer group hover:border-[#00F5D4]/60 hover:shadow-lg hover:shadow-[#00F5D4]/15"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl cyber-btn-primary text-xs font-bold transition-all duration-200 active:scale-[0.98] cursor-pointer group"
             >
-              <Download className="w-3.5 h-3.5 text-[#087F5B] transition-transform group-hover:-translate-y-0.5" />
-              <span>Download for Windows</span>
+              <Download className="w-3.5 h-3.5 text-[#040605] transition-transform group-hover:-translate-y-0.5" />
+              <span>DOWNLOAD v3.0.1</span>
             </a>
 
             {/* Cartoon Mascot Helper Animation */}

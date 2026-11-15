@@ -81,17 +81,17 @@ export const HowItWorks: React.FC = () => {
       <div className="max-w-[1600px] 2xl:max-w-[1720px] w-full mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full metallic-badge text-xs font-mono text-[#D4AF72]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00F5D4]/10 border border-[#00F5D4]/35 text-xs font-mono text-[#00F5D4] shadow-[0_0_15px_rgba(0,245,212,0.15)]">
             <Sparkles className="w-3.5 h-3.5 text-[#00F5D4]" />
-            <span>SEAMLESS WORKFLOW</span>
+            <span className="tracking-wider uppercase">2050 AUTONOMOUS PIPELINE // ZERO-LATENCY CONDUIT</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#F7F5EF] leading-tight">
-            Configure. Listen. Solve.
+          <h2 className="text-3xl sm:text-5xl font-cyber font-extrabold tracking-tight text-[#F7F5EF] leading-tight">
+            Configure. Intercept. Synthesize.
           </h2>
 
-          <p className="text-sm sm:text-base text-[#B4B7B0] leading-relaxed max-w-2xl mx-auto">
-            From initial key configuration to live cloaked answers, Veera AI operates natively on your Windows PC without complex cloud setup or proxy servers.
+          <p className="text-sm sm:text-base text-[#9aa39e] leading-relaxed max-w-2xl mx-auto">
+            From initial DPAPI vault encryption to live cloaked telemetry, Veera AI operates natively on your Windows PC with zero intermediate server latency.
           </p>
         </div>
 
@@ -157,46 +157,50 @@ export const HowItWorks: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.35, delay: idx * 0.08 }}
-                className={`p-6 sm:p-7 rounded-2xl border transition-all duration-300 flex flex-col justify-between cursor-pointer relative group ${
+                className={`cyber-card p-6 sm:p-7 rounded-2xl flex flex-col justify-between cursor-pointer relative group ${
                   isActive
-                    ? "bg-[#141a14] border-[#00F5D4]/50 shadow-[0_10px_30px_-10px_rgba(0,245,212,0.2)]"
-                    : "bg-[#101310] border-[#292D29] hover:border-[#D4AF72]/30"
+                    ? "border-[#00F5D4] shadow-[0_0_35px_rgba(0,245,212,0.3)] bg-[#08120e]"
+                    : "hover:border-[#00F5D4]/40"
                 }`}
               >
+                {/* Corner reticles */}
+                <div className="cyber-reticle cyber-reticle-tl" />
+                <div className="cyber-reticle cyber-reticle-br" />
+
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span
-                      className={`text-3xl font-bold font-mono transition-colors ${
+                      className={`text-3xl font-extrabold font-cyber transition-colors ${
                         isActive ? "text-[#00F5D4]" : "text-zinc-600 group-hover:text-[#D4AF72]"
                       }`}
                     >
                       {step.number}
                     </span>
                     <div
-                      className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all ${
+                      className={`w-10 h-10 rounded-xl border flex items-center justify-center transition-all ${
                         isActive
-                          ? "bg-[#087F5B]/25 border-[#00F5D4]/40 text-[#00F5D4]"
-                          : "bg-white/[0.04] border-[#292D29] text-[#D4AF72] group-hover:border-[#D4AF72]/40"
+                          ? "bg-[#00F5D4]/20 border-[#00F5D4] text-[#00F5D4] shadow-[0_0_15px_rgba(0,245,212,0.4)]"
+                          : "bg-white/[0.04] border-white/10 text-[#D4AF72] group-hover:border-[#00F5D4]/40"
                       }`}
                     >
-                      <Icon className="w-4 h-4" />
+                      <Icon className="w-5 h-5" />
                     </div>
                   </div>
 
                   <span className="text-[10px] font-mono uppercase tracking-wider text-[#D4AF72] block mb-1">
                     {step.badge}
                   </span>
-                  <h3 className="text-lg font-bold text-[#F7F5EF] mb-2 group-hover:text-white transition-colors">
+                  <h3 className="text-lg font-cyber font-bold text-[#F7F5EF] mb-2 group-hover:text-white transition-colors">
                     {step.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#B4B7B0] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#9aa39e] leading-relaxed">
                     {step.summary}
                   </p>
                 </div>
 
-                <div className="pt-4 mt-6 border-t border-[#292D29] flex items-center justify-between text-[11px] font-mono">
-                  <span className={isActive ? "text-[#00F5D4] font-semibold" : "text-zinc-500"}>
-                    {isActive ? "ACTIVE STEP" : `STEP 0${idx + 1} OF 03`}
+                <div className="pt-4 mt-6 border-t border-white/10 flex items-center justify-between text-[11px] font-mono">
+                  <span className={isActive ? "text-[#00F5D4] font-bold" : "text-zinc-500"}>
+                    {isActive ? "// ACTIVE CONDUIT" : `PHASE 0${idx + 1} OF 03`}
                   </span>
                   <ArrowRight
                     className={`w-3.5 h-3.5 transition-transform ${
@@ -217,8 +221,13 @@ export const HowItWorks: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25 }}
-            className="w-full max-w-[1400px] 2xl:max-w-[1550px] mx-auto p-6 sm:p-8 rounded-2xl bg-[#0e120e] border border-[#292D29] shadow-2xl relative overflow-hidden"
+            className="cyber-card w-full max-w-[1400px] 2xl:max-w-[1550px] mx-auto p-6 sm:p-8 rounded-2xl relative overflow-hidden"
           >
+            {/* Corner reticles */}
+            <div className="cyber-reticle cyber-reticle-tl" />
+            <div className="cyber-reticle cyber-reticle-tr" />
+            <div className="cyber-reticle cyber-reticle-bl" />
+            <div className="cyber-reticle cyber-reticle-br" />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
               {/* Left Detail Description */}
               <div className="space-y-4">
